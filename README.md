@@ -4,7 +4,7 @@ Website simulasi CGAA <i>(Certified Government Accounting Associate)</i> adalah 
 Repository ini merupakan <i>front-end</i> aplikasi CGAA yang dapat diakses secara langsung oleh pengguna. Data-data yang dibutuhkan oleh aplikasi ini disediakan oleh Project bagian API (https://github.com/Luthfia39/WebCGAA-API).
 <hr>
 
-Langkah-langkah penggunaan :
+#### Langkah-langkah penggunaan :
 - Clone repository dengan menjalankan perintah `git clone https://github.com/Luthfia39/WebCGAA-APP`.
 - Install project di komputer `composer install`.
 - Buat file env untuk konfigurasi `copy .env.example .env`.
