@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+/* User */
+#dashboard-history{
+    width: 400px;
+}
+#user-history{
+    height: 90%;
+} 
+#setting-label{
+    width: 100px;
+}
+
+/* Questions */
+.quest-option{
+    width: 35px; 
+    height: 35px; 
+    cursor: pointer;
+    background-color: #c7cbfa;
+}
+.radio-button {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 35px;
+    width: 35px;
+    margin: 0;
+    cursor: pointer;
+    
+}
+.radio-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    padding: 1rem;
+    background-color: #c7cbfa;
+    text-align: center;
+}
+.radio-label{
+    text-align: center;
+    color: #000;
+}
+.radio-button:checked + .radio-tile {
+    background-color: #3841b3;
+    color: white;
+  }
+.radio-button:checked + .radio-tile .radio-label{
+    background-color: #3841b3;
+    color: white;
+  }
+.quest-btn{
+    width: 30px; 
+    height: 30px;
+}
+.images:hover{
+    transform: scale(1.2);
+}
+
+/* Button Next*/
+.btnPrev{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: #f3c700;
+    border-radius: 1.9em;
+  }
+  
+  /* plus sign */
+  .signPrev {
+    width: 100%;
+    font-size: 2em;
+    color: black;
+    transition-duration: .3s;
+    text-decoration: none;
+    display: flex;
+    left: 0%;
+    align-items: center;
+    justify-content: center;
+  }
+  /* text */
+  .textPrev {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: black;
+    font-size: 1em;
+    font-weight: 500;
+    transition-duration: .3s;
+    
+  }
+  /* hover effect button's text */
+  .btnPrev:hover .textPrev {
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    padding-right: 20px;
+    color: black;
+  }
+  /* hover effect on button width */
+  .btnPrev:hover {
+    width: 200px;
+    border-radius: 0px;
+    transition-duration: .3s;
+    border-radius: 0.7em;
+  }
+  
+  .btnPrev:hover .signPrev {
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 20px;
+  }
+  
+  /* button click effect*/
+  .btnPrev:active {
+    transform: translate(2px ,2px);
+  }
+
+/* Button Next*/
+.btnNext{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 0px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: #f3c700;
+    border-radius: 1.9em;
+  }
+  
+  /* plus sign */
+  .sign {
+    width: 100%;
+    font-size: 2em;
+    color: black;
+    transition-duration: .3s;
+    display: flex;
+    right: 0%;
+    align-items: center;
+    justify-content: center;
+  }
+  /* text */
+  .text {
+    position: absolute;
+    left: 0%;
+    width: 0%;
+    opacity: 0;
+    color: black;
+    font-size: 1em;
+    font-weight: 500;
+    transition-duration: .3s;
+  }
+  /* hover effect button's text */
+  .btnNext:hover .text {
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    padding-left: 20px;
+    padding: 20px;
+    color: black;
+  }
+  /* hover effect on button width */
+  .btnNext:hover {
+    width: 190px;
+    border-radius: 0px;
+    transition-duration: .3s;
+    border-radius: 0.7em;
+  }
+  
+  .btnNext:hover .sign {
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 180px;
+    padding-right: 40px;
+  }
+  
+  /* button click effect*/
+  .btnNext:active {
+    transform: translate(2px ,2px);
+  }
+
+/* Admin */
+thead#pusat, .btn_add:hover{
+    background-color: #F3C700;
+}
+.left-sidebar, .quest-sidebar{
+    min-width: 18rem;
+    max-width: 18rem;
+    transition: 0.5s;
+}
+.admin-logo{
+    width: 3rem;
+    height: 3rem;
+}
+#sidebar.nav-link:hover, .btn_add{
+    color: white;
+}
+.admin-menu, .person, .btn_add{
+    background-color: #21276C;
+}
+.admin-menu{
+    width: fit-content;
+    height: fit-content;
+}
+#title-form-pusat, span, .btn_add:hover{
+    color: #21276C;
+}
+#username, #title-form-pusat{
+    font-size: 1.200rem;
+    font-weight: 400;
+}
+#title-form-pusat{
+    font-size: 1.450rem;
+    font-weight: 500;
+}
+#title-dashboard-admin{
+    color: #554600;
+    font-weight: bold;
+}
+.circle-bg{
+    width: 2.5rem;
+    height: 2.5rem;
+}
+#piechart{
+    min-width: 30rem;
+    min-height: fit-content;
+}
+.list-act{
+    max-width: 25rem;
+    max-height: 15rem;
+}
+.list-act, .list-group, .list-group-item{
+    background-color: #FBEEB0;
+}
+.overflow-auto, .list-group-item{
+    border: 1px solid ;
+}
+tbody#pusat{
+    background-color: #FEF9E6;
+}
+div#form-pusat{
+    max-height: 80vh;
+}
+button#submit-soal{
+    background-color: #DBB300;
+}
+
+@media(max-width: 960px){
+    .left-sidebar{
+        margin-left: -18rem;
+        min-height: 100vh;
+        position: fixed;
+        z-index: 1;
+    }
+    .left-sidebar.active{
+        margin-left: 0;
+    }
+    #piechart{
+        min-width: 50vw;
+        min-height: fit-content;
+    }
+    .list-act{
+        max-height: 15rem;
+        background-color: #FBEEB0;
+        border: 1px solid ;
+    }
+    .quest-sidebar{
+        right: -18rem;
+        position: fixed;
+        z-index: 2;
+    }
+    .quest-sidebar.active{
+        right: 0;
+    }
+}

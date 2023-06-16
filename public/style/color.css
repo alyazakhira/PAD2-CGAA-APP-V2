@@ -1,0 +1,138 @@
+/* Background Blue */
+.bg-blue-light1{
+   background-color: #edeefd;
+}
+.bg-blue-light2{
+   background-color: #e4e6fd;
+}
+.bg-blue-light3{
+   background-color: #c7cbfa;
+}
+.bg-blue-normal1{
+   background-color: #4a57ef;
+}
+.bg-blue-normal2{
+   background-color: #434ed7;
+}
+.bg-blue-normal3{
+   background-color: #3b46bf;
+}
+.bg-blue-dark1{
+   background-color: #3841b3;
+}
+.bg-blue-dark2{
+   background-color: #2c348f;
+}
+.bg-blue-dark3{
+   background-color: #21276c;
+}
+.bg-blue-dark4{
+   background-color: #1a1e54;
+}
+
+/* Background Yellow */
+.bg-yellow-light1{
+   background-color: #fef9e6;
+}
+.bg-yellow-light2{
+   background-color: #fdf7d9;
+}
+.bg-yellow-light3{
+   background-color: #fbeeb0;
+}
+.bg-yellow-normal1{
+   background-color: #f3c700;
+}
+.bg-yellow-normal2{
+   background-color: #dbb300;
+}
+.bg-yellow-normal3{
+   background-color: #c29f00;
+}
+.bg-yellow-dark1{
+   background-color: #b69500;
+}
+.bg-yellow-dark2{
+   background-color: #927700;
+}
+.bg-yellow-dark3{
+   background-color: #6d5a00;
+}
+.bg-yellow-dark4{
+   background-color: #554600;
+}
+
+/* Background Red */
+.bg-red-normal{
+   background-color: #B33838;
+}
+
+
+/* Font Blue*/
+.font-blue-light1{
+   color: #edeefd;
+}
+.font-blue-light2{
+   color: #e4e6fd;
+}
+.font-blue-light3{
+   color: #c7cbfa;
+}
+.font-blue-normal1{
+   color: #4a57ef;
+}
+.font-blue-normal2{
+   color: #434ed7;
+}
+.font-blue-normal3{
+   color: #3b46bf;
+}
+.font-blue-dark1{
+   color: #3841b3;
+}
+.font-blue-dark2{
+   color: #2c348f;
+}
+.font-blue-dark3{
+   color: #21276c;
+}
+.font-blue-dark4{
+   color: #1a1e54;
+}
+
+/* Font Yellow */
+.font-yellow-light1{
+    color: #fef9e6;
+}
+ .font-yellow-light2{
+    color: #fdf7d9;
+ }
+ .font-yellow-light3{
+    color: #fbeeb0;
+ }
+ .font-yellow-normal1{
+    color: #f3c700;
+ }
+ .font-yellow-normal2{
+    color: #dbb300;
+ }
+ .font-yellow-normal3{
+    color: #c29f00;
+ }
+ .font-yellow-dark1{
+    color: #b69500;
+ }
+ .font-yellow-dark2{
+    color: #927700;
+ }
+ .font-yellow-dark3{
+    color: #6d5a00;
+ }
+ .font-yellow-dark4{
+    color: #554600;
+ }
+
+ /* Font Red */
+ .font-red-normal{
+    color: #B33838;
+ }
