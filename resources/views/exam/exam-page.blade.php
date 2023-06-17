@@ -14,7 +14,7 @@
     </head>
     <body>
         <div class="d-flex">
-            <form action="{{ route('exam.saveorsubmit') }}" method="POST" class="d-flex w-100">
+            <form action="{{ route('exam.saveorsubmit') }}" method="POST" id="examForm" class="d-flex w-100">
                 @csrf
                 <input type="hidden" name="current_page" value="{{ $content->current_page }}" class="visually-hidden">
                 {{-- Outside of Sidebar --}}
@@ -217,19 +217,20 @@
 
                     {{-- Submit button --}}
                     <div class="row my-4" style="width: 70%">
-                        <button type="submit" name="submit" value="finished" class="btn btn-yellow-normal">Selesai</button>
+                        <button type="submit" name="submit" id="submit" value="finished" class="btn btn-yellow-normal">Selesai</button>
                     </div>
                 </div>
             </form>
         </div>
-        {{-- <script type="text/javascript">
-            storage = window.sessionStorage;
-            if (!storage.getItem('time')) {
+        <script type="text/javascript">
+            // storage = window.sessionStorage;
+            // if (!storage.getItem('time')) {
                 // storage.setItem('time', 7200);
-                storage.setItem('time', 10);
-            }
-
-            var total_seconds = parseInt(storage.getItem('time'));
+            //     storage.setItem('time', 10);
+            // }
+            var total_seconds = {{ Js::from(session('exam_time')) }};
+            var total_seconds = parseInt(total_seconds[0]);
+            // var total_seconds = parseInt(storage.getItem('time'));
             // var c_hour = parseInt(total_seconds / 3600),
             //     c_minutes = parseInt(total_seconds / 60 % 60 ),
             //     c_second = parseInt(total_seconds % 60);
@@ -239,15 +240,22 @@
                 // $("#countdown").html(total_seconds);
                 // $("#countdown").html(c_hour + " : " + c_minutes + " : " + c_second);
                 if (total_seconds <= 0) {
-                    var url = "/r";
-                    location.href = url;
-                }else{
+                    var examForm = document.getElementById("examForm");
+                    var finishedField = document.createElement('input');
+                    finishedField.setAttribute('type', 'hidden');                    
+                    finishedField.setAttribute('name', 'submit');                    
+                    finishedField.setAttribute('value', 'finished');
+                    examForm.appendChild(finishedField);
+                    
+                    document.getElementById("examForm").submit();
+                } else {
                     total_seconds -= 1;
                     // c_hour = parseInt(total_seconds / 3600),
                     // c_second = parseInt(total_seconds % 60),
                     // c_minutes = parseInt(total_seconds / 60 % 60 );
                 }
-                storage.setItem('time', total_seconds);
+                // storage.setItem('time', total_seconds);
+                {{ session(['exam_time'=>total_seconds]) }}
             }
             setInterval(countdown, 1000);
 
@@ -257,7 +265,7 @@
             setTimeout("preventBack()", 0);
 
             window.onunload = function () { null };
-        </script> --}}
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
