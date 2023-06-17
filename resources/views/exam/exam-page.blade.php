@@ -14,9 +14,9 @@
     </head>
     <body>
         <div class="d-flex">
-            <form action="{{ route('exam.saveorsubmit') }}" method="POST">
+            <form action="{{ route('exam.saveorsubmit') }}" method="POST" class="d-flex w-100">
                 @csrf
-                <input type="hidden" name="current_page" value="{{ $content->current_page }}">
+                <input type="hidden" name="current_page" value="{{ $content->current_page }}" class="visually-hidden">
                 {{-- Outside of Sidebar --}}
                 <div class="d-flex flex-column justify-content-between w-100 vh-100 p-5 overflow-auto border-0">
                     
@@ -222,7 +222,42 @@
                 </div>
             </form>
         </div>
-        <script type="text/javascript" src={{ asset('script/countdown.js') }}></script>
+        {{-- <script type="text/javascript">
+            storage = window.sessionStorage;
+            if (!storage.getItem('time')) {
+                // storage.setItem('time', 7200);
+                storage.setItem('time', 10);
+            }
+
+            var total_seconds = parseInt(storage.getItem('time'));
+            // var c_hour = parseInt(total_seconds / 3600),
+            //     c_minutes = parseInt(total_seconds / 60 % 60 ),
+            //     c_second = parseInt(total_seconds % 60);
+
+            function countdown(){
+                document.getElementById("countdown").innerHTML = total_seconds;
+                // $("#countdown").html(total_seconds);
+                // $("#countdown").html(c_hour + " : " + c_minutes + " : " + c_second);
+                if (total_seconds <= 0) {
+                    var url = "/r";
+                    location.href = url;
+                }else{
+                    total_seconds -= 1;
+                    // c_hour = parseInt(total_seconds / 3600),
+                    // c_second = parseInt(total_seconds % 60),
+                    // c_minutes = parseInt(total_seconds / 60 % 60 );
+                }
+                storage.setItem('time', total_seconds);
+            }
+            setInterval(countdown, 1000);
+
+            function preventBack() {
+                window.history.forward(); 
+            }
+            setTimeout("preventBack()", 0);
+
+            window.onunload = function () { null };
+        </script> --}}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
