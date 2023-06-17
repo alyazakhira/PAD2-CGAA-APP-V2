@@ -91,7 +91,7 @@
                 
                 {{-- Question --}}
                 <div class="d-flex flex-column mb-5">
-                    <p class="h4-text mb-4">{{ $mp->question }}</p>
+                    <p class="h4-text mb-4">{!! $mp->question !!}</p>
 
                     {{-- Choice A --}}
                     <div class="d-flex flex-row align-items-start" style="text-decoration: none" href="#">
