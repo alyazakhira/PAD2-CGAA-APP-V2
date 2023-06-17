@@ -85,21 +85,21 @@
             {{-- Section 1; Highlights --}}
             <p class="h3-text font-yellow-dark4 p-semi-bold mt-3">Jumlah Data</p>
             <div class="d-flex justify-content-between flex-wrap mb-4">
-                <div class="d-flex bg-yellow-normal1 font-blue-dark2 align-items-center py-3 px-4 rounded-2 mb-2" style="width: 30%">
+                <div class="d-flex bg-yellow-normal1 font-blue-dark2 align-items-center py-3 px-4 rounded-2 mb-2" style="min-width: 30%">
                     <div class="d-flex me-3 h2-text p-bold">{{$session_count}}</div>
                     <div class="d-flex flex-column">
                         <div class="d-flex h4-text p-semi-bold">Simulasi</div>
                         <div class="d-flex">Dikerjakan oleh peserta</div>
                     </div>
                 </div>
-                <div class="d-flex bg-yellow-normal1 font-blue-dark2 align-items-center py-3 px-4 rounded-2 mb-2" style="width: 30%">
+                <div class="d-flex bg-yellow-normal1 font-blue-dark2 align-items-center py-3 px-4 rounded-2 mb-2" style="min-width: 30%">
                     <div class="d-flex me-3 h2-text p-bold">{{$mp_count}}</div>
                     <div class="d-flex flex-column">
                         <div class="d-flex h4-text p-semi-bold">Soal</div>
                         <div class="d-flex">Tingkat pusat maupun daerah</div>
                     </div>
                 </div>
-                <div class="d-flex bg-yellow-normal1 font-blue-dark2 align-items-center py-3 px-4 rounded-2 mb-2" style="width: 30%">
+                <div class="d-flex bg-yellow-normal1 font-blue-dark2 align-items-center py-3 px-4 rounded-2 mb-2" style="min-width: 30%">
                     <div class="d-flex me-3 h2-text p-bold">{{$user_count}}</div>
                     <div class="d-flex flex-column">
                         <div class="d-flex h4-text p-semi-bold">Pengguna</div>
@@ -111,10 +111,10 @@
             <!-- Section 2: Usage -->
             <p class="h3-text font-yellow-dark4 p-semi-bold">Statistik Penggunaan Situs</p>
             <div class="d-flex mb-5 justify-content-between flex-wrap">
-                <div class="d-flex" style="width: 60%">
+                <div class="d-flex" style="min-width: 60%">
                     <canvas class="d-flex" id="usageChart"></canvas>
                 </div>
-                <div class="d-flex" style="width: 30%">
+                <div class="d-flex" style="min-width: 30%">
                     <canvas class="d-flex mb-2" id="userChart"></canvas>
                 </div>
             </div>
