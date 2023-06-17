@@ -7,14 +7,14 @@
         <title> Simulasi CGGA | Simulasi </title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-        <link rel="stylesheet" href={{ asset('style/font.css') }}>
-        <link rel="stylesheet" href={{ asset('style/button.css') }}>
-        <link rel="stylesheet" href={{ asset('style/color.css') }}>
-        <link rel="stylesheet" href={{ asset('style/style.css') }}>
+        <link rel="stylesheet" href="{{ asset('style/font.css') }}">
+        <link rel="stylesheet" href="{{ asset('style/button.css') }}">
+        <link rel="stylesheet" href="{{ asset('style/color.css') }}">
+        <link rel="stylesheet" href="{{ asset('style/style.css') }}">
     </head>
     <body>
         <div class="d-flex">
-            <form action="{{ route('exam.saveorsubmit') }}" method="POST" id="examForm" class="d-flex w-100">
+            <form action="{{ route('exam.saveorsubmit') }}" method="POST" id="examForm" class="d-flex w-100" name="examForm">
                 @csrf
                 <input type="hidden" name="current_page" value="{{ $content->current_page }}" class="visually-hidden">
                 {{-- Outside of Sidebar --}}
@@ -98,7 +98,6 @@
                                 <button class="btnPrev">    
                                     <div class="signPrev" style="text-decoration: none"><</div>
                                     <div class="textPrev">Soal Sebelumnya</div>
-                                    <button type="submit" class="visually-hidden"></button>
                                 </button>
                             </a>
 
@@ -112,7 +111,6 @@
                                 <button class="btnNext" type="submit" value="{{ $next }}" name="save">
                                     <div class="text">Soal selanjutnya</div>
                                     <div class="sign">></div>
-                                    <button type="submit" class="visually-hidden"></button>
                                 </button>
                             </a>
                         @elseif (($content->next_page_url == null) && ($content->prev_page_url != null))
@@ -121,7 +119,6 @@
                                 <button class="btnPrev" type="submit" value="{{ $prev }}" name="save">    
                                     <div class="signPrev" style="text-decoration: none"><</div>
                                     <div class="textPrev">Soal Sebelumnya</div>
-                                    <button type="submit" class="visually-hidden"></button>
                                 </button>
                             </a>
 
@@ -135,7 +132,6 @@
                                 <button class="btnNext">
                                     <div class="text">Soal selanjutnya</div>
                                     <div class="sign">></div>
-                                    <button type="submit" class="visually-hidden"></button>
                                 </button>
                             </a>
                         @elseif (($content->next_page_url == null) && ($content->prev_page_url == null))
@@ -144,7 +140,6 @@
                                 <button class="btnPrev">    
                                     <div class="signPrev" style="text-decoration: none"><</div>
                                     <div class="textPrev">Soal Sebelumnya</div>
-                                    <button type="submit" class="visually-hidden"></button>
                                 </button>
                             </a>
 
@@ -158,7 +153,6 @@
                                 <button class="btnNext">
                                     <div class="text">Soal selanjutnya</div>
                                     <div class="sign">></div>
-                                    <button type="submit" class="visually-hidden"></button>
                                 </button>
                             </a>
                         @else
@@ -167,7 +161,6 @@
                                 <button class="btnPrev" type="submit" value="{{ $prev }}" name="save">    
                                     <div class="signPrev" style="text-decoration: none"><</div>
                                     <div class="textPrev">Soal Sebelumnya</div>
-                                    <button type="submit" class="visually-hidden"></button>
                                 </button>
                             </a>
 
@@ -181,7 +174,6 @@
                                 <button class="btnNext" type="submit" value="{{ $next }}" name="save">
                                     <div class="text">Soal selanjutnya</div>
                                     <div class="sign">></div>
-                                    <button type="submit" class="visually-hidden"></button>
                                 </button>
                             </a>
                         @endif
@@ -223,41 +215,35 @@
             </form>
         </div>
         <script type="text/javascript">
-            // storage = window.sessionStorage;
-            // if (!storage.getItem('time')) {
+            storage = window.sessionStorage;
+            if (!storage.getItem('time')) {
                 // storage.setItem('time', 7200);
-            //     storage.setItem('time', 10);
-            // }
-            var total_seconds = {{ Js::from(session('exam_time')) }};
-            var total_seconds = parseInt(total_seconds[0]);
-            // var total_seconds = parseInt(storage.getItem('time'));
-            // var c_hour = parseInt(total_seconds / 3600),
-            //     c_minutes = parseInt(total_seconds / 60 % 60 ),
-            //     c_second = parseInt(total_seconds % 60);
+                storage.setItem('time', 120);
+            }
+            var total_seconds = parseInt(storage.getItem('time'));
+            var hour = parseInt(total_seconds / 3600),
+                minutes = parseInt(total_seconds / 60 % 60 ),
+                second = parseInt(total_seconds % 60);
 
             function countdown(){
-                document.getElementById("countdown").innerHTML = total_seconds;
-                // $("#countdown").html(total_seconds);
-                // $("#countdown").html(c_hour + " : " + c_minutes + " : " + c_second);
+                document.getElementById("countdown").innerHTML = hour + " : " + minutes + " : " + second;
                 if (total_seconds <= 0) {
-                    var examForm = document.getElementById("examForm");
-                    var finishedField = document.createElement('input');
-                    finishedField.setAttribute('type', 'hidden');                    
-                    finishedField.setAttribute('name', 'submit');                    
-                    finishedField.setAttribute('value', 'finished');
-                    examForm.appendChild(finishedField);
-                    
-                    document.getElementById("examForm").submit();
+                    stop_timer();
+                    document.getElementById("submit").click();
                 } else {
                     total_seconds -= 1;
-                    // c_hour = parseInt(total_seconds / 3600),
-                    // c_second = parseInt(total_seconds % 60),
-                    // c_minutes = parseInt(total_seconds / 60 % 60 );
+                    hour = parseInt(total_seconds / 3600),
+                    second = parseInt(total_seconds % 60),
+                    minutes = parseInt(total_seconds / 60 % 60 );
                 }
-                // storage.setItem('time', total_seconds);
-                {{ session(['exam_time'=>total_seconds]) }}
+                storage.setItem('time', total_seconds);
             }
-            setInterval(countdown, 1000);
+            var cd = setInterval(countdown, 1000);
+
+            function stop_timer(){
+                clearInterval(cd);
+                storage.removeItem("time");
+            }
 
             function preventBack() {
                 window.history.forward(); 
