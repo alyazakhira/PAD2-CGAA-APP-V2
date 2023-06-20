@@ -95,7 +95,7 @@
                         @if (($content->next_page_url != null) && ($content->prev_page_url == null))
                             {{-- Prev --}}
                             <a class="text-decoration-none" href="#">
-                                <button class="btnPrev">    
+                                <button type="button" class="btnPrev">    
                                     <div class="signPrev" style="text-decoration: none"><</div>
                                     <div class="textPrev">Soal Sebelumnya</div>
                                 </button>
@@ -129,7 +129,7 @@
 
                             {{-- Next --}}
                             <a class="text-decoration-none" href="#">
-                                <button class="btnNext">
+                                <button type="button" class="btnNext">
                                     <div class="text">Soal selanjutnya</div>
                                     <div class="sign">></div>
                                 </button>
@@ -217,8 +217,8 @@
         <script type="text/javascript">
             storage = window.sessionStorage;
             if (!storage.getItem('time')) {
-                // storage.setItem('time', 7200);
-                storage.setItem('time', 120);
+                storage.setItem('time', 7200);
+                // storage.setItem('time', 120);
             }
             var total_seconds = parseInt(storage.getItem('time'));
             var hour = parseInt(total_seconds / 3600),
