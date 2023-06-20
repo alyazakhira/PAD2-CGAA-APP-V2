@@ -137,19 +137,23 @@
                             <label for="pilihan-jawaban" class="form-label fw-semibold">Pilihan Jawaban</label>
                             <div class="input-group mb-2">
                                 <div class="input-group-text">A</div>
-                                <input type="text" class="form-control" placeholder="Pilihan A" name="answer_a" value="{{ $mp->answer_a }}">
+                                <textarea name="question" id="answer_a">{{ $mp->answer_a }}</textarea>
+                                <!-- <input type="text" class="form-control" placeholder="Pilihan A" name="answer_a" value="{{ $mp->answer_a }}"> -->
                             </div>
                             <div class="input-group mb-2">
                                 <div class="input-group-text">B</div>
-                                <input type="text" class="form-control" placeholder="Pilihan B" name="answer_b" value="{{ $mp->answer_b }}">
+                                <textarea name="question" id="answer_b">{{ $mp->answer_b }}</textarea>
+                                <!-- <input type="text" class="form-control" placeholder="Pilihan B" name="answer_b" value="{{ $mp->answer_b }}"> -->
                             </div>
                             <div class="input-group mb-2">
                                 <div class="input-group-text">C</div>
-                                <input type="text" class="form-control" placeholder="Pilihan C" name="answer_c" value="{{ $mp->answer_c }}">
+                                <textarea name="question" id="answer_c">{{ $mp->answer_c }}</textarea>
+                                <!-- <input type="text" class="form-control" placeholder="Pilihan C" name="answer_c" value="{{ $mp->answer_c }}"> -->
                             </div>
                             <div class="input-group mb-2">
                                 <div class="input-group-text">D</div>
-                                <input type="text" class="form-control" placeholder="Pilihan D" name="answer_d" value="{{ $mp->answer_d }}">
+                                <textarea name="question" id="answer_d">{{ $mp->answer_d }}</textarea>
+                                <!-- <input type="text" class="form-control" placeholder="Pilihan D" name="answer_d" value="{{ $mp->answer_d }}"> -->
                             </div>
                         </div>
 
@@ -217,6 +221,10 @@
         <script src="//cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
         <script type="text/javascript">
             CKEDITOR.replace('question',{});
+            CKEDITOR.replace('answer_a',{});
+            CKEDITOR.replace('answer_b',{});
+            CKEDITOR.replace('answer_c',{});
+            CKEDITOR.replace('answer_d',{});
             CKEDITOR.replace('question_explanation',{});
         </script>
     </body>
