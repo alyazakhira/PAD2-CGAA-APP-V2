@@ -101,7 +101,7 @@
             <p class="h3-text font-blue-dark1 p-semi-bold">Riwayat Terbaru</p>
             <div class="d-flex justify-content-between justify-content-xxl-start flex-wrap mb-5">
                 @if ($latestPusat == null)
-                    <div class="d-flex flex-column bg-blue-dark1 p-2 mb-2" style="width: 47%">
+                    <div class="d-flex flex-column bg-blue-dark1 p-2 mb-2 me-xxl-4" style="width: 47%">
                         <div class="d-flex flex-column mt-2">
                             <p class="par-text font-yellow-light3 m-0">Riwayat Simulasi Tingkat Pusat</p>
                             <p class="label-text font-yellow-light3">Anda belum melakukan simulasi tingkat pusat.</p>
@@ -113,7 +113,7 @@
                         </div> 
                     </div>
                 @else
-                    <div class="d-flex flex-column bg-blue-dark1 p-2 mb-2" style="width: 47%">
+                    <div class="d-flex flex-column bg-blue-dark1 p-2 mb-2 me-xxl-4" style="width: 47%">
                         <div class="d-flex flex-column mt-2">
                             <p class="par-text font-yellow-light3 m-0">Riwayat Simulasi Tingkat Pusat</p>
                             <p class="label-text font-yellow-light3">{{ date('d-m-Y H:i:s',strtotime($latestPusat->created_at)) }}</p>
@@ -127,7 +127,7 @@
                 @endif
 
                 @if ($latestDaerah == null)
-                    <div class="d-flex flex-column bg-blue-dark1 p-2 mb-2" style="width: 47%">
+                    <div class="d-flex flex-column bg-blue-dark1 p-2 mb-2 me-xxl-4" style="width: 47%">
                         <div class="d-flex flex-column mt-2">
                             <p class="par-text font-yellow-light3 m-0">Riwayat Simulasi Tingkat Daerah</p>
                             <p class="label-text font-yellow-light3">Anda belum melakukan simulasi tingkat daerah.</p>
@@ -139,7 +139,7 @@
                         </div>
                     </div>
                 @else
-                    <div class="d-flex flex-column bg-blue-dark1 p-2 mb-2" style="width: 47%">
+                    <div class="d-flex flex-column bg-blue-dark1 p-2 mb-2 me-xxl-4" style="width: 47%">
                         <div class="d-flex flex-column mt-2">
                             <p class="par-text font-yellow-light3 m-0">Riwayat Simulasi Tingkat Daerah</p>
                             <p class="label-text font-yellow-light3">{{ date('d-m-Y H:i:s',strtotime($latestDaerah->created_at)) }}</p>
