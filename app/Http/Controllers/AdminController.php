@@ -115,7 +115,7 @@ class AdminController extends Controller
                 ]);
                 $response = json_decode($apiResponse->body());
                 $question = $response->data;
-                return redirect()->route('admin.question.index', 1)->with('message', 'Berhasil menambahkan soal dengan ID'.$question->id.'!');
+                return redirect()->route('admin.question.index', 1)->with('message', 'Berhasil menambahkan soal dengan ID '.$question->id.'!');
             } else {
                 return redirect()->route('user.dashboard');
             }
