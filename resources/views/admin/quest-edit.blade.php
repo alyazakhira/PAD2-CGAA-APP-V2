@@ -137,22 +137,22 @@
                             <label for="pilihan-jawaban" class="form-label fw-semibold">Pilihan Jawaban</label>
                             <div class="input-group mb-2">
                                 <div class="input-group-text">A</div>
-                                <textarea name="question" id="answer_a">{{ $mp->answer_a }}</textarea>
+                                <textarea name="answer_a" id="answer_a">{{ $mp->answer_a }}</textarea>
                                 <!-- <input type="text" class="form-control" placeholder="Pilihan A" name="answer_a" value="{{ $mp->answer_a }}"> -->
                             </div>
                             <div class="input-group mb-2">
                                 <div class="input-group-text">B</div>
-                                <textarea name="question" id="answer_b">{{ $mp->answer_b }}</textarea>
+                                <textarea name="answer_b" id="answer_b">{{ $mp->answer_b }}</textarea>
                                 <!-- <input type="text" class="form-control" placeholder="Pilihan B" name="answer_b" value="{{ $mp->answer_b }}"> -->
                             </div>
                             <div class="input-group mb-2">
                                 <div class="input-group-text">C</div>
-                                <textarea name="question" id="answer_c">{{ $mp->answer_c }}</textarea>
+                                <textarea name="answer_c" id="answer_c">{{ $mp->answer_c }}</textarea>
                                 <!-- <input type="text" class="form-control" placeholder="Pilihan C" name="answer_c" value="{{ $mp->answer_c }}"> -->
                             </div>
                             <div class="input-group mb-2">
                                 <div class="input-group-text">D</div>
-                                <textarea name="question" id="answer_d">{{ $mp->answer_d }}</textarea>
+                                <textarea name="answer_d" id="answer_d">{{ $mp->answer_d }}</textarea>
                                 <!-- <input type="text" class="form-control" placeholder="Pilihan D" name="answer_d" value="{{ $mp->answer_d }}"> -->
                             </div>
                         </div>
