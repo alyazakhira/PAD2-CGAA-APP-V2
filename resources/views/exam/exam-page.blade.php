@@ -47,7 +47,7 @@
                                 <label for="answer1" class="me-3 radio-tile">
                                     <span class="d-flex align-items-center justify-content-center p-medium radio-label">A</span>
                                 </label>
-                                <p>{{ $q->answer_a }}</p>
+                                <p>{!! $q->answer_a !!}</p>
                             </div>
                             <div class="d-flex flex-row align-items-start" href="#" style="text-decoration: none">
                                 @if ($answer->{"answer_$content->current_page"} == "b")
@@ -58,7 +58,7 @@
                                 <label for="answer2" class="me-3 radio-tile">
                                     <span class="d-flex btn-blue-light align-items-center justify-content-center p-medium radio-label">B</span>
                                 </label>
-                                 <p style="color:black">{{ $q->answer_b }}</p>
+                                 <p style="color:black">{!! $q->answer_b !!}</p>
                             </div>
                             <div href="#" class="d-flex flex-row align-items-start" style="text-decoration: none">
                                 @if ($answer->{"answer_$content->current_page"} == "c")
@@ -69,7 +69,7 @@
                                 <label for="answer3" class="me-3 radio-tile">
                                     <span class="d-flex align-items-center justify-content-center p-medium radio-label">C</span>
                                 </label>
-                                <p style="color:black">{{ $q->answer_c }}</p>
+                                <p style="color:black">{!! $q->answer_c !!}</p>
                             </div>
                             <div class="d-flex flex-row align-items-start" href="#" style="text-decoration: none">
                                 @if ($answer->{"answer_$content->current_page"} == "d")
@@ -80,7 +80,7 @@
                                 <label for="answer4" class="me-3 radio-tile">
                                     <span class="d-flex bg-blue-light3 align-items-center justify-content-center p-medium radio-label">D</span>
                                 </label>
-                               <p style="color:black">{{ $q->answer_d }}</p>
+                               <p style="color:black">{!! $q->answer_d !!}</p>
                             </div>
                             @endforeach
                         </div>

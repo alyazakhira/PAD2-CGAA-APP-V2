@@ -99,7 +99,7 @@
                         <label for="answer1" class="me-3 radio-tile">
                             <span class="d-flex align-items-center justify-content-center p-medium radio-label">A</span>
                         </label>
-                        <p style="color:black">{{ $mp->answer_a }}</p>
+                        <p style="color:black">{!! $mp->answer_a !!}</p>
                     </div>
 
                     {{-- Choice B --}}
@@ -108,7 +108,7 @@
                         <label for="answer2" class="me-3 radio-tile">
                             <span class="d-flex btn-blue-light align-items-center justify-content-center p-medium radio-label">B</span>
                         </label>
-                        <p style="color:black">{{ $mp->answer_b }}</p>
+                        <p style="color:black">{!! $mp->answer_b !!}</p>
                     </div>
 
                     {{-- Choice C --}}
@@ -117,7 +117,7 @@
                         <label for="answer3" class="me-3 radio-tile">
                             <span class="d-flex align-items-center justify-content-center p-medium radio-label">C</span>
                         </label>
-                        <p style="color:black">{{ $mp->answer_c }}</p>
+                        <p style="color:black">{!! $mp->answer_c !!}</p>
                     </div>
 
                     {{-- Choice D --}}
@@ -126,7 +126,7 @@
                         <label for="answer4" class="me-3 radio-tile">
                             <span class="d-flex bg-blue-light3 align-items-center justify-content-center p-medium radio-label">D</span>
                         </label>
-                        <p style="color:black">{{ $mp->answer_d }}</p>
+                        <p style="color:black">{!! $mp->answer_d !!}</p>
                     </div>
                 </div>
 

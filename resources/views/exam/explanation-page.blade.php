@@ -39,17 +39,17 @@
                             @if ($answer->{"answer_$content->current_page"} == "a" && $q->correct_answer != "a")
                                 <div class="d-flex flex-row align-items-start" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-red-normal p-medium" style="width: 35px; height: 35px; padding: 1rem; color: white">A</div>
-                                    <p>{{ $q->answer_a }}</p>
+                                    <p>{!! $q->answer_a !!}</p>
                                 </div>
                             @elseif ($answer->{"answer_$content->current_page"} != "a" && $q->correct_answer != "a")
                                 <div class="d-flex flex-row align-items-start" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-blue-light2 p-medium" style="width: 35px; height: 35px; padding: 1rem;">A</div>
-                                    <p>{{ $q->answer_a }}</p>
+                                    <p>{!! $q->answer_a !!}</p>
                                 </div>
                             @else
                                 <div class="d-flex flex-row align-items-start" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-blue-dark1 p-medium" style="width: 35px; height: 35px; padding: 1rem; color: white">A</div>
-                                    <p>{{ $q->answer_a }}</p>
+                                    <p>{!! $q->answer_a !!}</p>
                                 </div>
                             @endif
 
@@ -57,17 +57,17 @@
                             @if ($answer->{"answer_$content->current_page"} == "b" && $q->correct_answer != "b")
                                 <div class="d-flex flex-row align-items-start" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-red-normal p-medium" style="width: 35px; height: 35px; padding: 1rem; color: white">B</div>
-                                    <p>{{ $q->answer_b }}</p>
+                                    <p>{!! $q->answer_b !!}</p>
                                 </div>
                             @elseif ($answer->{"answer_$content->current_page"} != "b" && $q->correct_answer != "b")
                                 <div class="d-flex flex-row align-items-start" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-blue-light2 p-medium" style="width: 35px; height: 35px; padding: 1rem;">B</div>
-                                    <p>{{ $q->answer_b }}</p>
+                                    <p>{!! $q->answer_b !!}</p>
                                 </div>
                             @else
                                 <div class="d-flex flex-row align-items-start" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-blue-dark1 p-medium" style="width: 35px; height: 35px; padding: 1rem; color: white">B</div>
-                                    <p>{{ $q->answer_b }}</p>
+                                    <p>{!! $q->answer_b !!}</p>
                                 </div>
                             @endif
 
@@ -75,17 +75,17 @@
                             @if ($answer->{"answer_$content->current_page"} == "c" && $q->correct_answer != "c")
                                 <div class="d-flex flex-row align-items-start" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-red-normal p-medium" style="width: 35px; height: 35px; padding: 1rem; color: white">C</div>
-                                    <p>{{ $q->answer_c }}</p>
+                                    <p>{!! $q->answer_c !!}</p>
                                 </div>
                             @elseif ($answer->{"answer_$content->current_page"} != "c" && $q->correct_answer != "c")
                                 <div class="d-flex flex-row align-items-start" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-blue-light2 p-medium" style="width: 35px; height: 35px; padding: 1rem;">C</div>
-                                    <p>{{ $q->answer_c }}</p>
+                                    <p>{!! $q->answer_c !!}</p>
                                 </div>
                             @else
                                 <div class="d-flex flex-row align-items-start" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-blue-dark1 p-medium" style="width: 35px; height: 35px; padding: 1rem; color: white">C</div>
-                                    <p>{{ $q->answer_c }}</p>
+                                    <p>{!! $q->answer_c !!}</p>
                                 </div>
                             @endif
 
@@ -93,17 +93,17 @@
                             @if ($answer->{"answer_$content->current_page"} == "d" && $q->correct_answer != "d")
                                 <div class="d-flex flex-row align-items-start" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-red-normal p-medium" style="width: 35px; height: 35px; padding: 1rem; color: white">D</div>
-                                    <p>{{ $q->answer_d }}</p>
+                                    <p>{!! $q->answer_d !!}</p>
                                 </div>
                             @elseif ($answer->{"answer_$content->current_page"} != "d" && $q->correct_answer != "d")
                                 <div class="d-flex flex-row align-items-start" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-blue-light2 p-medium" style="width: 35px; height: 35px; padding: 1rem;">D</div>
-                                    <p>{{ $q->answer_d }}</p>
+                                    <p>{!! $q->answer_d !!}</p>
                                 </div>
                             @else
                                 <div class="d-flex flex-row align-items-start" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-blue-dark1 p-medium" style="width: 35px; height: 35px; padding: 1rem; color: white">D</div>
-                                    <p>{{ $q->answer_d }}</p>
+                                    <p>{!! $q->answer_d !!}</p>
                                 </div>
                             @endif
                         </div>                        
