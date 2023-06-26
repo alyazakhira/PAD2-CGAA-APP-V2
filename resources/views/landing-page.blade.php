@@ -107,8 +107,10 @@
         <div class="col align-items-center">
             <p class="sub-display-text text-center"><strong>Simulasi <span class="font-blue-normal3">US-CGAA</span></strong></p>
             <p class="my-3 header-3 text-center"> US-CGGAA atau Ujian Sertifikasi <i>Certified Governance Accounting Associate</i> merupakan sebuah wadah simulasi untuk mengukur
-                kemampuan mahasiswa sebelum akhirnya mengikuti ujian sertifikasi resmi. Ini adalah subtitle yang rada panjang sehingga butuh beberapa baris untuk menuliskannya dengan baik dan benar. 
-                Ini adalah subtitle yang rada panjang sehingga butuh beberapa baris untuk menuliskannya dengan baik dan benar.
+                kemampuan mahasiswa sebelum mengikuti ujian sertifikasi resmi. Aplikasi teknologi ini dirancang 
+                untuk persiapan ujian sertifikasi kompetensi ahli akuntansi pemerintahan dengan penilaian secara real-time sehingga diharapkan dapat meminimalkan risiko tidak lulusnya ujian. 
+                Sertifikasi kompetensi tersebut dapat dimiliki oleh mahasiswa program studi Sarjana Terapan Akuntansi 
+                Sektor Publik di Pendidikan Vokasi. Sertifikat ini dapat menjadi bukti keunggulan kompetitif mahasiswa dan siap terjun ke dunia industri. 
             </p>
         </div>
     </div>
@@ -125,7 +127,10 @@
     <div class="row featurette mt-5 justify-content-between">
         <div class="col-md-6 order-md-2 m-3">
             <h2 class="h2-text fw-bold">Simulasi Ujian Tingkat Pusat</h2>
-            <p class="lead par-text my-2">Simulasi Ujian Berstandar Nasional ini merupakan simulasi yang khusus menyediakan soal-soal terpilih dari Bank Soal yang telah diperiksa dan diverifikasi oleh ahli di bidangnya. Selain itu, simulasi ini dibuat semirip mungkin dengan saat ujian sertifikasi aslinya.</p>
+            <p class="lead par-text my-2">
+            Sertifikasi kompetensi akuntansi pemerintahan pusat akan menilai pemahaman atas peraturan perundang- undangan keuangan negara, 
+            standar akuntansi pemerintahan, serta kebijakan akuntansi dan sistem akuntansi pemerintah pusat.
+            </p>
         </div>
         <div class="col-md-5 order-md-1 my-3">
             <img src="image/ujian-kuning.jpg" class="img-fluid">
@@ -135,7 +140,10 @@
     <div class="row featurette my-5 justify-content-between">
         <div class="col-md-6">
             <h2 class="h2-text fw-bold my-3">Simulasi Ujian Tingkat Daerah</h2>
-            <p class="lead par-text my-2">Simulasi Ujian Berstandar Nasional ini merupakan simulasi yang khusus menyediakan soal-soal terpilih dari Bank Soal yang telah diperiksa dan diverifikasi oleh ahli di bidangnya. Selain itu, simulasi ini dibuat semirip mungkin dengan saat ujian sertifikasi aslinya.</p>
+            <p class="lead par-text my-2">
+            Sertifikasi kompetensi akuntansi pemerintahan daerah akan menguji pemahaman mahasiswa terkait peraturan perundang-undangan keuangan
+             negara, standar akuntansi pemerintahan, serta kebijakan akuntansi dan sistem akuntansi pemerintah daerah.
+            </p>
         </div>
         <div class="col-md-5 my-3">
             <img src="image/ujian-biru.jpg" class="img-fluid">
@@ -156,13 +164,13 @@
 <!--Langkah-langkah-->
 <h2 class="text-center fw-bold lh-1 mt-5 mb-3">Langkah-langkah</h2>
 
-<div class="d-flex flex-wrap align-items-center justify-content-md-around justify-content-center pt-5">
+<div class="d-flex flex-wrap align-items-top justify-content-md-around justify-content-center pt-5">
     <div class="d-flex mb-5">
         <div class="card h-100">
             <div class="card-img d-flex align-items-center justify-content-center">1</div>
             <div class="card-info">
                 <h5 class="text-center p-bold">Buat Akun</h5>
-                <p class="p-regular text-center">Hanya dengan menekan tombol daftar di pojok kanan atas dan mengikuti beberapa langkah, Anda sudah siap mengikuti simulasi!</p>
+                <p class="p-regular text-center">Cukup dengan menekan tombol login atau daftar serta mengisi data diri, Anda dapat memiliki akun untuk mengerjakan soal simulasi</p>
             </div>
         </div>
     </div>
@@ -171,7 +179,7 @@
             <div class="card-img d-flex align-items-center justify-content-center">2</div>
             <div class="card-info">
                 <h5 class="text-center p-bold">Pilih Tipe</h5>
-                <p class="p-regular text-center">Hanya dengan menekan tombol daftar di pojok kanan atas dan mengikuti beberapa langkah, Anda sudah siap mengikuti simulasi!</p>
+                <p class="p-regular text-center">Hanya dengan menekan tombol Mulai Ujian di atas atau di Dashboard, Anda dapat memulai ujian!</p>
             </div>
         </div>
     </div>
@@ -180,7 +188,7 @@
             <div class="card-img d-flex align-items-center justify-content-center">3</div>
             <div class="card-info">
                 <h5 class="text-center p-bold">Kerjakan</h5>
-                <p class="p-regular text-center">Hanya dengan menekan tombol daftar di pojok kanan atas dan mengikuti beberapa langkah, Anda sudah siap mengikuti simulasi!</p>
+                <p class="p-regular text-center">Baca instruksi dan perhatikan sisa waktu ujian. Selamat mengerjakan!</p>
             </div>
         </div>
     </div>
