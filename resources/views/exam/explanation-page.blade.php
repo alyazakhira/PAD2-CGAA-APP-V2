@@ -37,18 +37,18 @@
 
                             {{-- Choice A --}}
                             @if ($answer->{"answer_$content->current_page"} == "a" && $q->correct_answer != "a")
-                                <div class="d-flex flex-row align-items-start" style="text-decoration: none">
-                                    <div class="d-flex align-items-center justify-content-center me-3 bg-red-normal p-medium" style="width: 35px; height: 35px; padding: 1rem; color: white">A</div>
+                                <div class="d-flex flex-row align-items-start rounded-2" style="text-decoration: none; border-radius: 25px;">
+                                    <div class="d-flex align-items-center justify-content-center me-3 bg-red-normal p-medium rounded-2" style="width: 35px; height: 35px; padding: 1rem; color: white; border-radius: 25px;">A</div>
                                     <p>{!! $q->answer_a !!}</p>
                                 </div>
                             @elseif ($answer->{"answer_$content->current_page"} != "a" && $q->correct_answer != "a")
-                                <div class="d-flex flex-row align-items-start" style="text-decoration: none">
-                                    <div class="d-flex align-items-center justify-content-center me-3 bg-blue-light2 p-medium" style="width: 35px; height: 35px; padding: 1rem;">A</div>
+                                <div class="d-flex flex-row align-items-start rounded-2" style="text-decoration: none">
+                                    <div class="d-flex align-items-center justify-content-center me-3 bg-blue-light2 p-medium rounded-2" style="width: 35px; height: 35px; padding: 1rem;">A</div>
                                     <p>{!! $q->answer_a !!}</p>
                                 </div>
                             @else
-                                <div class="d-flex flex-row align-items-start" style="text-decoration: none">
-                                    <div class="d-flex align-items-center justify-content-center me-3 bg-blue-dark1 p-medium" style="width: 35px; height: 35px; padding: 1rem; color: white">A</div>
+                                <div class="d-flex flex-row align-items-start rounded-2" style="text-decoration: none">
+                                    <div class="d-flex align-items-center justify-content-center me-3 bg-blue-dark1 p-medium rounded-2" style="width: 35px; height: 35px; padding: 1rem; color: white">A</div>
                                     <p>{!! $q->answer_a !!}</p>
                                 </div>
                             @endif

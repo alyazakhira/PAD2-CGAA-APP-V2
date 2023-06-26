@@ -40,9 +40,9 @@
                             <div class="h4-text mb-4">{!! $q->question !!}</div>
                             <div class="d-flex flex-row align-items-start" style="text-decoration: none" href="#">
                                 @if ($answer->{"answer_$content->current_page"} == "a")
-                                    <input type="radio" name="{{ $content->current_page }}" id="answer1" class="d-none radio-button" value="a" checked>
+                                    <input type="radio" name="{{ $content->current_page }}" id="answer1" class="d-none radio-button rounded-2" value="a" checked>
                                 @else
-                                    <input type="radio" name="{{ $content->current_page }}" id="answer1" class="d-none radio-button" value="a">
+                                    <input type="radio" name="{{ $content->current_page }}" id="answer1" class="d-none radio-button rounded-2" value="a">
                                 @endif
                                 <label for="answer1" class="me-3 radio-tile">
                                     <span class="d-flex align-items-center justify-content-center p-medium radio-label">A</span>
@@ -51,20 +51,20 @@
                             </div>
                             <div class="d-flex flex-row align-items-start" href="#" style="text-decoration: none">
                                 @if ($answer->{"answer_$content->current_page"} == "b")
-                                    <input type="radio" name="{{ $content->current_page }}" id="answer2" class="d-none radio-button" value="b" checked>
+                                    <input type="radio" name="{{ $content->current_page }}" id="answer2" class="d-none radio-button rounded-2" value="b" checked>
                                 @else
-                                    <input type="radio" name="{{ $content->current_page }}" id="answer2" class="d-none radio-button" value="b">
+                                    <input type="radio" name="{{ $content->current_page }}" id="answer2" class="d-none radio-button rounded-2" value="b">
                                 @endif
-                                <label for="answer2" class="me-3 radio-tile">
+                                <label for="answer2" class="me-3 radio-tile rounded-2">
                                     <span class="d-flex btn-blue-light align-items-center justify-content-center p-medium radio-label">B</span>
                                 </label>
                                  <p style="color:black">{!! $q->answer_b !!}</p>
                             </div>
                             <div href="#" class="d-flex flex-row align-items-start" style="text-decoration: none">
                                 @if ($answer->{"answer_$content->current_page"} == "c")
-                                    <input type="radio" name="{{ $content->current_page }}" id="answer3" class="d-none radio-button" value="c" checked>
+                                    <input type="radio" name="{{ $content->current_page }}" id="answer3" class="d-none radio-button rounded-2" value="c" checked>
                                 @else
-                                    <input type="radio" name="{{ $content->current_page }}" id="answer3" class="d-none radio-button" value="c">
+                                    <input type="radio" name="{{ $content->current_page }}" id="answer3" class="d-none radio-button rounded-2" value="c">
                                 @endif
                                 <label for="answer3" class="me-3 radio-tile">
                                     <span class="d-flex align-items-center justify-content-center p-medium radio-label">C</span>
@@ -73,9 +73,9 @@
                             </div>
                             <div class="d-flex flex-row align-items-start" href="#" style="text-decoration: none">
                                 @if ($answer->{"answer_$content->current_page"} == "d")
-                                    <input type="radio" name="{{ $content->current_page }}" id="answer4" class="d-none radio-button" value="d" checked>
+                                    <input type="radio" name="{{ $content->current_page }}" id="answer4" class="d-none radio-button rounded-2" value="d" checked>
                                 @else
-                                    <input type="radio" name="{{ $content->current_page }}" id="answer4" class="d-none radio-button" value="d">
+                                    <input type="radio" name="{{ $content->current_page }}" id="answer4" class="d-none radio-button rounded-2" value="d">
                                 @endif
                                 <label for="answer4" class="me-3 radio-tile">
                                     <span class="d-flex bg-blue-light3 align-items-center justify-content-center p-medium radio-label">D</span>
