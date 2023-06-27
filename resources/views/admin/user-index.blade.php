@@ -19,7 +19,7 @@
                 <div class="d-flex flex-row justify-content-between justify-content-lg-center align-items-center w-100">
                     {{-- Logo --}}
                     <div class="d-flex align-items-center justify-content-center text-white" style="width: 70%; padding: 5px;">
-                    <img src = "{{ asset('image/logoVokasi.svg') }}"/>
+                    <img src = "{{ asset('image/logoVokasi-user.svg') }}"/>
                     </div>
                     {{-- Close button --}}
                     <button class="btn btn-close d-flex d-block align-self-start d-lg-none"></button>

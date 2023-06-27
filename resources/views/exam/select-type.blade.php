@@ -21,7 +21,8 @@
                         <div class="w-50"></div>
                         <div>
                             <div class="fs-2 mb-3 flex-row d-flex">        
-                                <div class="m-2 d-block p-3 link-dark text-decoration-none bg-blue-dark1" style="width: 260px; height: 50%;"></div>
+                                <div class="m-2 d-block p-3 link-dark text-decoration-non" style="width: 260px; height: 50%;">
+                                <img src = "{{ asset('image/logoVokasi-user.svg') }}"/></div>
                             </div>
                             </li>
                         </div>
@@ -37,18 +38,21 @@
             </div>
 
             {{-- Choices --}}
-            <div class="d-flex justify-content-between my-5" style="width: 90%">
-                <div class="d-flex flex-column align-items-center images" style="width: 45%">
-                    <div class="d-grid">
-                        <img src="image/ujian-kuning.jpg" class="img-fluid align-items-center mb-4">
-                        <a href="{{ route('exam.instruction.pusat') }}" class="btn btn-blue-normal h3-text text-decoration-none">CGAA Pusat</a>
-                    </div>
+            <!-- tipe-select -->
+            <div class="d-flex flex-row justify-content-evenly mt-3">
+                <div class="d-flex flex-column p-lg-5" style="width: 50%;">
+                    <img src = "{{ asset('image/type-pusat.svg') }}"/>
                 </div>
-                <div class="d-flex flex-column align-items-center images" style="width: 45%">
-                    <div class="d-grid">
-                        <img src="image/ujian-biru.jpg" class="img-fluid align-items-center mb-2">
-                        <a href="{{ route('exam.instruction.daerah') }}" class="btn btn-yellow-normal h3-text text-decoration-none">CGAA Daerah</a>
-                    </div>
+                <div class="d-flex flex-column m-2 p-lg-5" style="width: 50%;">
+                    <img src = "{{ asset('image/type-daerah.svg') }}"/>
+                </div>
+            </div>
+            <div class="d-flex flex-row my-3">
+                <div class="d-flex justify-content-center" style="width: 50%;">
+                    <a href="{{ route('exam.instruction.pusat') }}" class="btn btn-blue-normal h4-text text-decoration-none">CGAA Pusat</a>
+                </div>
+                <div class="d-flex justify-content-center" style="width: 50%;">
+                    <a href="{{ route('exam.instruction.daerah') }}" class="btn btn-yellow-normal h4-text text-decoration-none">CGAA Daerah</a>
                 </div>
             </div>
         </div>

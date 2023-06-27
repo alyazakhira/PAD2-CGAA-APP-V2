@@ -203,7 +203,7 @@
                             {{-- Close button --}}
                             <button class="btn btn-close d-flex d-block align-self-start d-lg-none" type="button"></button>
                             {{-- Logo --}}
-                            <div class="d-flex align-items-center justify-content-center bg-yellow-normal1" style="width: 70%; padding: 5px;">Ini logo</div>
+                            <div class="d-flex align-items-center justify-content-center bg-yellow-normal1" style="width: 70%; padding: 5px;"><img src = "{{ asset('image/logoVokasi.svg') }}"/></div>
                         </div>
 
                         {{-- Number --}}
