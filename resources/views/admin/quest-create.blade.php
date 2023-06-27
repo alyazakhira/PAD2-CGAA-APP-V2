@@ -130,23 +130,23 @@
                         {{-- Choices Input --}}
                         <div class="mb-3">
                             <label for="pilihan-jawaban" class="form-label fw-semibold">Pilihan Jawaban</label>
-                            <div class="input-group mb-2">
-                                <div class="input-group-text">A</div>
+                            <div class="mb-3">
+                                <label for="answer_a">Pilihan A</label>
                                 <textarea name="answer_a" id="answer_a"></textarea>
                                 <!-- <input type="text" class="form-control" placeholder="Pilihan A" name="answer_a" required> -->
                             </div>
-                            <div class="input-group mb-2">
-                                <div class="input-group-text">B</div>
+                            <div class="mb-3">
+                                <label for="answer_b">Pilihan B</label>
                                 <textarea name="answer_b" id="answer_b"></textarea>
                                 <!-- <input type="text" class="form-control" placeholder="Pilihan B" name="answer_b" required> -->
                             </div>
-                            <div class="input-group mb-2">
-                                <div class="input-group-text">C</div>
+                            <div class="mb-3">
+                                <label for="answer_c">Pilihan C</label>
                                 <textarea name="answer_c" id="answer_c"></textarea>
                                 <!-- <input type="text" class="form-control" placeholder="Pilihan C" name="answer_c" required> -->
                             </div>
-                            <div class="input-group mb-2">
-                                <div class="input-group-text">D</div>
+                            <div class="mb-3">
+                                <label for="answer_d">Pilihan D</label>
                                 <textarea name="answer_d" id="answer_d"></textarea>
                                 <!-- <input type="text" class="form-control" placeholder="Pilihan D" name="answer_d" required> -->
                             </div>
