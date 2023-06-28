@@ -112,7 +112,7 @@
                     {{-- Middle: Explanation --}}
                     <div class="d-flex flex-column border border-black rounded-1 p-3 my-3">
                         <p class="h4-text p-semi-bold">Penjelasan Soal</p>
-                        <div class="d-flex mb-2">{!! $q->question_explanation !!}</div>
+                        <div class="d-flex flex-column mb-2">{!! $q->question_explanation !!}</div>
                         <p class="p-medium m-0">Jawaban benar: {{ $q->correct_answer }}</p>
                     </div>
                     
@@ -203,7 +203,7 @@
                             {{-- Close button --}}
                             <button class="btn btn-close d-flex d-block align-self-start d-lg-none" type="button"></button>
                             {{-- Logo --}}
-                            <div class="d-flex align-items-center justify-content-center bg-yellow-normal1" style="width: 70%; padding: 5px;"><img src = "{{ asset('image/logoVokasi.svg') }}"/></div>
+                            <div class="d-flex align-items-center justify-content-center " style="width: 70%; padding: 5px;"><img src = "{{ asset('image/logoVokasi.svg') }}"/></div>
                         </div>
 
                         {{-- Number --}}
