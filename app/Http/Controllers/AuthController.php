@@ -84,7 +84,7 @@ class AuthController extends Controller
                 'generation' => $request->generation,
                 'study_program' => $request->study_program,
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
+                'password' => $request->password,
                 'is_admin' => 0,
             ]);
         } else {
@@ -97,7 +97,7 @@ class AuthController extends Controller
                 'generation' => null,
                 'study_program' => null,
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
+                'password' => $request->password,
                 'is_admin' => 0,
             ]);
         }
