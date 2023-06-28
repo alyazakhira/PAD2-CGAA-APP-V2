@@ -38,25 +38,23 @@
             </div>
 
             {{-- Instruction --}}
-            <div class="d-flex flex-column mt-4 px-5">
-                <ol>
-                    <li class="mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis tincidunt velit vitae laoreet. 
-                        Etiam id facilisis ipsum, eu pellentesque dolor.</li>
-                    <li class="mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis tincidunt velit vitae laoreet. 
-                        Etiam id facilisis ipsum, eu pellentesque dolor.</li>
-                    <li class="mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis tincidunt velit vitae laoreet. 
-                        Etiam id facilisis ipsum, eu pellentesque dolor.</li>
-                    <li class="mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis tincidunt velit vitae laoreet. 
-                        Etiam id facilisis ipsum, eu pellentesque dolor.</li>
-                    <li class="mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis tincidunt velit vitae laoreet. 
-                        Etiam id facilisis ipsum, eu pellentesque dolor.</li>
-                    <li class="mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis tincidunt velit vitae laoreet. 
-                        Etiam id facilisis ipsum, eu pellentesque dolor.</li>
-                    <li class="mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis tincidunt velit vitae laoreet. 
-                        Etiam id facilisis ipsum, eu pellentesque dolor.</li>
-                    <li class="mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam venenatis tincidunt velit vitae laoreet. 
-                        Etiam id facilisis ipsum, eu pellentesque dolor.</li>
-                </ol>
+            <div class="d-flex justify-content-center mt-4 px-5" style="width: 90%">
+                <div class = "d-flex flex-column">
+                    <p class="mb-0">Peserta ujian dilarang melakukan tindakan-tindakan sebagai berikut:</p> 
+                            <ol>
+                                <li class="ps-3">Mengganggu kelancaran jalannya ujian;</li>
+                                <li class="ps-3">Membawa makanan atau minuman serta dilarang merokok di dalam ruangan;</li>
+                                <li class="ps-3">Melihat pekerjaan peserta ujian lainnya;</li>
+                                <li class="ps-3">Memperlihatkan pekerjaannya kepada peserta lainnya;</li>
+                                <li class="ps-3">Berbicara atau berdiskusi satu sama lain;</li>
+                                <li class="ps-3">Pinjam meminjam alat tulis satu sama lain;</li>
+                                <li class="ps-3">Membawa dan menggunakan kalkulator atau alat hitung lainnya;</li>
+                                <li class="ps-3">Membawa contekan dalam bentuk apapun;</li>
+                                <li class="ps-3">Membawa atau mempergunakan alat komunikasi, seperti telepon selular, ipad, dan sejenisnya.</li>
+                            </ol>    
+                </div>
+                                       
+                    
             </div>
 
             {{-- Button --}}
