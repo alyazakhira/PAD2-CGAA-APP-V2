@@ -95,7 +95,7 @@
                     </div>
                 @else
                     @foreach ($session as $s)
-                        <div class="d-flex bg-yellow-light3 p-3 justify-content-between mb-2">
+                        <a href="{{route('exam.explanation', ['page' =>1,'session_id' => $s->id ])}}" class="d-flex bg-yellow-light3 p-3 justify-content-between mb-2 text-decoration-none text-black rounded-2">
                             <div class="d-flex align-items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-chevron-right font-blue-dark1" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
@@ -108,7 +108,7 @@
                             <div class="d-flex align-items-center justify-content-end me-2">
                                 <p class="m-0 h3-text font-blue-dark1 p-semi-bold">{{$s->score}}%</p>
                             </div>
-                        </div>
+                        </a>
                     @endforeach
                 @endif
             </div>

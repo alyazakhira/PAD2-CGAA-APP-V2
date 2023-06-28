@@ -113,7 +113,7 @@
                         </div> 
                     </div>
                 @else
-                    <div class="d-flex flex-column bg-blue-dark1 p-2 mb-2 me-xxl-4" style="width: 47%">
+                    <a href="{{route('exam.explanation', ['page' =>1,'session_id' => $latestPusat->id ])}}" class="d-flex flex-column bg-blue-dark1 p-2 mb-2 me-xxl-4 text-decoration-none" style="width: 47%">
                         <div class="d-flex flex-column mt-2">
                             <p class="par-text font-yellow-light3 m-0">Riwayat Simulasi Tingkat Pusat</p>
                             <p class="label-text font-yellow-light3">{{ date('d-m-Y H:i:s',strtotime($latestPusat->created_at)) }}</p>
@@ -123,7 +123,7 @@
                             <p class="label-text text-white m-0">Benar: {{ $latestPusat->correct_answer }}</p>
                             <p class="label-text text-white m-0">Salah: {{ $latestPusat->wrong_answer }}</p>
                         </div> 
-                    </div>
+                    </a>
                 @endif
 
                 @if ($latestDaerah == null)
@@ -139,7 +139,7 @@
                         </div>
                     </div>
                 @else
-                    <div class="d-flex flex-column bg-blue-dark1 p-2 mb-2 me-xxl-4" style="width: 47%">
+                    <a href="{{route('exam.explanation', ['page' =>1,'session_id' => $latestDaerah->id ])}}" class="d-flex flex-column bg-blue-dark1 p-2 mb-2 me-xxl-4 text-decoration-none" style="width: 47%">
                         <div class="d-flex flex-column mt-2">
                             <p class="par-text font-yellow-light3 m-0">Riwayat Simulasi Tingkat Daerah</p>
                             <p class="label-text font-yellow-light3">{{ date('d-m-Y H:i:s',strtotime($latestDaerah->created_at)) }}</p>
@@ -149,7 +149,7 @@
                             <p class="label-text text-white m-0">Benar: {{ $latestDaerah->correct_answer }}</p>
                             <p class="label-text text-white m-0">Salah: {{ $latestDaerah->wrong_answer }}</p>
                         </div>
-                    </div>
+                    </a>
                 @endif
             </div>
 

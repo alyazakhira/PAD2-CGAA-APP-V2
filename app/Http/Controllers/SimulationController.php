@@ -102,8 +102,7 @@ class SimulationController extends Controller
             $apiResponse1 = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/exam-data/'.$session_id.'?page='.$page);
             $response1 = json_decode($apiResponse1->body());
             $content = $response1->data;
-
-            // todo: get user answer    
+   
             $apiResponse2 = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/session-answer-key/'.$session_id);
             $response2 = json_decode($apiResponse2->body());
             $answer = $response2->data->answer;
