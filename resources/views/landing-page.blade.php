@@ -106,7 +106,7 @@
     <div class="p-2 p-md-5 mb-4 pt-4 bg-yellow-light2">
         <div class="col align-items-center">
             <p class="sub-display-text text-center"><strong>Simulasi <span class="font-blue-normal3">US-CGAA</span></strong></p>
-            <p class="my-3 header-3 text-center"> US-CGGAA atau Ujian Sertifikasi <i>Certified Governance Accounting Associate</i> merupakan sebuah wadah simulasi untuk mengukur
+            <p class="my-3 header-3 text-center"> US-CGGAA atau Ujian Sertifikasi <i>Certified Government Accounting Associate</i> merupakan sebuah wadah simulasi untuk mengukur
                 kemampuan mahasiswa sebelum mengikuti ujian sertifikasi resmi. Aplikasi teknologi ini dirancang 
                 untuk persiapan ujian sertifikasi kompetensi ahli akuntansi pemerintahan dengan penilaian secara real-time sehingga diharapkan dapat meminimalkan risiko tidak lulusnya ujian. 
                 Sertifikasi kompetensi tersebut dapat dimiliki oleh mahasiswa program studi Sarjana Terapan Akuntansi 
