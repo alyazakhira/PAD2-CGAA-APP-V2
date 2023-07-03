@@ -211,7 +211,7 @@
                             @for ($i = 1; $i < ($content->last_page)+1; $i++)
                                 @if ($answer->{"answer_$i"} != null)
                                     @if ($answer->{"answer_$i"} == $correct_answer->{"c_answer_$i"})
-                                        <a href="{{route('exam.explanation', ['page' => $i,'session_id' => $answer->id ])}}" type="button" class="btn btn-blue-normal text-center" style="width: 40px; height: 40px;">{{ $i }}</a>
+                                        <a href="{{route('exam.explanation', ['page' => $i,'session_id' => $answer->id ])}}" type="button" class="btn btn-green-normal text-center" style="width: 40px; height: 40px;">{{ $i }}</a>
                                     @else
                                         <a href="{{route('exam.explanation', ['page' => $i,'session_id' => $answer->id ])}}" type="button" class="btn btn-red-normal text-center" style="width: 40px; height: 40px;">{{ $i }}</a>
                                     @endif

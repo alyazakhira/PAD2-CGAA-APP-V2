@@ -200,7 +200,7 @@
                                 @elseif ($answer->{"answer_$i"} == null)
                                     <button type="submit" name="save" value="{{ $i }}" class="btn btn-blue-light text-center" style="width: 40px; height: 40px;">{{ $i }}</button>
                                 @else
-                                    <button type="submit" name="save" value="{{ $i }}" class="btn btn-blue-normal text-center" style="width: 40px; height: 40px;">{{ $i }}</button>
+                                    <button type="submit" name="save" value="{{ $i }}" class="btn btn-green-normal text-center" style="width: 40px; height: 40px;">{{ $i }}</button>
                                 @endif
                                 
                             @endfor
