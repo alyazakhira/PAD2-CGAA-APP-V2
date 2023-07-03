@@ -92,11 +92,11 @@
                 </div>
                 
                 {{-- Question --}}
-                <div class="d-flex flex-column mb-5">
-                    <p class="h4-text mb-4">{!! $mp->question !!}</p>
+                <div class="d-flex flex-column mb-3">
+                    <div class="h4-text mb-3">{!! $mp->question !!}</div>
 
                     {{-- Choice A --}}
-                    <div class="d-flex flex-row align-items-start" style="text-decoration: none" href="#">
+                    <div class="d-flex flex-row align-items-start" style="text-decoration: none">
                         <input type="radio" name="answer" id="answer1" class="d-none radio-button" value="a">
                         <label for="answer1" class="me-3 radio-tile">
                             <span class="d-flex align-items-center justify-content-center p-medium radio-label">A</span>
@@ -106,7 +106,7 @@
                     </div>
 
                     {{-- Choice B --}}
-                    <div class="d-flex flex-row align-items-start" href="#" style="text-decoration: none">
+                    <div class="d-flex flex-row align-items-start" style="text-decoration: none">
                         <input type="radio" name="answer" id="answer2" class="d-none radio-button" value="b">
                         <label for="answer2" class="me-3 radio-tile">
                             <span class="d-flex btn-blue-light align-items-center justify-content-center p-medium radio-label">B</span>
@@ -115,7 +115,7 @@
                     </div>
 
                     {{-- Choice C --}}
-                    <div href="#" class="d-flex flex-row align-items-start" style="text-decoration: none">
+                    <div class="d-flex flex-row align-items-start" style="text-decoration: none">
                         <input type="radio" name="answer" id="answer3" class="d-none radio-button" value="c">
                         <label for="answer3" class="me-3 radio-tile">
                             <span class="d-flex align-items-center justify-content-center p-medium radio-label">C</span>
@@ -124,7 +124,7 @@
                     </div>
 
                     {{-- Choice D --}}
-                    <div class="d-flex flex-row align-items-start" href="#" style="text-decoration: none">
+                    <div class="d-flex flex-row align-items-start" style="text-decoration: none">
                         <input type="radio" name="answer" id="answer4" class="d-none radio-button" value="d">
                         <label for="answer4" class="me-3 radio-tile">
                             <span class="d-flex bg-blue-light3 align-items-center justify-content-center p-medium radio-label">D</span>
@@ -133,13 +133,20 @@
                     </div>
                 </div>
 
+                {{-- Explanation --}}
+                <div class="d-flex flex-column border border-black rounded-1 p-3 my-3">
+                    <p class="h4-text p-semi-bold">Penjelasan Soal</p>
+                    <div class="d-flex flex-column mb-2">{!! $mp->question_explanation !!}</div>
+                    <p class="p-medium m-0">Jawaban benar: {{ $mp->correct_answer }}</p>
+                </div>
+
                 {{-- Action --}}
-                <div class="d-flex border-bottom border-dark justify-content-between h3-text p-medium mb-4">
+                <div class="d-flex border-bottom border-dark justify-content-between h3-text p-medium my-4">
                     <p class="mb-1 d-none d-lg-block"> Aksi Lanjutan</p>
                 </div>
                 <div class="d-grid gap-2">
                     <a href="{{ route('admin.question.edit', $mp->id) }}" type="button" class="btn btn-blue-dark"><i class="bi bi-pencil-fill me-3"></i>Ubah Soal Ini</a>
-                    <form class="d-grid" {{ route('admin.question.delete', $mp->id) }} method="POST">
+                    <form class="d-grid" action="{{route('admin.question.delete', $mp->id) }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-danger"><i class="bi bi-trash3-fill me-3"></i>Hapus Soal Ini</button>
                     </form>
