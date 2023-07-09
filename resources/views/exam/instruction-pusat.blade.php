@@ -22,7 +22,7 @@
                         <div>
                             <div class="fs-2 mb-3 flex-row d-flex">        
                                 <div class="m-2 d-block p-3 link-dark text-decoration-none" style="width: 260px; height: 50%;">
-                                <img src = "{{ asset('image/logo-Vokasi.svg') }}"/></div>
+                                <img src = "{{ asset('image/logo-ugm-biru.svg') }}"/></div>
                             </div>
                             </li>
                         </div>

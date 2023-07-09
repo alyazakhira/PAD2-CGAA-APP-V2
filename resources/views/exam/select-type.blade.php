@@ -12,24 +12,21 @@
         <link rel="stylesheet" href={{ asset('style/color.css') }}>
     </head>
     <body>
-        <div class="container">
-
-            {{-- Logo --}}
-            <nav class="navbar sticky-top top-0 bg-white">
-                <div class="container-fluid">
-                    <div class="hstack justify-content-between w-100">
-                        <div class="w-50"></div>
-                        <div>
-                            <div class="fs-2 mb-3 flex-row d-flex">        
-                                <div class="m-2 d-block p-3 link-dark text-decoration-non" style="width: 260px; height: 50%;">
-                                <img src = "{{ asset('image/logoVokasi-user.svg') }}"/></div>
-                            </div>
-                            </li>
-                        </div>
-                    </div>                       
+        {{-- Logo --}}
+        <nav class="navbar sticky-top top-0 bg-white p-4">
+            <div class="align-items-center d-flex w-100">
+                <div class="d-flex" style="width: 7%; max-height: 70px">
+                    <img src="{{ asset('image/logo-ugm-only.svg') }}" class="img-fluid"/>
                 </div>
-            </nav>
+                <div class="d-flex mx-2" style="width: 7%;">
+                    <img src="{{ asset('image/logo-trpl.png') }}" class="img-fluid"/>
+                </div>
+                <div class="d-flex" style="width: 86%;">
+                </div>
+            </div>
+        </nav>
 
+        <div class="container">
             {{-- Title --}}
             <div class="d-flex justify-content-center">
                 <div class="d-flex border-bottom border-2 justify-content-center p-2" style="width: 90%">
