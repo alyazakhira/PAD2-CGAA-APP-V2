@@ -11,6 +11,11 @@
         <link rel="stylesheet" href="{{ asset('style/font.css') }}">
         <link rel="stylesheet" href="{{ asset('style/color.css') }}">
         <link rel="stylesheet" href="{{ asset('style/button.css') }}">
+        <style>
+            tbody, td, tfoot, th, thead, tr{
+                border-width: 1px
+            }
+        </style>
     </head>
     <body class="d-flex">
 
