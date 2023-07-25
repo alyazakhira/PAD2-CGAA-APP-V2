@@ -44,7 +44,7 @@
                     <img src = "{{ asset('image/type-pusat.svg') }}"/>
                 </div>
                 <div class="d-flex flex-column m-2 p-lg-5" style="width: 50%;">
-                    <img src = "{{ asset('image/type-daerah.svg') }}"/>
+                    <img src = "{{ asset('image/daerah-type.svg') }}"/>
                 </div>
             </div>
             <div class="d-flex flex-row my-3">
