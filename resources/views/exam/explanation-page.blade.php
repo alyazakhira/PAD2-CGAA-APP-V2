@@ -203,7 +203,9 @@
                             {{-- Close button --}}
                             <button class="btn btn-close d-flex d-block align-self-start d-lg-none" type="button"></button>
                             {{-- Logo --}}
-                            <div class="d-flex align-items-center justify-content-center " style="width: 70%; padding: 5px;"><img src = "{{ asset('image/logoVokasi.svg') }}"/></div>
+                            <div class="d-flex align-items-center justify-content-center" style="width: 80%; padding: 5px;">
+                                <img src="{{ asset('image/logo-ugm-putih.svg') }}" style="width: 100%"/>
+                            </div>
                         </div>
 
                         {{-- Number --}}

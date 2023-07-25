@@ -19,8 +19,8 @@
             <div class="d-flex flex-column bg-yellow-normal1 p-4 vh-100 justify-content-between align-items-center sidebar sticky-top flex-shrink-0 left-sidebar">
                 <div class="d-flex flex-row justify-content-between justify-content-lg-center align-items-center w-100">
                     {{-- Logo --}}
-                    <div class="d-flex align-items-center justify-content-center text-white" style="width: 70%; padding: 5px;">
-                    <img src = "{{ asset('image/logoVokasi-user.svg') }}"/>
+                    <div class="d-flex align-items-center justify-content-center text-white" style="width: 80%; padding: 5px;">
+                        <img src="{{ asset('image/logo-ugm-hitam.svg') }}" style="width: 100%"/>
                     </div>
                     {{-- Close button --}}
                     <button class="btn btn-close d-flex d-block align-self-start d-lg-none"></button>
