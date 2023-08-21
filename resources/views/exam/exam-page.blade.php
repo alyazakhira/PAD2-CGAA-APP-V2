@@ -11,6 +11,90 @@
         <link rel="stylesheet" href="{{ asset('style/button.css') }}">
         <link rel="stylesheet" href="{{ asset('style/color.css') }}">
         <link rel="stylesheet" href="{{ asset('style/style.css') }}">
+        <style>
+            .checkbox-btn {
+                position: relative;
+                padding-left: 30px;
+                cursor: pointer;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            .checkbox-btn input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+            }
+
+            .checkbox-btn label {
+                cursor: pointer;
+            }
+            .checkmark {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 20px;
+                width: 20px;
+                border: 1px solid #000000;
+                border-radius: 5px;
+                transition: .2s linear;
+            }
+            .checkbox-btn input:checked ~ .checkmark {
+                background-color: transparent;
+            }
+
+            .checkmark:after {
+                content: "";
+                position: absolute;
+                visibility: hidden;
+                opacity: 0;
+                left: 50%;
+                top: 40%;
+                width: 10px;
+                height: 14px;
+                border: 2px solid #0ea021;
+                filter: drop-shadow(0px 0px 10px #0ea021);
+                border-width: 0 2.5px 2.5px 0;
+                transition: .2s linear;
+                transform: translate(-50%, -50%) rotate(-90deg) scale(0.2);
+            }
+
+            .checkbox-btn input:checked ~ .checkmark:after {
+                visibility: visible;
+                opacity: 1;
+                transform: translate(-50%, -50%) rotate(0deg) scale(1);
+                animation: pulse 1s ease-in;
+            }
+
+            .checkbox-btn input:checked ~ .checkmark {
+                transform: rotate(45deg);
+                border: none;
+            }
+
+            @keyframes pulse {
+                0%,
+                100% {
+                    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+                }
+                50% {
+                    transform: translate(-50%, -50%) rotate(0deg) scale(1.6);
+                }
+            }
+
+            .flag{
+                clip-path: polygon(100% 75%, 100% 0%, 0% 0%);
+                width: 100%;
+                height: 100%;
+                position: relative;
+                bottom: 120%;
+                left: 95%;
+                border-top-right-radius: 5px;
+            }
+        </style>
     </head>
     <body>
         <div class="d-flex">
@@ -26,7 +110,7 @@
                         <div class="d-flex border-bottom border-dark justify-content-between h3-text p-medium mb-4">
                             {{-- <p class="mb-1 d-none d-lg-block"> Soal No. 29</p> --}}
                             <p class="mb-1 d-none d-lg-block"> Soal No. {{ $content->current_page }}</p>
-                            <p class="mb-1" id="countdown">00 : 00 : 00</p>
+                            {{-- <p class="mb-1" id="countdown">00 : 00 : 00</p> --}}
                             <button class="navbar-brand btn btn-open d-lg-none" type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-justify" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
@@ -85,6 +169,13 @@
                             @endforeach
                         </div>
                     </div>
+
+                    {{-- Flag --}}
+                    <label class="checkbox-btn align-self-center mt-auto mb-3">
+                        <label for="checkbox p-medium">Tandai Saat Ini</label>
+                        <input id="checkbox" type="checkbox" value="{{ $content->current_page }}">
+                        <span class="checkmark"></span>
+                    </label>
                     
                     {{-- Bottom: Pagination --}}
                     <div class="d-flex justify-content-between align-items-center">
@@ -198,11 +289,20 @@
                         <div class="d-grid" style="grid-template-columns: 1fr 1fr 1fr 1fr; width: fit-content; gap: 20px">
                             @for ($i = 1; $i < ($content->last_page)+1; $i++)
                                 @if ($i == $content->current_page)
-                                    <button type="submit" name="save" value="{{ $i }}" class="btn btn-yellow-normal text-center" style="width: 40px; height: 40px;">{{ $i }}</button>
+                                    <button type="submit" name="save" id="{{ $i }}" value="{{ $i }}" class="btn btn-yellow-normal text-center number" style="width: 40px; height: 40px;">
+                                        {{ $i }}
+                                        <div class="flag bg-red-normal" id="flag-{{ $i }}"></div>
+                                    </button>
                                 @elseif ($answer->{"answer_$i"} == null)
-                                    <button type="submit" name="save" value="{{ $i }}" class="btn btn-blue-light text-center" style="width: 40px; height: 40px;">{{ $i }}</button>
+                                    <button type="submit" name="save" id="{{ $i }}" value="{{ $i }}" class="btn btn-blue-light text-center number" style="width: 40px; height: 40px;">
+                                        {{ $i }}
+                                        <div class="flag bg-red-normal"></div>
+                                    </button>
                                 @else
-                                    <button type="submit" name="save" value="{{ $i }}" class="btn btn-green-normal text-center" style="width: 40px; height: 40px;">{{ $i }}</button>
+                                    <button type="submit" name="save" id="{{ $i }}" value="{{ $i }}" class="btn btn-green-normal text-center number" style="width: 40px; height: 40px;">
+                                        {{ $i }}
+                                        <div class="flag bg-red-normal"></div>
+                                    </button>
                                 @endif
                                 
                             @endfor
@@ -216,7 +316,7 @@
                 </div>
             </form>
         </div>
-        <script type="text/javascript">
+        {{-- <script type="text/javascript">
             storage = window.sessionStorage;
             if (!storage.getItem('time')) {
                 storage.setItem('time', 7200);
@@ -253,9 +353,31 @@
             setTimeout("preventBack()", 0);
 
             window.onunload = function () { null };
-        </script>
+        </script> --}}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script>
+            // number on pagination
+            var num_page = document.getElementById('checkbox').getAttribute('value');
+            // flag default 
+            $(".flag").addClass("visually-hidden");
+            // number on sidebar
+            var num_sidebar = document.getElementById(num_page).value;
+            // to inform this number is flagged or not
+            var is_flagged = false;
+
+            $('#checkbox').click(function(){
+                if (is_flagged == false) {
+                    $('#checkbox').prop( "checked", true );
+                    $("#flag-"+num_sidebar).removeClass("visually-hidden");
+                    is_flagged = true;
+                }else{
+                    $('#checkbox').prop( "checked", false );
+                    $("#flag-"+num_sidebar).addClass("visually-hidden");
+                    is_flagged = false;
+                }
+            });
+        </script>
         <script>
             $(".btn-open").on("click", function(){
                 $(".quest-sidebar").addClass("active");
