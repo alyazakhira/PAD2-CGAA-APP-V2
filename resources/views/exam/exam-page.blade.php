@@ -173,7 +173,7 @@
                     {{-- Flag --}}
                     <label class="checkbox-btn align-self-center mt-auto mb-3">
                         <label for="checkbox p-medium">Tandai Saat Ini</label>
-                        <input id="checkbox" type="checkbox" value="{{ $content->current_page }}">
+                        <input id="checkbox-{{ $content->current_page }}" type="checkbox" value="{{ $content->current_page }}">
                         <span class="checkmark"></span>
                     </label>
                     
@@ -194,7 +194,7 @@
 
                             {{-- Page indicator --}}
                             <div class="d-flex justify-content-center">
-                                <p class="h4-text p-medium my-0">{{ $content->current_page }}/30</p>
+                                <p class="h4-text p-medium my-0" id="page">{{ $content->current_page }}/30</p>
                             </div>
 
                             {{-- Next --}}
@@ -215,7 +215,7 @@
 
                             {{-- Page indicator --}}
                             <div class="d-flex justify-content-center">
-                                <p class="h4-text p-medium my-0">{{ $content->current_page }}/30</p>
+                                <p class="h4-text p-medium my-0" id="page">{{ $content->current_page }}/30</p>
                             </div>
 
                             {{-- Next --}}
@@ -236,7 +236,7 @@
 
                             {{-- Page indicator --}}
                             <div class="d-flex justify-content-center">
-                                <p class="h4-text p-medium my-0">{{ $content->current_page }}/30</p>
+                                <p class="h4-text p-medium my-0" id="page">{{ $content->current_page }}/30</p>
                             </div>
 
                             {{-- Next --}}
@@ -257,7 +257,7 @@
 
                             {{-- Page indicator --}}
                             <div class="d-flex justify-content-center">
-                                <p class="h4-text p-medium my-0">{{ $content->current_page }}/30</p>
+                                <p class="h4-text p-medium my-0" id="page">{{ $content->current_page }}/30</p>
                             </div>
 
                             {{-- Next --}}
@@ -296,12 +296,12 @@
                                 @elseif ($answer->{"answer_$i"} == null)
                                     <button type="submit" name="save" id="{{ $i }}" value="{{ $i }}" class="btn btn-blue-light text-center number" style="width: 40px; height: 40px;">
                                         {{ $i }}
-                                        <div class="flag bg-red-normal"></div>
+                                        <div class="flag bg-red-normal" id="flag-{{ $i }}"></div>
                                     </button>
                                 @else
                                     <button type="submit" name="save" id="{{ $i }}" value="{{ $i }}" class="btn btn-green-normal text-center number" style="width: 40px; height: 40px;">
                                         {{ $i }}
-                                        <div class="flag bg-red-normal"></div>
+                                        <div class="flag bg-red-normal" id="flag-{{ $i }}"></div>
                                     </button>
                                 @endif
                                 
@@ -358,23 +358,53 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
             // number on pagination
-            var num_page = document.getElementById('checkbox').getAttribute('value');
+            var num_page = $('#page').text().split('/')[0];
+            console.log(num_page);
             // flag default 
             $(".flag").addClass("visually-hidden");
             // number on sidebar
             var num_sidebar = document.getElementById(num_page).value;
-            // to inform this number is flagged or not
-            var is_flagged = false;
-
-            $('#checkbox').click(function(){
-                if (is_flagged == false) {
-                    $('#checkbox').prop( "checked", true );
-                    $("#flag-"+num_sidebar).removeClass("visually-hidden");
-                    is_flagged = true;
+            // to store number from storage
+            var from_session;
+            // initialize storage
+            const storage = window.sessionStorage;
+            // check if the storage null
+            if (!storage.getItem('num_flagged')) {
+                storage.setItem('num_flagged', 0);
+            }
+            // function to flag the number
+            function flag(number) {
+                $("#checkbox-"+number).prop( "checked", true );
+                $("#flag-"+number).removeClass("visually-hidden");
+            }
+            // function to unflag the number
+            function unflagged(number) {
+                $('#checkbox-'+number).prop( "checked", false );
+                $("#flag-"+number).addClass("visually-hidden");
+            }
+            // get data from storage
+            var from_session = storage.getItem('num_flagged').split(',');
+            // flag the number from storage
+            from_session.forEach(e => {
+                flag(e);
+            });
+            // to click the checklist to flag or unflag
+            $('#checkbox-'+num_sidebar).click(function(){
+                if (from_session.includes(num_sidebar)) {
+                    // if the number flagged, when click its unflagged
+                    unflagged(num_sidebar);
+                    // remove data from storage
+                    var index = from_session.indexOf(num_page);
+                    if (index !== -1) {
+                        from_session.splice(index, 1);
+                    }
+                    storage.setItem('num_flagged', from_session);
                 }else{
-                    $('#checkbox').prop( "checked", false );
-                    $("#flag-"+num_sidebar).addClass("visually-hidden");
-                    is_flagged = false;
+                    // if the number unflagged, when click its flagged
+                    flag(num_sidebar);
+                    // add data to storage
+                    from_session.push(num_sidebar);
+                    storage.setItem('num_flagged', from_session);
                 }
             });
         </script>
