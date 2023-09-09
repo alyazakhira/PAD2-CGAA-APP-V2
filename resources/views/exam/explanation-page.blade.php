@@ -11,6 +11,12 @@
         <link rel="stylesheet" href={{ asset('style/button.css') }}>
         <link rel="stylesheet" href={{ asset('style/color.css') }}>
         <link rel="stylesheet" href="{{ asset('style/style.css') }}">
+        <style>
+            tbody, td, tfoot, th, thead, tr{
+                padding: 0.3rem;
+                border-width: 1px
+            }
+        </style>
     </head>
     <body>
         <div class="d-flex">
@@ -37,17 +43,17 @@
 
                             {{-- Choice A --}}
                             @if ($answer->{"answer_$content->current_page"} == "a" && $q->correct_answer != "a")
-                                <div class="d-flex flex-row align-items-start" style="text-decoration: none; border-radius: 25px;">
+                                <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none; border-radius: 25px;">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-red-normal p-medium rounded-2" style="width: 35px; height: 35px; padding: 1rem; color: white; border-radius: 25px;">A</div>
                                     <p>{!! $q->answer_a !!}</p>
                                 </div>
                             @elseif ($answer->{"answer_$content->current_page"} != "a" && $q->correct_answer != "a")
-                                <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                                <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-blue-light2 p-medium rounded-2" style="width: 35px; height: 35px; padding: 1rem;">A</div>
                                     <p>{!! $q->answer_a !!}</p>
                                 </div>
                             @else
-                                <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                                <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-blue-dark1 p-medium rounded-2" style="width: 35px; height: 35px; padding: 1rem; color: white">A</div>
                                     <p>{!! $q->answer_a !!}</p>
                                 </div>
@@ -55,17 +61,17 @@
 
                             {{-- Choice B --}}
                             @if ($answer->{"answer_$content->current_page"} == "b" && $q->correct_answer != "b")
-                                <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                                <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-red-normal p-medium rounded-2" style="width: 35px; height: 35px; padding: 1rem; color: white">B</div>
                                     <p>{!! $q->answer_b !!}</p>
                                 </div>
                             @elseif ($answer->{"answer_$content->current_page"} != "b" && $q->correct_answer != "b")
-                                <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                                <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-blue-light2 p-medium rounded-2" style="width: 35px; height: 35px; padding: 1rem;">B</div>
                                     <p>{!! $q->answer_b !!}</p>
                                 </div>
                             @else
-                                <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                                <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-blue-dark1 p-medium rounded-2" style="width: 35px; height: 35px; padding: 1rem; color: white">B</div>
                                     <p>{!! $q->answer_b !!}</p>
                                 </div>
@@ -73,17 +79,17 @@
 
                             {{-- Choice C --}}
                             @if ($answer->{"answer_$content->current_page"} == "c" && $q->correct_answer != "c")
-                                <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                                <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-red-normal p-medium rounded-2" style="width: 35px; height: 35px; padding: 1rem; color: white">C</div>
                                     <p>{!! $q->answer_c !!}</p>
                                 </div>
                             @elseif ($answer->{"answer_$content->current_page"} != "c" && $q->correct_answer != "c")
-                                <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                                <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-blue-light2 p-medium rounded-2" style="width: 35px; height: 35px; padding: 1rem;">C</div>
                                     <p>{!! $q->answer_c !!}</p>
                                 </div>
                             @else
-                                <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                                <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-blue-dark1 p-medium rounded-2" style="width: 35px; height: 35px; padding: 1rem; color: white">C</div>
                                     <p>{!! $q->answer_c !!}</p>
                                 </div>
@@ -91,17 +97,17 @@
 
                             {{-- Choice D --}}
                             @if ($answer->{"answer_$content->current_page"} == "d" && $q->correct_answer != "d")
-                                <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                                <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-red-normal p-medium rounded-2" style="width: 35px; height: 35px; padding: 1rem; color: white">D</div>
                                     <p>{!! $q->answer_d !!}</p>
                                 </div>
                             @elseif ($answer->{"answer_$content->current_page"} != "d" && $q->correct_answer != "d")
-                                <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                                <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-blue-light2 p-medium rounded-2" style="width: 35px; height: 35px; padding: 1rem;">D</div>
                                     <p>{!! $q->answer_d !!}</p>
                                 </div>
                             @else
-                                <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                                <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                                     <div class="d-flex align-items-center justify-content-center me-3 bg-blue-dark1 p-medium rounded-2" style="width: 35px; height: 35px; padding: 1rem; color: white">D</div>
                                     <p>{!! $q->answer_d !!}</p>
                                 </div>

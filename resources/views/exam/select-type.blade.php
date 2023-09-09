@@ -13,15 +13,11 @@
     </head>
     <body>
         {{-- Logo --}}
-        <nav class="navbar sticky-top top-0 bg-white p-4">
+        <nav class="navbar sticky-top top-0 bg-white px-4 pt-4">
             <div class="align-items-center d-flex w-100">
-                <div class="d-flex" style="width: 7%; max-height: 70px">
-                    <img src="{{ asset('image/logo-ugm-only.svg') }}" class="img-fluid"/>
+                <div class="d-flex" style="width: 15%; max-height: 70px">
+                    <img src="{{ asset('image/logo-ugm-hitam.svg') }}" class="img-fluid"/>
                 </div>
-                <div class="d-flex mx-2" style="width: 7%;">
-                    <img src="{{ asset('image/logo-trpl.png') }}" class="img-fluid"/>
-                </div>
-                <div class="d-flex" style="width: 86%;">
                 </div>
             </div>
         </nav>
@@ -41,7 +37,7 @@
                     <img src = "{{ asset('image/type-pusat.svg') }}"/>
                 </div>
                 <div class="d-flex flex-column m-2 p-lg-5" style="width: 50%;">
-                    <img src = "{{ asset('image/daerah-type.svg') }}"/>
+                    <img src = "{{ asset('image/daerah-tipe.svg') }}"/>
                 </div>
             </div>
             <div class="d-flex flex-row my-3">

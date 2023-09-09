@@ -272,6 +272,12 @@ div#form-pusat{
 button#submit-soal{
     background-color: #DBB300;
 }
+a.forgot-pw{
+    color: #fef9e6;
+}
+a.forgot-pw:hover{
+    color: #f3c700;
+}
 
 @media(max-width: 960px){
     .left-sidebar{
@@ -374,4 +380,15 @@ button#submit-soal{
             transform: translate(-50%, -50%) rotate(0deg) scale(1.6);
         }
     }
+}
+
+.dropdown-toggle::after{
+    align-self: center;
+    display: inline-block;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
 }

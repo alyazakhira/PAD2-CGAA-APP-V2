@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="{{ asset('style/button.css') }}">
         <style>
             tbody, td, tfoot, th, thead, tr{
+                padding: 0.3rem;
                 border-width: 1px
             }
         </style>
@@ -73,7 +74,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-decoration-none d-flex font-yellow-dark4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span class="me-2 d-none d-lg-block align-self-center font-yellow-dark4" id="username">Admin</span>
-                                <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-yellow-dark4 me-2 text-white" style="width: 2.5rem; height: 2.5rem;">
+                                <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-yellow-dark4 text-white" style="width: 2.5rem; height: 2.5rem;">
                                     <i class="bi bi-person-fill"></i>
                                 </div>
                             </a>
@@ -101,7 +102,7 @@
                     <div class="h4-text mb-3">{!! $mp->question !!}</div>
 
                     {{-- Choice A --}}
-                    <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                    <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                         <input type="radio" name="answer" id="answer1" class="d-none radio-button" value="a">
                         <label for="answer1" class="me-3 radio-tile">
                             <span class="d-flex align-items-center justify-content-center p-medium radio-label">A</span>
@@ -111,7 +112,7 @@
                     </div>
 
                     {{-- Choice B --}}
-                    <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                    <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                         <input type="radio" name="answer" id="answer2" class="d-none radio-button" value="b">
                         <label for="answer2" class="me-3 radio-tile">
                             <span class="d-flex btn-blue-light align-items-center justify-content-center p-medium radio-label">B</span>
@@ -120,7 +121,7 @@
                     </div>
 
                     {{-- Choice C --}}
-                    <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                    <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                         <input type="radio" name="answer" id="answer3" class="d-none radio-button" value="c">
                         <label for="answer3" class="me-3 radio-tile">
                             <span class="d-flex align-items-center justify-content-center p-medium radio-label">C</span>
@@ -129,7 +130,7 @@
                     </div>
 
                     {{-- Choice D --}}
-                    <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                    <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                         <input type="radio" name="answer" id="answer4" class="d-none radio-button" value="d">
                         <label for="answer4" class="me-3 radio-tile">
                             <span class="d-flex bg-blue-light3 align-items-center justify-content-center p-medium radio-label">D</span>

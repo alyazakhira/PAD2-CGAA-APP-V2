@@ -67,7 +67,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-decoration-none d-flex" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span class="me-2 d-none d-lg-block align-self-center font-blue-dark1" id="username">{{ $user->name }}</span>
-                                <div class="d-flex rounded-circle circle-bg p-1 align-items-center justify-content-center bg-blue-dark1 me-2 text-white">
+                                <div class="d-flex rounded-circle circle-bg p-1 align-items-center justify-content-center bg-blue-dark1 text-white">
                                     <i class="bi bi-person-fill"></i>
                                 </div>
                             </a>

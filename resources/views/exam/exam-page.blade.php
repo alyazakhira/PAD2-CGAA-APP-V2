@@ -94,6 +94,10 @@
                 left: 95%;
                 border-top-right-radius: 5px;
             }
+            tbody, td, tfoot, th, thead, tr{
+                padding: 0.3rem;
+                border-width: 1px
+            }
         </style>
     </head>
     <body>
@@ -122,7 +126,7 @@
                         <div class="d-flex flex-column">
                             @foreach ($content->data as $q)
                             <div class="h4-text mb-3">{!! $q->question !!}</div>
-                            <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                            <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                                 @if ($answer->{"answer_$content->current_page"} == "a")
                                     <input type="radio" name="{{ $content->current_page }}" id="answer1" class="d-none radio-button rounded-2" value="a" checked>
                                 @else
@@ -133,7 +137,7 @@
                                 </label>
                                 <p>{!! $q->answer_a !!}</p>
                             </div>
-                            <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                            <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                                 @if ($answer->{"answer_$content->current_page"} == "b")
                                     <input type="radio" name="{{ $content->current_page }}" id="answer2" class="d-none radio-button rounded-2" value="b" checked>
                                 @else
@@ -144,7 +148,7 @@
                                 </label>
                                  <p style="color:black">{!! $q->answer_b !!}</p>
                             </div>
-                            <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                            <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                                 @if ($answer->{"answer_$content->current_page"} == "c")
                                     <input type="radio" name="{{ $content->current_page }}" id="answer3" class="d-none radio-button rounded-2" value="c" checked>
                                 @else
@@ -155,7 +159,7 @@
                                 </label>
                                 <p style="color:black">{!! $q->answer_c !!}</p>
                             </div>
-                            <div class="d-flex flex-row align-items-start" style="text-decoration: none">
+                            <div class="d-flex flex-row align-items-start mb-2" style="text-decoration: none">
                                 @if ($answer->{"answer_$content->current_page"} == "d")
                                     <input type="radio" name="{{ $content->current_page }}" id="answer4" class="d-none radio-button rounded-2" value="d" checked>
                                 @else

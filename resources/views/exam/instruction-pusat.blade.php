@@ -15,18 +15,11 @@
         <div class="container">
 
             {{-- Logo --}}
-            <nav class="navbar sticky-top top-0 bg-white">
-                <div class="container-fluid">
-                    <div class="hstack justify-content-between w-100">
-                        <div class="w-50"></div>
-                        <div>
-                            <div class="fs-2 mb-3 flex-row d-flex">        
-                                <div class="m-2 d-block p-3 link-dark text-decoration-none" style="width: 260px; height: 50%;">
-                                <img src = "{{ asset('image/logo-ugm-biru.svg') }}"/></div>
-                            </div>
-                            </li>
-                        </div>
-                    </div>                       
+            <nav class="navbar sticky-top top-0 bg-white px-4 pt-4">
+                <div class="align-items-center d-flex w-100">
+                    <div class="d-flex" style="width: 15%; max-height: 70px">
+                        <img src="{{ asset('image/logo-ugm-hitam.svg') }}" class="img-fluid"/>
+                    </div>
                 </div>
             </nav>
 

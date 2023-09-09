@@ -67,7 +67,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-decoration-none d-flex font-yellow-dark4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span class="me-2 d-none d-lg-block align-self-center font-yellow-dark4" id="username">Admin</span>
-                                <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-yellow-dark4 me-2 text-white" style="width: 2.5rem; height: 2.5rem;">
+                                <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-yellow-dark4 text-white" style="width: 2.5rem; height: 2.5rem;">
                                     <i class="bi bi-person-fill"></i>
                                 </div>
                             </a>

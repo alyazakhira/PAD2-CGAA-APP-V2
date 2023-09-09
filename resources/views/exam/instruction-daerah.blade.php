@@ -15,18 +15,11 @@
         <div class="container">
 
             {{-- Logo --}}
-            <nav class="navbar sticky-top top-0 bg-white">
-                <div class="container-fluid">
-                    <div class="hstack justify-content-between w-100">
-                        <div class="w-50"></div>
-                        <div>
-                            <div class="fs-2 mb-3 flex-row d-flex">        
-                                <div class="m-2 d-block p-3 link-dark text-decoration-none" style="width: 260px; height: 50%;">
-                                <img src = "{{ asset('image/logo-Vokasi.svg') }}"/></div>
-                            </div>
-                            </li>
-                        </div>
-                    </div>                       
+            <nav class="navbar sticky-top top-0 bg-white px-4 pt-4">
+                <div class="align-items-center d-flex w-100">
+                    <div class="d-flex" style="width: 15%; max-height: 70px">
+                        <img src="{{ asset('image/logo-ugm-hitam.svg') }}" class="img-fluid"/>
+                    </div>
                 </div>
             </nav>
 
@@ -38,21 +31,23 @@
             </div>
 
             {{-- Instruction --}}
-            <div class="d-flex flex-column mt-4 px-5">
+            <div class="d-flex justify-content-center mt-4 px-5" style="width: 90%">
                 <div class = "d-flex flex-column">
-                        <p class="mb-0">Peserta ujian dilarang melakukan tindakan-tindakan sebagai berikut:</p> 
-                                <ol>
-                                    <li class="ps-3">Mengganggu kelancaran jalannya ujian;</li>
-                                    <li class="ps-3">Membawa makanan atau minuman serta dilarang merokok di dalam ruangan;</li>
-                                    <li class="ps-3">Melihat pekerjaan peserta ujian lainnya;</li>
-                                    <li class="ps-3">Memperlihatkan pekerjaannya kepada peserta lainnya;</li>
-                                    <li class="ps-3">Berbicara atau berdiskusi satu sama lain;</li>
-                                    <li class="ps-3">Pinjam meminjam alat tulis satu sama lain;</li>
-                                    <li class="ps-3">Membawa dan menggunakan kalkulator atau alat hitung lainnya;</li>
-                                    <li class="ps-3">Membawa contekan dalam bentuk apapun;</li>
-                                    <li class="ps-3">Membawa atau mempergunakan alat komunikasi, seperti telepon selular, ipad, dan sejenisnya.</li>
-                                </ol>    
+                    <p class="mb-0">Peserta ujian dilarang melakukan tindakan-tindakan sebagai berikut:</p> 
+                            <ol>
+                                <li class="ps-3">Mengganggu kelancaran jalannya ujian;</li>
+                                <li class="ps-3">Membawa makanan atau minuman serta dilarang merokok di dalam ruangan;</li>
+                                <li class="ps-3">Melihat pekerjaan peserta ujian lainnya;</li>
+                                <li class="ps-3">Memperlihatkan pekerjaannya kepada peserta lainnya;</li>
+                                <li class="ps-3">Berbicara atau berdiskusi satu sama lain;</li>
+                                <li class="ps-3">Pinjam meminjam alat tulis satu sama lain;</li>
+                                <li class="ps-3">Membawa dan menggunakan kalkulator atau alat hitung lainnya;</li>
+                                <li class="ps-3">Membawa contekan dalam bentuk apapun;</li>
+                                <li class="ps-3">Membawa atau mempergunakan alat komunikasi, seperti telepon selular, ipad, dan sejenisnya.</li>
+                            </ol>    
                 </div>
+                                       
+                    
             </div>
 
             {{-- Button --}}
