@@ -146,7 +146,7 @@
             </p>
         </div>
         <div class="col-md-5 my-3">
-            <img src="image/ujian-biru.jpg" class="img-fluid">
+            <img src="image/daerah-tipe.svg" class="img-fluid">
         </div>
     </div>
 
