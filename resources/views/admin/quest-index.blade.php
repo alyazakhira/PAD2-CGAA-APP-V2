@@ -105,9 +105,10 @@
                 </nav>
 
                 <div class="container">
+                    {{-- Pusat --}}
                     {{-- Section 1; Title and Add Button --}}
                     <div class="d-flex justify-content-between my-3">
-                        <div class="h3-text font-yellow-dark4 p-semi-bold">Daftar Soal Simulasi</div>
+                        <div class="h3-text font-yellow-dark4 p-semi-bold">Daftar Soal Simulasi Pusat</div>
                         <a type="button" class="btn btn-blue-dark" href="{{ route('admin.question.create') }}">+  Tambah Soal</a>
                     </div>
                     
@@ -123,7 +124,7 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-yellow-light2">
-                                @foreach ($content->data as $q)
+                                @foreach ($mpPusat->data as $q)
                                     <tr>
                                         <th scope="row">{{ $q->id }}</th>
                                         <td>{!! $q->question !!}</td>
@@ -146,7 +147,6 @@
                                         </td>
                                     </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
                     </div>
@@ -154,36 +154,36 @@
                     {{-- Section 3; Pagination --}}
                     <nav aria-label="Question page">
                         <ul class="pagination justify-content-center">
-                        @if (isset($content->current_page))
+                        @if (isset($mpPusat->current_page))
                             @php
-                                $prev = ($content->current_page)-1;
-                                $next = ($content->current_page)+1;
+                                $prev = ($mpPusat->current_page)-1;
+                                $next = ($mpPusat->current_page)+1;
                             @endphp 
-                            @if (($content->next_page_url != null) && ($content->prev_page_url == null))
+                            @if (($mpPusat->next_page_url != null) && ($mpPusat->prev_page_url == null))
                                 <li class="page-item disabled">
                                     <a class="page-link">Previous</a>
                                 </li>
-                                @for ($i = 1; $i < ($content->last_page)+1; $i++)
+                                @for ($i = 1; $i < ($mpPusat->last_page)+1; $i++)
                                     <li class="page-item"><a class="page-link" href="{{ route('admin.question.index',$i) }}">{{ $i }}</a></li>
                                 @endfor
                                 <li class="page-item">
                                     <a class="page-link" href="{{ route('admin.question.index',$next) }}">Next</a>
                                 </li>
-                            @elseif (($content->next_page_url == null) && ($content->prev_page_url != null))
+                            @elseif (($mpPusat->next_page_url == null) && ($mpPusat->prev_page_url != null))
                                 <li class="page-item">
                                     <a class="page-link" href="{{ route('admin.question.index',$prev) }}">Previous</a>
                                 </li>
-                                @for ($i = 1; $i < ($content->last_page)+1; $i++)
+                                @for ($i = 1; $i < ($mpPusat->last_page)+1; $i++)
                                     <li class="page-item"><a class="page-link" href="{{ route('admin.question.index',$i) }}">{{ $i }}</a></li>
                                 @endfor
                                 <li class="page-item disabled">
                                     <a class="page-link">Next</a>
                                 </li>
-                            @elseif (($content->next_page_url == null) && ($content->prev_page_url == null))
+                            @elseif (($mpPusat->next_page_url == null) && ($mpPusat->prev_page_url == null))
                                 <li class="page-item disabled">
                                     <a class="page-link">Previous</a>
                                 </li>
-                                @for ($i = 1; $i < ($content->last_page)+1; $i++)
+                                @for ($i = 1; $i < ($mpPusat->last_page)+1; $i++)
                                     <li class="page-item"><a class="page-link" href="{{ route('admin.question.index',$i) }}">{{ $i }}</a></li>
                                 @endfor
                                 <li class="page-item disabled">
@@ -193,7 +193,7 @@
                                 <li class="page-item">
                                     <a class="page-link" href="{{ route('admin.question.index',$prev) }}">Previous</a>
                                 </li>
-                                @for ($i = 1; $i < ($content->last_page)+1; $i++)
+                                @for ($i = 1; $i < ($mpPusat->last_page)+1; $i++)
                                     <li class="page-item"><a class="page-link" href="{{ route('admin.question.index',$i) }}">{{ $i }}</a></li>
                                 @endfor
                                 <li class="page-item">
@@ -203,7 +203,107 @@
                         @endif
                         </ul>
                     </nav>
+                    {{-- End of Pusat --}}
 
+                    {{-- Daerah --}}
+                    {{-- Section 1; Title and Add Button --}}
+                    <div class="d-flex justify-content-between mt-5 mb-3">
+                        <div class="h3-text font-yellow-dark4 p-semi-bold">Daftar Soal Simulasi Daerah</div>
+                        <a type="button" class="btn btn-blue-dark" href="{{ route('admin.question.create') }}">+  Tambah Soal</a>
+                    </div>
+                    
+                    {{-- Section 2; Tables --}}
+                    <div class="table-responsive mb-2">
+                        <table class="table table-hover align-middle">
+                            <thead class="bg-yellow-normal1">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col" style="width: 50%">Soal</th>
+                                    <th scope="col">Tingkat Soal</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-yellow-light2">
+                                @foreach ($mpDaerah->data as $q)
+                                    <tr>
+                                        <th scope="row">{{ $q->id }}</th>
+                                        <td>{!! $q->question !!}</td>
+                                        <td>{{ $q->question_type }}</td>
+                                        <td>
+                                            <div class="d-flex flex-nowrap">
+                                                <a href="{{ route('admin.question.edit', $q->id) }}" class="btn btn-outline-blue-dark" type="button">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </a>
+                                                <a href="{{ route('admin.question.show', $q->id) }}" class="btn btn-outline-blue-dark mx-1" type="button">
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                                <form style="width: fit-content" method="POST" action={{ route('admin.question.delete', $q->id) }}>
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-outline-blue-dark">
+                                                        <i class="bi bi-trash3"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {{-- Section 3; Pagination --}}
+                    <nav aria-label="Question page">
+                        <ul class="pagination justify-content-center">
+                        @if (isset($mpDaerah->current_page))
+                            @php
+                                $prev = ($mpDaerah->current_page)-1;
+                                $next = ($mpDaerah->current_page)+1;
+                            @endphp 
+                            @if (($mpDaerah->next_page_url != null) && ($mpDaerah->prev_page_url == null))
+                                <li class="page-item disabled">
+                                    <a class="page-link">Previous</a>
+                                </li>
+                                @for ($i = 1; $i < ($mpDaerah->last_page)+1; $i++)
+                                    <li class="page-item"><a class="page-link" href="{{ route('admin.question.index',$i) }}">{{ $i }}</a></li>
+                                @endfor
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ route('admin.question.index',$next) }}">Next</a>
+                                </li>
+                            @elseif (($mpDaerah->next_page_url == null) && ($mpDaerah->prev_page_url != null))
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ route('admin.question.index',$prev) }}">Previous</a>
+                                </li>
+                                @for ($i = 1; $i < ($mpDaerah->last_page)+1; $i++)
+                                    <li class="page-item"><a class="page-link" href="{{ route('admin.question.index',$i) }}">{{ $i }}</a></li>
+                                @endfor
+                                <li class="page-item disabled">
+                                    <a class="page-link">Next</a>
+                                </li>
+                            @elseif (($mpDaerah->next_page_url == null) && ($mpDaerah->prev_page_url == null))
+                                <li class="page-item disabled">
+                                    <a class="page-link">Previous</a>
+                                </li>
+                                @for ($i = 1; $i < ($mpDaerah->last_page)+1; $i++)
+                                    <li class="page-item"><a class="page-link" href="{{ route('admin.question.index',$i) }}">{{ $i }}</a></li>
+                                @endfor
+                                <li class="page-item disabled">
+                                    <a class="page-link">Next</a>
+                                </li>
+                            @else
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ route('admin.question.index',$prev) }}">Previous</a>
+                                </li>
+                                @for ($i = 1; $i < ($mpDaerah->last_page)+1; $i++)
+                                    <li class="page-item"><a class="page-link" href="{{ route('admin.question.index',$i) }}">{{ $i }}</a></li>
+                                @endfor
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ route('admin.question.index',$next) }}">Next</a>
+                                </li>
+                            @endif
+                        @endif
+                        </ul>
+                    </nav>
+                    {{-- End of Daerah --}}
                 </div>
             </main>
         </div>

@@ -66,10 +66,13 @@ class AdminController extends Controller
     public function quest_index($page){
         if (session()->has('bearer')) {
             if (session('authorized')) {
-                $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice-paginated/10?page='.$page);
-                $response = json_decode($apiResponse->body());
-                $content = $response->data;
-                return view('admin.quest-index', compact('content'));
+                $apiResponsePusat = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice-paginated-pusat/10?page='.$page);
+                $responsePusat = json_decode($apiResponsePusat->body());
+                $mpPusat = $responsePusat->data;
+                $apiResponseDaerah = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice-paginated-daerah/10?page='.$page);
+                $responseDaerah = json_decode($apiResponseDaerah->body());
+                $mpDaerah = $responseDaerah->data;
+                return view('admin.quest-index', compact('mpPusat', 'mpDaerah'));
             } else {
                 return redirect()->route('user.dashboard');
             }    
