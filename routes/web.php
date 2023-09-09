@@ -39,6 +39,7 @@ Route::controller(AuthController::class)->group(function(){
     Route::post('/sign-in', 'login')->name('login');
     Route::post('/sign-up', 'register')->name('register');
     Route::post('/sign-out', 'logout')->name('logout');
+    Route::get('/input-email', 'input_email')->name('input-email');
 });
 
 // User

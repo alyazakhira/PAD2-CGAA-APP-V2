@@ -116,4 +116,8 @@ class AuthController extends Controller
             return redirect('/');
         }
     }
+
+    public function input_email(){
+        return view(Http::get('http://localhost:8000/api/v2/forget-password'));
+    }
 }

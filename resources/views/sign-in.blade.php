@@ -15,6 +15,7 @@
         <link rel="stylesheet" href={{ asset('style/font.css') }}>
         <link rel="stylesheet" href={{ asset('style/button.css') }}>
         <link rel="stylesheet" href={{ asset('style/color.css') }}>
+        <link rel="stylesheet" href={{ asset('style/style.css') }}>
     </head>
     <body>
         <!-- The wrapper -->
@@ -58,12 +59,15 @@
                                         </div>
                                         
                                         <!-- Password input -->
-                                        <div class="form-outline mb-5 d-grid gap-2 col-10 mx-auto fw-semibold">
+                                        <div class="form-outline mb-2 d-grid gap-2 col-10 mx-auto fw-semibold">
                                             <label class="form-label font-yellow-light1 par-text p-medium mb-0" for="password">Password</label>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text font-blue-dark2 bg-yellow-light2"><i class="bi bi-lock-fill"></i></span>
                                                 <input name="password" type="password" class="form-control" placeholder="Password" aria-label="Password" required>
                                             </div>
+                                        </div>
+                                        <div  class="mb-5 d-grid gap-2 col-10 mx-auto">
+                                            <a class="forgot-pw par-text p-medium mb-0" href="/input-email">Lupa Password?</a>
                                         </div>
                                     </div>
                                     
