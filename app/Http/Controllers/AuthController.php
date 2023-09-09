@@ -118,6 +118,6 @@ class AuthController extends Controller
     }
 
     public function input_email(){
-        return view(Http::get('http://localhost:8000/api/v2/forget-password'));
+        return Http::get('http://localhost:8000/api/v2/forget-password');
     }
 }
