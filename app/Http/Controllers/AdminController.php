@@ -63,149 +63,6 @@ class AdminController extends Controller
         }        
     }
 
-    public function quest_index($page){
-        if (session()->has('bearer')) {
-            if (session('authorized')) {
-                $apiResponsePusat = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice-paginated-pusat/10?page='.$page);
-                $responsePusat = json_decode($apiResponsePusat->body());
-                $mpPusat = $responsePusat->data;
-                $apiResponseDaerah = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice-paginated-daerah/10?page='.$page);
-                $responseDaerah = json_decode($apiResponseDaerah->body());
-                $mpDaerah = $responseDaerah->data;
-                return view('admin.quest-index', compact('mpPusat', 'mpDaerah'));
-            } else {
-                return redirect()->route('user.dashboard');
-            }    
-        } else {
-            return view('sign-in');
-        }
-    }
-
-    public function quest_create(){
-        if (session()->has('bearer')) {
-            if (session('authorized')) {
-                return view('admin.quest-create');
-            } else {
-                return redirect()->route('user.dashboard');
-            }
-        } else {
-            return view('sign-in');
-        }
-    }
-
-    public function quest_store(Request $request){
-        if (session()->has('bearer')) {
-            if (session('authorized')) {
-                $request->validate([
-                    'question_type' => 'required',
-                    'question' => 'required',
-                    'question_explanation' => 'required',
-                    'answer_a' => 'required',
-                    'answer_b' => 'required',
-                    'answer_c' => 'required',
-                    'answer_d' => 'required',
-                    'correct_answer' => 'required',
-                ]);
-                $apiResponse = Http::withToken(session('bearer'))->post('http://localhost:8000/api/v2/multiple-choice',[
-                    'question_type' => $request->question_type,
-                    'question' => $request->question,
-                    'question_explanation' => $request->question_explanation,
-                    'answer_a' => $request->answer_a,
-                    'answer_b' => $request->answer_b,
-                    'answer_c' => $request->answer_c,
-                    'answer_d' => $request->answer_d,
-                    'correct_answer' => $request->correct_answer,
-                ]);
-                $response = json_decode($apiResponse->body());
-                $question = $response->data;
-                return redirect()->route('admin.question.index', 1)->with('message', 'Berhasil menambahkan soal dengan ID '.$question->id.'!');
-            } else {
-                return redirect()->route('user.dashboard');
-            }
-        } else {
-            return view('sign-in');
-        }
-    }
-
-    public function quest_show($quest_id){
-        if (session()->has('bearer')) {
-            if (session('authorized')) {
-                $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice/'.$quest_id);
-                $response = json_decode($apiResponse->body());
-                $mp = $response->data;
-                return view('admin.quest-show', compact('mp'));
-            } else {
-                return redirect()->route('user.dashboard');
-            }
-        } else {
-            return view('sign-in');
-        }
-    }
-
-    public function quest_edit($quest_id){
-        if (session()->has('bearer')) {
-            if (session('authorized')) {
-                $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice/'.$quest_id);
-                $response = json_decode($apiResponse->body());
-                $mp = $response->data;
-                return view('admin.quest-edit', compact('mp'));
-            } else {
-                return redirect()->route('user.dashboard');
-            }
-        } else {
-            return view('sign-in');
-        }
-    }
-
-    public function quest_update(Request $request, $quest_id){
-        if (session()->has('bearer')) {
-            if (session('authorized')) {
-                $request->validate([
-                    'question_type' => 'required',
-                    'question' => 'required',
-                    'question_explanation' => 'required',
-                    'answer_a' => 'required',
-                    'answer_b' => 'required',
-                    'answer_c' => 'required',
-                    'answer_d' => 'required',
-                    'correct_answer' => 'required',
-                ]);
-                $apiResponse = Http::withToken(session('bearer'))->post('http://localhost:8000/api/v2/multiple-choice/'.$quest_id,[
-                    'question_type' => $request->question_type,
-                    'question' => $request->question,
-                    'question_explanation' => $request->question_explanation,
-                    'answer_a' => $request->answer_a,
-                    'answer_b' => $request->answer_b,
-                    'answer_c' => $request->answer_c,
-                    'answer_d' => $request->answer_d,
-                    'correct_answer' => $request->correct_answer,
-                    "_method" => 'PUT',
-                ]);
-                $response = json_decode($apiResponse->body());
-                $question = $response->data;
-                return redirect()->route('admin.question.index', 1)->with('message', 'Berhasil memperbarui soal dengan ID '.$quest_id.'!');
-            } else {
-                return redirect()->route('user.dashboard');
-            }
-        } else {
-            return view('sign-in');
-        }
-    }
-
-    public function quest_delete(Request $request, $quest_id){
-        if (session()->has('bearer')) {
-            if (session('authorized')) {
-                $apiResponse = Http::withToken(session('bearer'))->delete('http://localhost:8000/api/v2/multiple-choice/'.$quest_id);
-                $response = json_decode($apiResponse->body());
-                return redirect()->route('admin.question.index', 1)->with('message', 'Berhasil menghapus soal dengan ID '.$quest_id.'!');
-            } else {
-                return redirect()->route('user.dashboard');
-            }
-        } else {
-            return view('sign-in');
-        }
-    }
-
     public function user_index($page){
         if (session()->has('bearer')) {
             if (session('authorized')) {
@@ -220,4 +77,195 @@ class AdminController extends Controller
             return view('sign-in');
         }
     }
+
+    // Multiple Choice Functions
+        public function mp_index_pusat($page){
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice-paginated-pusat/10?page='.$page);
+                    $response = json_decode($apiResponse->body());
+                    $content = $response->data;
+                    return view('admin.multiple-choice.index-pusat', compact('content'));
+                } else {
+                    return redirect()->route('user.dashboard');
+                }    
+            } else {
+                return view('sign-in');
+            }
+        }
+
+        public function mp_index_daerah($page){
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice-paginated-daerah/10?page='.$page);
+                    $response = json_decode($apiResponse->body());
+                    $content = $response->data;
+                    return view('admin.multiple-choice.index-daerah', compact('content'));
+                } else {
+                    return redirect()->route('user.dashboard');
+                }    
+            } else {
+                return view('sign-in');
+            }
+        }
+
+        public function mp_show($mp_id){
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice/'.$mp_id);
+                    $response = json_decode($apiResponse->body());
+                    $mp = $response->data;
+                    return view('admin.multiple-choice.show', compact('mp'));
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
+        }
+
+        public function mp_create(){
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    return view('admin.multiple-choice.create');
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
+        }
+
+        public function mp_store(Request $request){
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $request->validate([
+                        'question_type' => 'required',
+                        'question' => 'required',
+                        'question_explanation' => 'required',
+                        'answer_a' => 'required',
+                        'answer_b' => 'required',
+                        'answer_c' => 'required',
+                        'answer_d' => 'required',
+                        'correct_answer' => 'required',
+                    ]);
+                    $apiResponse = Http::withToken(session('bearer'))->post('http://localhost:8000/api/v2/multiple-choice',[
+                        'question_type' => $request->question_type,
+                        'question' => $request->question,
+                        'question_explanation' => $request->question_explanation,
+                        'answer_a' => $request->answer_a,
+                        'answer_b' => $request->answer_b,
+                        'answer_c' => $request->answer_c,
+                        'answer_d' => $request->answer_d,
+                        'correct_answer' => $request->correct_answer,
+                    ]);
+                    $response = json_decode($apiResponse->body());
+                    $question = $response->data;
+                    return redirect()->route('admin.mp.index.'.$request->question_type, 1)->with('message', 'Berhasil menambahkan soal pilihan ganda dengan ID '.$question->id.'!');
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
+        }
+
+        public function mp_edit($mp_id){
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice/'.$mp_id);
+                    $response = json_decode($apiResponse->body());
+                    $mp = $response->data;
+                    return view('admin.multiple-choice.edit', compact('mp'));
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
+        }
+
+        public function mp_update(Request $request, $mp_id){
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $request->validate([
+                        'question_type' => 'required',
+                        'question' => 'required',
+                        'question_explanation' => 'required',
+                        'answer_a' => 'required',
+                        'answer_b' => 'required',
+                        'answer_c' => 'required',
+                        'answer_d' => 'required',
+                        'correct_answer' => 'required',
+                    ]);
+                    $apiResponse = Http::withToken(session('bearer'))->post('http://localhost:8000/api/v2/multiple-choice/'.$mp_id,[
+                        'question_type' => $request->question_type,
+                        'question' => $request->question,
+                        'question_explanation' => $request->question_explanation,
+                        'answer_a' => $request->answer_a,
+                        'answer_b' => $request->answer_b,
+                        'answer_c' => $request->answer_c,
+                        'answer_d' => $request->answer_d,
+                        'correct_answer' => $request->correct_answer,
+                        "_method" => 'PUT',
+                    ]);
+                    $response = json_decode($apiResponse->body());
+                    $question = $response->data;
+                    return redirect()->route('admin.mp.index'.$request->question_type, 1)->with('message', 'Berhasil memperbarui soal pilihan ganda dengan ID '.$mp_id.'!');
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
+        }
+
+        public function mp_delete(Request $request, $mp_id){
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $apiResponse = Http::withToken(session('bearer'))->delete('http://localhost:8000/api/v2/multiple-choice/'.$mp_id);
+                    $response = json_decode($apiResponse->body());
+                    return redirect()->route('admin.question.index.pusat', 1)->with('message', 'Berhasil menghapus soal pilihan ganda dengan ID '.$mp_id.'!');
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
+        }
+    // End of Multiple Choice Functions
+
+    // Case Study Functions
+        public function cs_index_pusat($page){
+            return view('additional.under-dev');
+        }
+
+        public function cs_index_daerah($page){
+            return view('additional.under-dev');
+        }
+
+        public function cs_show($cs_id){
+            return view('additional.under-dev');
+        }
+
+        public function cs_create(){
+            return view('additional.under-dev');
+        }
+
+        public function cs_store(Request $request){
+            // 
+        }
+
+        public function cs_edit($cs_id){
+            return view('additional.under-dev');
+        }
+
+        public function cs_update(Request $request, $cs_id){
+            // 
+        }
+
+        public function cs_delete(Request $request, $cs_id){
+
+        }
+    // End of Case Study Functions
 }

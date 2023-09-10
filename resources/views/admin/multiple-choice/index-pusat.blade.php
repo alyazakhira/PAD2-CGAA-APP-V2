@@ -3,16 +3,38 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Admin | Daftar Pengguna</title>
+        <title>Admin | Daftar Pilihan Ganda Pusat</title>
+        
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+
+        {{-- Custom CSS --}}
         <link rel="stylesheet" href="{{ asset('style/style.css') }}">
         <link rel="stylesheet" href="{{ asset('style/font.css') }}">
         <link rel="stylesheet" href="{{ asset('style/color.css') }}">
         <link rel="stylesheet" href="{{ asset('style/button.css') }}">
+        <style>
+            td p{
+                margin: 0;
+            }
+        </style>
     </head>
     <body>
+        {{-- Message Handler --}}
+        @if (session()->has('message'))
+            <div class="fixed-bottom" aria-live="assertive" aria-atomic="true" data-bs-delay="100">
+                <div class="toast-container bottom-0 end-0 p-3">
+                    <div class="toast text-bg-success border-0 show" role="alert">
+                        <div class="d-flex">
+                            <div class="toast-body">{{ session('message') }}</div>
+                            <button type="button" id="btn-close-toast" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+        
         <div class="d-flex">
             <!-- Sidebar -->
             <div class="d-flex flex-column bg-yellow-normal1 p-4 vh-100 align-items-center sidebar sticky-top flex-shrink-0 left-sidebar">
@@ -117,29 +139,43 @@
                 </nav>
 
                 <div class="container">
-                    {{-- Section 1; Title --}}
-                    <div class="h3-text font-yellow-dark4 p-semi-bold my-3">Pengguna Terdaftar</div>
+                    {{-- Section 1; Title and Add Button --}}
+                    <div class="d-flex justify-content-between my-3">
+                        <div class="h3-text font-yellow-dark4 p-semi-bold">Daftar Soal Pilihan Ganda Tingkat Pusat</div>
+                        <a type="button" class="btn btn-blue-dark" href="{{ route('admin.mp.create') }}">+  Tambah Soal</a>
+                    </div>
                     
                     {{-- Section 2; Tables --}}
-                    <div class="table-responsive">
+                    <div class="table-responsive mb-2">
                         <table class="table table-hover align-middle">
                             <thead class="bg-yellow-normal1">
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Tanggal Lahir</th>
-                                    <th scope="col">Pekerjaan</th>
-                                    <th scope="col">Email</th>
+                                    <th scope="col" style="width: 70%">Soal</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-yellow-light2">
-                                @foreach ($content->data as $u)
+                                @foreach ($content->data as $q)
                                     <tr>
-                                        <th scope="row">{{ $u->id }}</th>
-                                        <td>{{ $u->name }}</td>
-                                        <td>{{ date('d-m-Y', strtotime($u->date_of_birth)) }}</td>
-                                        <td>{{ $u->occupation }}</td>
-                                        <td>{{ $u->email }}</td>
+                                        <th scope="row">{{ $q->id }}</th>
+                                        <td>{!! $q->question !!}</td>
+                                        <td>
+                                            <div class="d-flex flex-nowrap">
+                                                <a href="{{ route('admin.mp.edit', $q->id) }}" class="btn btn-outline-blue-dark" type="button">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </a>
+                                                <a href="{{ route('admin.mp.show', $q->id) }}" class="btn btn-outline-blue-dark mx-1" type="button">
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                                <form style="width: fit-content" method="POST" action={{ route('admin.mp.delete', $q->id) }}>
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-outline-blue-dark">
+                                                        <i class="bi bi-trash3"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -147,7 +183,7 @@
                     </div>
 
                     {{-- Section 3; Pagination --}}
-                    <nav aria-label="User page">
+                    <nav aria-label="Question page">
                         <ul class="pagination justify-content-center">
                         @if (isset($content->current_page))
                             @php
@@ -159,17 +195,17 @@
                                     <a class="page-link">Previous</a>
                                 </li>
                                 @for ($i = 1; $i < ($content->last_page)+1; $i++)
-                                    <li class="page-item"><a class="page-link" href="{{ url('admin-list-user/page/'.$i) }}">{{ $i }}</a></li>
+                                    <li class="page-item"><a class="page-link" href="{{ route('admin.mp.index.pusat',$i) }}">{{ $i }}</a></li>
                                 @endfor
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ url('admin-list-user/page/'.$next) }}">Next</a>
+                                    <a class="page-link" href="{{ route('admin.mp.index.pusat',$next) }}">Next</a>
                                 </li>
                             @elseif (($content->next_page_url == null) && ($content->prev_page_url != null))
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ url('admin-list-user/page/'.$prev) }}">Previous</a>
+                                    <a class="page-link" href="{{ route('admin.mp.index.pusat',$prev) }}">Previous</a>
                                 </li>
                                 @for ($i = 1; $i < ($content->last_page)+1; $i++)
-                                    <li class="page-item"><a class="page-link" href="{{ url('admin-list-user/page/'.$i) }}">{{ $i }}</a></li>
+                                    <li class="page-item"><a class="page-link" href="{{ route('admin.mp.index.pusat',$i) }}">{{ $i }}</a></li>
                                 @endfor
                                 <li class="page-item disabled">
                                     <a class="page-link">Next</a>
@@ -179,20 +215,20 @@
                                     <a class="page-link">Previous</a>
                                 </li>
                                 @for ($i = 1; $i < ($content->last_page)+1; $i++)
-                                    <li class="page-item"><a class="page-link" href="{{ url('admin-list-user/page/'.$i) }}">{{ $i }}</a></li>
+                                    <li class="page-item"><a class="page-link" href="{{ route('admin.mp.index.pusat',$i) }}">{{ $i }}</a></li>
                                 @endfor
                                 <li class="page-item disabled">
                                     <a class="page-link">Next</a>
                                 </li>
                             @else
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ url('admin-list-user/page/'.$prev) }}">Previous</a>
+                                    <a class="page-link" href="{{ route('admin.mp.index.pusat',$prev) }}">Previous</a>
                                 </li>
                                 @for ($i = 1; $i < ($content->last_page)+1; $i++)
-                                    <li class="page-item"><a class="page-link" href="{{ url('admin-list-user/page/'.$i) }}">{{ $i }}</a></li>
+                                    <li class="page-item"><a class="page-link" href="{{ route('admin.mp.index.pusat',$i) }}">{{ $i }}</a></li>
                                 @endfor
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ url('admin-list-user/page/'.$next) }}">Next</a>
+                                    <a class="page-link" href="{{ route('admin.mp.index.pusat',$next) }}">Next</a>
                                 </li>
                             @endif
                         @endif
@@ -202,8 +238,7 @@
             </main>
         </div>
         
-        <!-- <script type="text/javascript" src="./Assets/custom.js"></script> -->
-        <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+        {{-- Script --}}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>
@@ -212,6 +247,9 @@
             });
             $(".btn-close").on("click", function(){
                 $(".left-sidebar").removeClass("active");
+            });
+            $("#btn-close-toast").on("click", function(){
+                $(".toast").removeClass("show");
             });
         </script>
     </body>

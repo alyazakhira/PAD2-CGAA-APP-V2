@@ -21,43 +21,74 @@
     <body class="d-flex">
 
         {{-- Sidebar --}}
-        <div class="d-flex flex-column bg-yellow-normal1 p-4 vh-100 justify-content-between align-items-center sidebar sticky-top flex-shrink-0 left-sidebar">
-            <div class="d-flex flex-row justify-content-between justify-content-lg-center align-items-center w-100">
+        <div class="d-flex flex-column bg-yellow-normal1 p-4 vh-100 align-items-center sidebar sticky-top flex-shrink-0 left-sidebar">
+            {{-- Logo --}}
+            <div class="d-flex justify-content-between justify-content-lg-center align-items-center w-100 mb-5">
                 {{-- Logo --}}
-                <div class="d-flex align-items-center justify-content-center text-white" style="width: 80%; padding: 5px;">
+                <a href="/" class="d-flex align-items-center justify-content-center text-white" style="width: 80%; padding: 5px;">
                     <img src="{{ asset('image/logo-ugm-hitam.svg') }}" style="width: 100%"/>
-                </div>
+                </a>
                 {{-- Close button --}}
                 <button class="btn btn-close d-flex d-block align-self-start d-lg-none"></button>
             </div>
-            {{-- Middle --}}
+            {{-- Menus --}}
             <div class="nav nav-pills d-flex flex-column w-100">
-                <a class="nav-item d-flex align-items-center w-100 text-decoration-none" href="{{ route('admin.dashboard') }}">
+                <a class="nav-item d-flex align-items-center w-100 text-decoration-none mb-3" href="{{ route('admin.dashboard') }}">
                     <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-blue-dark3 me-2" style="width: 2.5rem; height: 2.5rem;">
-                        <i class="bi bi-house-door-fill text-white"></i>
+                        <i class="bi bi-house-door text-white"></i>
                     </div>
-                    <p class="font-blue-dark3 m-0 h4-text">Dashboard</p>
+                    <p class="font-blue-dark3 m-0 par-text">Dashboard</p>
                 </a>
-                <a class="nav-item d-flex align-items-center w-100 text-decoration-none my-5" href="{{ route('admin.question.index', 1) }}">
-                    <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-blue-dark3 me-2" style="width: 2.5rem; height: 2.5rem;">
-                        <i class="bi bi-file-earmark-text-fill text-white"></i>
-                    </div>
-                    <p class="font-blue-dark3 h4-text m-0">Soal Simulasi</p>
-                </a>
-                <a class="nav-item d-flex align-items-center w-100 text-decoration-none" href="{{ route('admin.user.index', 1) }}">
+                <a class="nav-item d-flex align-items-center w-100 text-decoration-none mb-3" href="{{ route('admin.user.index', 1) }}">
                     <div class="d-flex  rounded-circle p-1 align-items-center justify-content-center bg-blue-dark3 me-2" style="width: 2.5rem; height: 2.5rem;">
-                        <i class="bi bi-file-earmark-person-fill text-white"></i>
+                        <i class="bi bi-file-earmark-person text-white"></i>
                     </div>
-                    <p class="font-blue-dark3 m-0 h4-text">Pengguna Situs</p>
+                    <p class="font-blue-dark3 m-0 par-text">Pengguna Situs</p>
+                </a>
+                <a class="nav-item d-flex align-items-center w-100 text-decoration-none mb-3" href="{{ route('admin.mp.index.pusat', 1) }}">
+                    <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-blue-dark3 me-2" style="width: 2.5rem; height: 2.5rem;">
+                        <i class="bi bi-list-stars text-white"></i>
+                    </div>
+                    <p class="font-blue-dark3 par-text m-0">Pilihan Ganda Pusat</p>
+                </a>
+                <a class="nav-item d-flex align-items-center w-100 text-decoration-none mb-3" href="{{ route('admin.mp.index.daerah', 1) }}">
+                    <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-blue-dark3 me-2" style="width: 2.5rem; height: 2.5rem;">
+                        <i class="bi bi-list-task text-white"></i>
+                    </div>
+                    <p class="font-blue-dark3 par-text m-0">Pilihan Ganda Daerah</p>
+                </a>
+                <a class="nav-item d-flex align-items-center w-100 text-decoration-none mb-3" href="{{ route('admin.mp.create') }}">
+                    <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-blue-dark3 me-2" style="width: 2.5rem; height: 2.5rem;">
+                        <i class="bi bi-clipboard-plus text-white"></i>
+                    </div>
+                    <p class="font-blue-dark3 par-text m-0">Tambah Pilihan Ganda</p>
+                </a>
+                <a class="nav-item d-flex align-items-center w-100 text-decoration-none mb-3" href="{{ route('admin.cs.index.pusat', 1) }}">
+                    <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-blue-dark3 me-2" style="width: 2.5rem; height: 2.5rem;">
+                        <i class="bi bi-journal-richtext text-white"></i>
+                    </div>
+                    <p class="font-blue-dark3 par-text m-0">Studi Kasus Pusat</p>
+                </a>
+                <a class="nav-item d-flex align-items-center w-100 text-decoration-none mb-3" href="{{ route('admin.cs.index.daerah', 1) }}">
+                    <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-blue-dark3 me-2" style="width: 2.5rem; height: 2.5rem;">
+                        <i class="bi bi-journal-text text-white"></i>
+                    </div>
+                    <p class="font-blue-dark3 par-text m-0">Studi Kasus Daerah</p>
+                </a>
+                <a class="nav-item d-flex align-items-center w-100 text-decoration-none mb-3" href="{{ route('admin.cs.create') }}">
+                    <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-blue-dark3 me-2" style="width: 2.5rem; height: 2.5rem;">
+                        <i class="bi bi-journal-plus text-white"></i>
+                    </div>
+                    <p class="font-blue-dark3 par-text m-0">Tambah Studi Kasus</p>
                 </a>
             </div>
-            {{-- Bottom --}}
-            <div class="d-flex align-items-center w-100 text-decoration-none" href="#">
-                {{-- <div class="d-flex  rounded-circle p-1 align-items-center justify-content-center bg-yellow-light3 me-2 circle-bg">
+            {{-- Unused Bottom Menu --}}
+            {{-- <div class="d-flex align-items-center w-100 text-decoration-none" href="#">
+                <div class="d-flex  rounded-circle p-1 align-items-center justify-content-center bg-yellow-light3 me-2 circle-bg">
                     <i class="bi bi-gear-fill text-black"></i>
                 </div>
-                <p class="font-yellow-light3 m-0 h4-text">Pengaturan</p> --}}
-            </div>
+                <p class="font-yellow-light3 m-0 h4-text">Pengaturan</p>
+            </div> --}}
         </div>
 
         <main class="d-flex flex-column max-vh-100 ps-5 pe-5 pb-5 pt-3 w-100">
@@ -151,12 +182,12 @@
                     <p class="mb-1 d-none d-lg-block"> Aksi Lanjutan</p>
                 </div>
                 <div class="d-grid gap-2">
-                    <a href="{{ route('admin.question.edit', $mp->id) }}" type="button" class="btn btn-blue-dark"><i class="bi bi-pencil-fill me-3"></i>Ubah Soal Ini</a>
-                    <form class="d-grid" action="{{route('admin.question.delete', $mp->id) }}" method="POST">
+                    <a href="{{ route('admin.mp.edit', $mp->id) }}" type="button" class="btn btn-blue-dark"><i class="bi bi-pencil-fill me-3"></i>Ubah Soal Ini</a>
+                    <form class="d-grid" action="{{route('admin.mp.delete', $mp->id) }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-danger"><i class="bi bi-trash3-fill me-3"></i>Hapus Soal Ini</button>
                     </form>
-                    <a href="{{ route('admin.question.create') }}" type="button" class="btn btn-success"><i class="bi bi-file-earmark-plus-fill me-3"></i>Tambah Soal Baru</a>
+                    <a href="{{ route('admin.mp.create') }}" type="button" class="btn btn-success"><i class="bi bi-file-earmark-plus-fill me-3"></i>Tambah Soal Baru</a>
                 </div>
             </div>
         </main>

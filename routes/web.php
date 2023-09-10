@@ -50,15 +50,36 @@ Route::controller(UserController::class)->group(function(){
 
 // Admin
 Route::controller(AdminController::class)->group(function(){
-    Route::get('/admin-dashboard', 'dashboard')->name('admin.dashboard');
-    Route::get('/admin-question/page/{page}', 'quest_index')->name('admin.question.index');
-    Route::get('/admin-question/show/{quest_id}', 'quest_show')->name('admin.question.show');
-    Route::get('/admin-question/quest-form', 'quest_create')->name('admin.question.create');
-    Route::post('/admin-question/quest-form', 'quest_store')->name('admin.question.store');
-    Route::get('/admin-question/quest-form/{quest_id}', 'quest_edit')->name('admin.question.edit');
-    Route::post('/admin-question/quest-form/{quest_id}', 'quest_update')->name('admin.question.update');
-    Route::post('/admin-question/delete-quest/{quest_id}', 'quest_delete')->name('admin.question.delete');
-    Route::get('/admin-user/page/{page}', 'user_index')->name('admin.user.index');
+    Route::get('/admin', 'dashboard')->name('admin.dashboard');
+    Route::get('/admin/user/page/{page}', 'user_index')->name('admin.user.index');
+    // Route::get('/admin-question/pusat/{page}', 'quest_index_pusat')->name('admin.question.index.pusat');
+    // Route::get('/admin-question/daerah/{page}', 'quest_index_daerah')->name('admin.question.index.daerah');
+    // Route::get('/admin-question/show/{quest_id}', 'quest_show')->name('admin.question.show');
+    // Route::get('/admin-question/quest-form', 'quest_create')->name('admin.question.create');
+    // Route::post('/admin-question/quest-form', 'quest_store')->name('admin.question.store');
+    // Route::get('/admin-question/quest-form/{quest_id}', 'quest_edit')->name('admin.question.edit');
+    // Route::post('/admin-question/quest-form/{quest_id}', 'quest_update')->name('admin.question.update');
+    // Route::post('/admin-question/delete-quest/{quest_id}', 'quest_delete')->name('admin.question.delete');
+
+    // Multiple Choice Routes
+    Route::get('/admin/multiple-choice/pusat/{page}', 'mp_index_pusat')->name('admin.mp.index.pusat');
+    Route::get('/admin/multiple-choice/daerah/{page}', 'mp_index_daerah')->name('admin.mp.index.daerah');
+    Route::get('/admin/multiple-choice/show/{mp_id}', 'mp_show')->name('admin.mp.show');
+    Route::get('/admin/multiple-choice/create', 'mp_create')->name('admin.mp.create');
+    Route::post('/admin/multiple-choice/create', 'mp_store')->name('admin.mp.store');
+    Route::get('/admin/multiple-choice/edit/{mp_id}', 'mp_edit')->name('admin.mp.edit');
+    Route::post('/admin/multiple-choice/edit/{mp_id}', 'mp_update')->name('admin.mp.update');
+    Route::post('/admin/multiple-choice/delete/{mp_id}', 'mp_delete')->name('admin.mp.delete');
+
+    // Case Study Routes
+    Route::get('/admin/case-study/pusat/{page}', 'cs_index_pusat')->name('admin.cs.index.pusat');
+    Route::get('/admin/case-study/daerah/{page}', 'cs_index_daerah')->name('admin.cs.index.daerah');
+    Route::get('/admin/case-study/show/{cs_id}', 'cs_show')->name('admin.cs.show');
+    Route::get('/admin/case-study/create', 'cs_create')->name('admin.cs.create');
+    Route::post('/admin/case-study/create', 'cs_store')->name('admin.cs.store');
+    Route::get('/admin/case-study/edit/{cs_id}', 'cs_edit')->name('admin.cs.edit');
+    Route::post('/admin/case-study/edit/{cs_id}', 'cs_update')->name('admin.cs.update');
+    Route::post('/admin/case-study/delete/{cs_id}', 'cs_delete')->name('admin.cs.delete');
 });
 
 // Simulation
