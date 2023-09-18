@@ -21,13 +21,18 @@
             td>p{
                 white-space: nowrap;
                 overflow: hidden;
-                width: 45rem;
+                width: 42rem;
                 height: 1.4rem;
                 text-overflow: ellipsis;
             }
+            @media (width: 1280px){
+                td>p{
+                    width: 37rem;
+                }
+            }
             @media (min-width:768px) and (max-width: 1024px){
                 td>p{
-                    width: 27rem;
+                    width: 25rem;
                 }
             }
             @media (max-width: 767px){
