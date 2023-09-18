@@ -176,7 +176,7 @@
 
                     {{-- Flag --}}
                     <label class="checkbox-btn align-self-center mt-auto mb-3">
-                        <label for="checkbox p-medium">Tandai Saat Ini</label>
+                        <label for="checkbox p-medium">Ragu-ragu</label>
                         <input id="checkbox-{{ $content->current_page }}" type="checkbox" value="{{ $content->current_page }}">
                         <span class="checkmark"></span>
                     </label>
@@ -291,7 +291,7 @@
 
                         {{-- Number --}}
                         <div class="d-grid" style="grid-template-columns: 1fr 1fr 1fr 1fr; width: fit-content; gap: 20px">
-                            @for ($i = 1; $i < ($content->last_page)+1; $i++)
+                            @for ($i = 1; $i <= ($content->last_page); $i++)
                                 @if ($i == $content->current_page)
                                     <button type="submit" name="save" id="{{ $i }}" value="{{ $i }}" class="btn btn-yellow-normal text-center number" style="width: 40px; height: 40px;">
                                         {{ $i }}
