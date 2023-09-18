@@ -211,7 +211,7 @@ class AdminController extends Controller
                     ]);
                     $response = json_decode($apiResponse->body());
                     $question = $response->data;
-                    return redirect()->route('admin.mp.index'.$request->question_type, 1)->with('message', 'Berhasil memperbarui soal pilihan ganda dengan ID '.$mp_id.'!');
+                    return redirect()->route('admin.mp.index.'.$request->question_type, 1)->with('message', 'Berhasil memperbarui soal pilihan ganda dengan ID '.$mp_id.'!');
                 } else {
                     return redirect()->route('user.dashboard');
                 }
@@ -225,7 +225,7 @@ class AdminController extends Controller
                 if (session('authorized')) {
                     $apiResponse = Http::withToken(session('bearer'))->delete('http://localhost:8000/api/v2/multiple-choice/'.$mp_id);
                     $response = json_decode($apiResponse->body());
-                    return redirect()->route('admin.question.index.pusat', 1)->with('message', 'Berhasil menghapus soal pilihan ganda dengan ID '.$mp_id.'!');
+                    return redirect()->route('admin.mp.index.pusat', 1)->with('message', 'Berhasil menghapus soal pilihan ganda dengan ID '.$mp_id.'!');
                 } else {
                     return redirect()->route('user.dashboard');
                 }
@@ -234,6 +234,40 @@ class AdminController extends Controller
             }
         }
     // End of Multiple Choice Functions
+
+    // Essay Functions
+        public function ey_index_pusat($page){
+            return view('additional.under-dev');
+        }
+
+        public function ey_index_daerah($page){
+            return view('additional.under-dev');
+        }
+
+        public function ey_show($ey_id){
+            return view('additional.under-dev');
+        }
+
+        public function ey_create(){
+            return view('additional.under-dev');
+        }
+
+        public function ey_store(Request $request){
+            // 
+        }
+
+        public function ey_edit($ey_id){
+            return view('additional.under-dev');
+        }
+
+        public function ey_update(Request $request, $ey_id){
+            // 
+        }
+
+        public function ey_delete(Request $request, $ey_id){
+
+        }
+    // End of Essay Functions
 
     // Case Study Functions
         public function cs_index_pusat($page){

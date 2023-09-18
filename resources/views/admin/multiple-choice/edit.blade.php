@@ -58,6 +58,24 @@
                         </div>
                         <p class="font-blue-dark3 par-text m-0">Tambah Pilihan Ganda</p>
                     </a>
+                    <a class="nav-item d-flex align-items-center w-100 text-decoration-none mb-3" href="{{ route('admin.ey.index.pusat', 1) }}">
+                        <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-blue-dark3 me-2" style="width: 2.5rem; height: 2.5rem;">
+                            <i class="bi bi-file-earmark-richtext text-white"></i>
+                        </div>
+                        <p class="font-blue-dark3 par-text m-0">Esai Pusat</p>
+                    </a>
+                    <a class="nav-item d-flex align-items-center w-100 text-decoration-none mb-3" href="{{ route('admin.ey.index.daerah', 1) }}">
+                        <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-blue-dark3 me-2" style="width: 2.5rem; height: 2.5rem;">
+                            <i class="bi bi-file-earmark-text text-white"></i>
+                        </div>
+                        <p class="font-blue-dark3 par-text m-0">Esai Daerah</p>
+                    </a>
+                    <a class="nav-item d-flex align-items-center w-100 text-decoration-none mb-3" href="{{ route('admin.ey.create') }}">
+                        <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-blue-dark3 me-2" style="width: 2.5rem; height: 2.5rem;">
+                            <i class="bi bi-file-earmark-plus text-white"></i>
+                        </div>
+                        <p class="font-blue-dark3 par-text m-0">Tambah Esai</p>
+                    </a>
                     <a class="nav-item d-flex align-items-center w-100 text-decoration-none mb-3" href="{{ route('admin.cs.index.pusat', 1) }}">
                         <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-blue-dark3 me-2" style="width: 2.5rem; height: 2.5rem;">
                             <i class="bi bi-journal-richtext text-white"></i>

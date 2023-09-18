@@ -52,14 +52,6 @@ Route::controller(UserController::class)->group(function(){
 Route::controller(AdminController::class)->group(function(){
     Route::get('/admin', 'dashboard')->name('admin.dashboard');
     Route::get('/admin/user/page/{page}', 'user_index')->name('admin.user.index');
-    // Route::get('/admin-question/pusat/{page}', 'quest_index_pusat')->name('admin.question.index.pusat');
-    // Route::get('/admin-question/daerah/{page}', 'quest_index_daerah')->name('admin.question.index.daerah');
-    // Route::get('/admin-question/show/{quest_id}', 'quest_show')->name('admin.question.show');
-    // Route::get('/admin-question/quest-form', 'quest_create')->name('admin.question.create');
-    // Route::post('/admin-question/quest-form', 'quest_store')->name('admin.question.store');
-    // Route::get('/admin-question/quest-form/{quest_id}', 'quest_edit')->name('admin.question.edit');
-    // Route::post('/admin-question/quest-form/{quest_id}', 'quest_update')->name('admin.question.update');
-    // Route::post('/admin-question/delete-quest/{quest_id}', 'quest_delete')->name('admin.question.delete');
 
     // Multiple Choice Routes
     Route::get('/admin/multiple-choice/pusat/{page}', 'mp_index_pusat')->name('admin.mp.index.pusat');
@@ -70,6 +62,16 @@ Route::controller(AdminController::class)->group(function(){
     Route::get('/admin/multiple-choice/edit/{mp_id}', 'mp_edit')->name('admin.mp.edit');
     Route::post('/admin/multiple-choice/edit/{mp_id}', 'mp_update')->name('admin.mp.update');
     Route::post('/admin/multiple-choice/delete/{mp_id}', 'mp_delete')->name('admin.mp.delete');
+
+    // Case Study Routes
+    Route::get('/admin/essay/pusat/{page}', 'ey_index_pusat')->name('admin.ey.index.pusat');
+    Route::get('/admin/essay/daerah/{page}', 'ey_index_daerah')->name('admin.ey.index.daerah');
+    Route::get('/admin/essay/show/{ey_id}', 'ey_show')->name('admin.ey.show');
+    Route::get('/admin/essay/create', 'ey_create')->name('admin.ey.create');
+    Route::post('/admin/essay/create', 'ey_store')->name('admin.ey.store');
+    Route::get('/admin/essay/edit/{ey_id}', 'ey_edit')->name('admin.ey.edit');
+    Route::post('/admin/essay/edit/{ey_id}', 'ey_update')->name('admin.ey.update');
+    Route::post('/admin/essay/delete/{ey_id}', 'ey_delete')->name('admin.ey.delete');
 
     // Case Study Routes
     Route::get('/admin/case-study/pusat/{page}', 'cs_index_pusat')->name('admin.cs.index.pusat');
