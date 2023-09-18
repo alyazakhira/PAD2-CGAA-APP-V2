@@ -18,6 +18,26 @@
             td p{
                 margin: 0;
             }
+            td>p{
+                white-space: nowrap;
+                overflow: hidden;
+                width: 45rem;
+                height: 1.4rem;
+                text-overflow: ellipsis;
+            }
+            @media (min-width:768px) and (max-width: 1024px){
+                td>p{
+                    width: 27rem;
+                }
+            }
+            @media (max-width: 767px){
+                td>p{
+                    width: 10rem;
+                }
+            }
+            td>ol, td>ul{
+                display: none;
+            }
         </style>
     </head>
     <body>
