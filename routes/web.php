@@ -29,7 +29,7 @@ Route::get('/under-development', function () {
 
 // Test URL
 Route::get('/cek', function () {
-    return view('exam/exam-page');
+    return view('exam/instruction-daerah');
 });
 
 // Auth
