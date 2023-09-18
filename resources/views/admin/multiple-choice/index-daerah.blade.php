@@ -35,6 +35,9 @@
                     width: 10rem;
                 }
             }
+            td>ol, td>ul{
+                display: none;
+            }
         </style>
     </head>
     <body>
