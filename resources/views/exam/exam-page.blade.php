@@ -176,7 +176,7 @@
 
                     {{-- Flag --}}
                     <label class="checkbox-btn align-self-center mt-auto mb-3">
-                        <label for="checkbox p-medium">Tandai Saat Ini</label>
+                        <label for="checkbox p-medium">Ragu-ragu</label>
                         <input id="checkbox-{{ $content->current_page }}" type="checkbox" value="{{ $content->current_page }}">
                         <span class="checkmark"></span>
                     </label>
