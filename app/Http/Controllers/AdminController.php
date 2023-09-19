@@ -245,35 +245,138 @@ class AdminController extends Controller
 
     // Essay Functions
         public function ey_index_pusat($page){
-            return view('additional.under-dev');
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/essay-paginated-pusat/5?page='.$page);
+                    $response = json_decode($apiResponse->body());
+                    $content = $response->data;
+                    return view('admin.essay.index-pusat', compact('content'));
+                } else {
+                    return redirect()->route('user.dashboard');
+                }    
+            } else {
+                return view('sign-in');
+            }
         }
 
         public function ey_index_daerah($page){
-            return view('additional.under-dev');
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/essay-paginated-daerah/5?page='.$page);
+                    $response = json_decode($apiResponse->body());
+                    $content = $response->data;
+                    return view('admin.essay.index-daerah', compact('content'));
+                } else {
+                    return redirect()->route('user.dashboard');
+                }    
+            } else {
+                return view('sign-in');
+            }
         }
 
         public function ey_show($ey_id){
-            return view('additional.under-dev');
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/essay/'.$ey_id);
+                    $response = json_decode($apiResponse->body());
+                    $ey = $response->data;
+                    return view('admin.essay.show', compact('ey'));
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
         }
 
         public function ey_create(){
-            return view('additional.under-dev');
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    return view('admin.essay.create');
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
         }
 
         public function ey_store(Request $request){
-            // 
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $request->validate([
+                        'question_type' => 'required',
+                        'question' => 'required',
+                        'correct_answer' => 'required',
+                    ]);
+                    $apiResponse = Http::withToken(session('bearer'))->post('http://localhost:8000/api/v2/essay',[
+                        'question_type' => $request->question_type,
+                        'question' => $request->question,
+                        'correct_answer' => $request->correct_answer,
+                    ]);
+                    $response = json_decode($apiResponse->body());
+                    $question = $response->data;
+                    return redirect()->route('admin.ey.index.'.$request->question_type, 1)->with('message', 'Berhasil menambahkan soal esai dengan ID '.$question->id.'!');
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
         }
 
         public function ey_edit($ey_id){
-            return view('additional.under-dev');
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/essay/'.$ey_id);
+                    $response = json_decode($apiResponse->body());
+                    $ey = $response->data;
+                    return view('admin.essay.edit', compact('ey'));
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
         }
 
         public function ey_update(Request $request, $ey_id){
-            // 
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $request->validate([
+                        'question_type' => 'required',
+                        'question' => 'required',
+                        'correct_answer' => 'required',
+                    ]);
+                    $apiResponse = Http::withToken(session('bearer'))->post('http://localhost:8000/api/v2/essay/'.$ey_id,[
+                        'question_type' => $request->question_type,
+                        'question' => $request->question,
+                        'correct_answer' => $request->correct_answer,
+                        "_method" => 'PUT',
+                    ]);
+                    $response = json_decode($apiResponse->body());
+                    $question = $response->data;
+                    return redirect()->route('admin.ey.index.'.$request->question_type, 1)->with('message', 'Berhasil memperbarui soal esai dengan ID '.$ey_id.'!');
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
         }
 
         public function ey_delete(Request $request, $ey_id){
-
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $apiResponse = Http::withToken(session('bearer'))->delete('http://localhost:8000/api/v2/essay/'.$ey_id);
+                    $response = json_decode($apiResponse->body());
+                    return redirect()->route('admin.ey.index.pusat', 1)->with('message', 'Berhasil menghapus soal esai dengan ID '.$ey_id.'!');
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
         }
     // End of Essay Functions
 
