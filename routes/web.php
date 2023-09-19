@@ -51,6 +51,8 @@ Route::controller(UserController::class)->group(function(){
 // Admin
 Route::controller(AdminController::class)->group(function(){
     Route::get('/admin', 'dashboard')->name('admin.dashboard');
+    Route::get('/admin/scoring', 'scoring_form')->name('admin.scoring.form');
+    Route::post('/admin/scoring', 'scoring_store')->name('admin.scoring.store');
     Route::get('/admin/user/page/{page}', 'user_index')->name('admin.user.index');
 
     // Multiple Choice Routes

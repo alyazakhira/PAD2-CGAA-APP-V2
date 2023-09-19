@@ -78,6 +78,14 @@ class AdminController extends Controller
         }
     }
 
+    public function scoring_form(){
+        return view('additional.under-dev');
+    }
+
+    public function scoring_store(Request $request){
+
+    }
+
     // Multiple Choice Functions
         public function mp_index_pusat($page){
             if (session()->has('bearer')) {
