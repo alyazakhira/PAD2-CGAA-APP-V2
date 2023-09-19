@@ -95,13 +95,6 @@
                         <p class="font-blue-dark3 par-text m-0">Tambah Studi Kasus</p>
                     </a>
                 </div>
-                {{-- Unused Bottom Menu --}}
-                {{-- <div class="d-flex align-items-center w-100 text-decoration-none" href="#">
-                    <div class="d-flex  rounded-circle p-1 align-items-center justify-content-center bg-yellow-light3 me-2 circle-bg">
-                        <i class="bi bi-gear-fill text-black"></i>
-                    </div>
-                    <p class="font-yellow-light3 m-0 h4-text">Pengaturan</p>
-                </div> --}}
             </div>
 
             <main class="d-flex flex-column overflow-auto border-0 max-vh-100 ps-5 pe-5 pb-5 pt-3 w-100">
@@ -139,7 +132,7 @@
                 <div class="container">
 
                     {{-- Title --}}
-                    <p class="h3-text font-yellow-dark4 p-semi-bold">Ubah Soal Simulasi</p>
+                    <p class="h3-text font-yellow-dark4 p-semi-bold">Ubah Soal Pilihan Ganda</p>
 
                     {{-- Error Handler --}}
                     @if ($errors->any())
