@@ -81,7 +81,8 @@ class SimulationController extends Controller
             $response = json_decode($apiResponse->body());
             $result = $response->data;
             session()->forget('on_exam');
-            return redirect()->route('exam.result', $result->id);
+            // return redirect()->route('exam.result', $result->id);
+            return redirect()->route('essay.instruction');
         }
     }
 
@@ -112,5 +113,38 @@ class SimulationController extends Controller
             return redirect()->route('exam.progress', 1);
         }
         
+    }
+
+    // Essay
+    public function essay_instruction_daerah(){
+        if (session()->has('bearer')) {
+            return view('exam.essay.instruction-essay-daerah');
+        } else {
+            return view('sign-in');
+        }
+    }
+    
+    public function essay_instruction_pusat(){
+        if (session()->has('bearer')) {
+            return view('exam.essay.instruction-essay-pusat');
+        } else {
+            return view('sign-in');
+        }
+    }
+
+    public function essay_page(){
+        if (session()->has('bearer')) {
+            return view('exam.essay.essay-page');
+        } else {
+            return view('sign-in');
+        }
+    }
+
+    public function essay_explanation(){
+        if (session()->has('bearer')) {
+            return view('exam.essay.essay-explanation');
+        } else {
+            return view('sign-in');
+        }
     }
 }

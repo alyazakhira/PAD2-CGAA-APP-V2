@@ -104,4 +104,10 @@ Route::controller(SimulationController::class)->group(function(){
     Route::post('/end-simulation', 'exam_submit')->name('exam.submit');
     Route::get('/exam-result/{session_id}', 'exam_result')->name('exam.result');
     Route::get('/exam-explanation/{session_id}/page/{page}', 'exam_explanation')->name('exam.explanation');
+
+    // Essay Simulation
+    Route::get('/essay/instruction/daerah', 'essay_instruction_daerah')->name('essay.instruction.daerah');
+    Route::get('/essay/instruction/pusat', 'essay_instruction_pusat')->name('essay.instruction.pusat');
+    Route::post('/essay-page', 'essay_page')->name('essay.page');
+    Route::get('/essay-explanation', 'essay_explanation')->name('essay.explanation');
 });
