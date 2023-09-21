@@ -16,7 +16,7 @@ class UserController extends Controller
                 $response1 = json_decode($apiResponse1->body());
                 $user = $response1->data;
 
-                $apiResponse2 = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/user-session/'.session('user'));
+                $apiResponse2 = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/result/session/'.session('user'));
                 $response2 = json_decode($apiResponse2->body());
                 $session = $response2->data;
                 $date = [];
@@ -35,7 +35,7 @@ class UserController extends Controller
                     }
                 }
 
-                $apiResponse3 = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/average-score/'.session('user'));
+                $apiResponse3 = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/result/average-score/'.session('user'));
                 $response3 = json_decode($apiResponse3->body());
                 $average = $response3->data->average;
 
