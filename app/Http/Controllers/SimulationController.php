@@ -17,7 +17,7 @@ class SimulationController extends Controller
 
     public function instruction_pusat(){
         if (session()->has('bearer')) {
-            return view('exam.instruction-pusat');
+            return view('exam.multiple-choice.instruction-pusat');
         } else {
             return view('sign-in');
         }
@@ -25,7 +25,7 @@ class SimulationController extends Controller
 
     public function instruction_daerah(){
         if (session()->has('bearer')) {
-            return view('exam.instruction-daerah');
+            return view('exam.multiple-choice.instruction-daerah');
         } else {
             return view('sign-in');
         }
@@ -36,7 +36,7 @@ class SimulationController extends Controller
             if (session()->has('on_exam')) {
                 return redirect()->route('exam.progress', 1);
             } else {
-                $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/exam-'.$request->exam_type.'/'.session('user'));
+                $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/exam/session/'.$request->exam_type.'/'.session('user'));
                 $response = json_decode($apiResponse->body());
                 session(['on_exam' => $response->data->session_id]);
                 return redirect()->route('exam.progress',1);
@@ -49,14 +49,14 @@ class SimulationController extends Controller
     public function exam_data($page){
         if (session()->has('bearer')) {
             if (session()->has('on_exam')) {
-                $apiResponse1 = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/exam-data/'.session('on_exam').'?page='.$page);
+                $apiResponse1 = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/exam/multiple-choice/'.session('on_exam').'?page='.$page);
                 $response1 = json_decode($apiResponse1->body());
                 $content = $response1->data;
 
-                $apiResponse2 = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/session-answer/'.session('on_exam'));
+                $apiResponse2 = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/exam/multiple-choice/answer/'.session('on_exam'));
                 $response2 = json_decode($apiResponse2->body());
                 $answer = $response2->data;
-                return view('exam.exam-page', compact('content', 'answer'));
+                return view('exam.multiple-choice.exam-page', compact('content', 'answer'));
             } else {
                 return view('exam.select-type');
             }
@@ -92,7 +92,7 @@ class SimulationController extends Controller
             $response = json_decode($apiResponse->body());
             $result = $response->data;
             $score = $result->score;
-            return view('exam.exam-result', compact('result', 'score'));
+            return view('exam.multiple-choice.exam-result', compact('result', 'score'));
         } else {
             return redirect()->route('exam.progress', 1);
         }
@@ -108,7 +108,7 @@ class SimulationController extends Controller
             $response2 = json_decode($apiResponse2->body());
             $answer = $response2->data->answer;
             $correct_answer = $response2->data->correct_answer;
-            return view('exam.explanation-page', compact('content', 'answer', 'correct_answer'));
+            return view('exam.multiple-choice.explanation-page', compact('content', 'answer', 'correct_answer'));
         } else {
             return redirect()->route('exam.progress', 1);
         }
