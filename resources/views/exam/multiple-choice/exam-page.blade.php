@@ -295,17 +295,17 @@
                                 @if ($i == $content->current_page)
                                     <button type="submit" name="save" id="{{ $i }}" value="{{ $i }}" class="btn btn-yellow-normal text-center number" style="width: 40px; height: 40px;">
                                         {{ $i }}
-                                        <div class="flag bg-red-normal" id="flag-{{ $i }}"></div>
+                                        <div class="d-none flag bg-red-normal" id="flag-{{ $i }}"></div>
                                     </button>
                                 @elseif ($answer->{"answer_$i"} == null)
                                     <button type="submit" name="save" id="{{ $i }}" value="{{ $i }}" class="btn btn-blue-light text-center number" style="width: 40px; height: 40px;">
                                         {{ $i }}
-                                        <div class="flag bg-red-normal" id="flag-{{ $i }}"></div>
+                                        <div class="d-none flag bg-red-normal" id="flag-{{ $i }}"></div>
                                     </button>
                                 @else
                                     <button type="submit" name="save" id="{{ $i }}" value="{{ $i }}" class="btn btn-green-normal text-center number" style="width: 40px; height: 40px;">
                                         {{ $i }}
-                                        <div class="flag bg-red-normal" id="flag-{{ $i }}"></div>
+                                        <div class="d-none flag bg-red-normal" id="flag-{{ $i }}"></div>
                                     </button>
                                 @endif
                                 
@@ -364,8 +364,6 @@
             // number on pagination
             var num_page = $('#page').text().split('/')[0];
             console.log(num_page);
-            // flag default 
-            $(".flag").addClass("visually-hidden");
             // number on sidebar
             var num_sidebar = document.getElementById(num_page).value;
             // to store number from storage
@@ -379,12 +377,12 @@
             // function to flag the number
             function flag(number) {
                 $("#checkbox-"+number).prop( "checked", true );
-                $("#flag-"+number).removeClass("visually-hidden");
+                $("#flag-"+number).removeClass("d-none");
             }
             // function to unflag the number
             function unflagged(number) {
                 $('#checkbox-'+number).prop( "checked", false );
-                $("#flag-"+number).addClass("visually-hidden");
+                $("#flag-"+number).addClass("d-none");
             }
             // get data from storage
             var from_session = storage.getItem('num_flagged').split(',');
