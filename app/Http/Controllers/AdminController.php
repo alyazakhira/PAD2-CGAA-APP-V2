@@ -66,7 +66,7 @@ class AdminController extends Controller
     public function user_index($page){
         if (session()->has('bearer')) {
             if (session('authorized')) {
-                $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/user-paginated/10?page='.$page);
+                $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/paginated/user/10?page='.$page);
                 $response = json_decode($apiResponse->body());
                 $content = $response->data;
                 return view('admin.user-index', compact('content'));
@@ -78,19 +78,11 @@ class AdminController extends Controller
         }
     }
 
-    public function scoring_form(){
-        return view('additional.under-dev');
-    }
-
-    public function scoring_store(Request $request){
-
-    }
-
     // Multiple Choice Functions
         public function mp_index_pusat($page){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice-paginated-pusat/10?page='.$page);
+                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/paginated/multiple-choice/pusat/10?page='.$page);
                     $response = json_decode($apiResponse->body());
                     $content = $response->data;
                     return view('admin.multiple-choice.index-pusat', compact('content'));
@@ -105,7 +97,7 @@ class AdminController extends Controller
         public function mp_index_daerah($page){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice-paginated-daerah/10?page='.$page);
+                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/paginated/multiple-choice/daerah/10?page='.$page);
                     $response = json_decode($apiResponse->body());
                     $content = $response->data;
                     return view('admin.multiple-choice.index-daerah', compact('content'));
@@ -247,7 +239,7 @@ class AdminController extends Controller
         public function ey_index_pusat($page){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/essay-paginated-pusat/5?page='.$page);
+                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/paginated/essay/pusat/5?page='.$page);
                     $response = json_decode($apiResponse->body());
                     $content = $response->data;
                     return view('admin.essay.index-pusat', compact('content'));
@@ -262,7 +254,7 @@ class AdminController extends Controller
         public function ey_index_daerah($page){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/essay-paginated-daerah/5?page='.$page);
+                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/paginated/essay/daerah/5?page='.$page);
                     $response = json_decode($apiResponse->body());
                     $content = $response->data;
                     return view('admin.essay.index-daerah', compact('content'));
@@ -382,35 +374,176 @@ class AdminController extends Controller
 
     // Case Study Functions
         public function cs_index_pusat($page){
-            return view('additional.under-dev');
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/paginated/case-study/pusat/5?page='.$page);
+                    $response = json_decode($apiResponse->body());
+                    $content = $response->data;
+                    return view('admin.case-study.index-pusat', compact('content'));
+                } else {
+                    return redirect()->route('user.dashboard');
+                }    
+            } else {
+                return view('sign-in');
+            }
         }
 
         public function cs_index_daerah($page){
-            return view('additional.under-dev');
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/paginated/case-study/daerah/5?page='.$page);
+                    $response = json_decode($apiResponse->body());
+                    $content = $response->data;
+                    return view('admin.case-study.index-daerah', compact('content'));
+                } else {
+                    return redirect()->route('user.dashboard');
+                }    
+            } else {
+                return view('sign-in');
+            }
         }
 
         public function cs_show($cs_id){
-            return view('additional.under-dev');
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/case-study/'.$cs_id);
+                    $response = json_decode($apiResponse->body());
+                    $cs = $response->data;
+                    return view('admin.case-study.show', compact('cs'));
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
         }
 
         public function cs_create(){
-            return view('additional.under-dev');
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    return view('admin.case-study.create');
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
         }
 
         public function cs_store(Request $request){
-            // 
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    // General validation
+                    $request->validate([
+                        'question_type' => 'required',
+                        'information' => 'required',
+                        'instruction_count' => 'required',
+                    ]);
+
+                    // Count instruction
+                    $temp = 0;
+                    for ($i=1; $i <= 10; $i++) { 
+                        if ($request->{"instruction_$i"}) {
+                            $temp += 1;
+                        }
+                    }
+
+                    // Response
+                    if ($temp == $request->instruction_count) {
+                        $formData = array();
+                        $formData['question_type'] = $request->question_type;
+                        $formData['information'] = $request->information;
+                        $formData['instruction_count'] = $request->instruction_count;
+                        for ($i=0; $i <= 10; $i++) {
+                            $formData["instruction_$i"] = $request->{"instruction_$i"};
+                            $formData["key_answer_$i"] = $request->{"key_answer_$i"};
+                        }
+                        $apiResponse = Http::withToken(session('bearer'))->post('http://localhost:8000/api/v2/case-study',$formData);
+                        $response = json_decode($apiResponse->body());
+                        $question = $response->data;
+                        return redirect()->route('admin.cs.index.'.$request->question_type, 1)->with('message', 'Berhasil menambahkan soal studi kasus dengan ID '.$question->id.'!');
+                    } else {
+                        return back()->withErrors("The instruction count do not match!");
+                    }
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
         }
 
         public function cs_edit($cs_id){
-            return view('additional.under-dev');
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/case-study/'.$cs_id);
+                    $response = json_decode($apiResponse->body());
+                    $cs = $response->data;
+                    return view('admin.case-study.edit', compact('cs'));
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
         }
 
         public function cs_update(Request $request, $cs_id){
-            // 
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    // General validation
+                    $request->validate([
+                        'question_type' => 'required',
+                        'information' => 'required',
+                        'instruction_count' => 'required',
+                    ]);
+
+                    // Count instruction
+                    $temp = 0;
+                    for ($i=1; $i <= 10; $i++) { 
+                        if ($request->{"instruction_$i"}) {
+                            $temp += 1;
+                        }
+                    }
+
+                    // Response
+                    if ($temp == $request->instruction_count) {
+                        $formData = array();
+                        $formData['question_type'] = $request->question_type;
+                        $formData['information'] = $request->information;
+                        $formData['instruction_count'] = $request->instruction_count;
+                        $formData['_method'] = 'PUT';
+                        for ($i=0; $i <= 10; $i++) {
+                            $formData["instruction_$i"] = $request->{"instruction_$i"};
+                            $formData["key_answer_$i"] = $request->{"key_answer_$i"};
+                        }
+                        $apiResponse = Http::withToken(session('bearer'))->post('http://localhost:8000/api/v2/case-study/'.$cs_id,$formData);
+                        $response = json_decode($apiResponse->body());
+                        $question = $response->data;
+                        return redirect()->route('admin.cs.index.'.$request->question_type, 1)->with('message', 'Berhasil mengubah soal studi kasus dengan ID '.$question->id.'!');
+                    } else {
+                        return back()->withErrors("The instruction count do not match!");
+                    }
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
         }
 
         public function cs_delete(Request $request, $cs_id){
-
+            if (session()->has('bearer')) {
+                if (session('authorized')) {
+                    $apiResponse = Http::withToken(session('bearer'))->delete('http://localhost:8000/api/v2/case-study/'.$cs_id);
+                    $response = json_decode($apiResponse->body());
+                    return redirect()->route('admin.cs.index.pusat', 1)->with('message', 'Berhasil menghapus soal studi kasus dengan ID '.$cs_id.'!');
+                } else {
+                    return redirect()->route('user.dashboard');
+                }
+            } else {
+                return view('sign-in');
+            }
         }
     // End of Case Study Functions
 }
