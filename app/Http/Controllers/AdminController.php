@@ -10,71 +10,70 @@ class AdminController extends Controller
     public function dashboard(){
         if (session()->has('bearer')) {
             if (session('authorized')) {
-                $apiResponse1 = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/exam-session');
-                $response1 = json_decode($apiResponse1->body());
-                $sessions = $response1->data;
+                // Retrieve Session Data
+                $sessions = json_decode(Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/exam-session')->body())->data;
                 $session_count = collect($sessions)->count();
                 $date = [];
                 $value = [];
                 $counter = 0;
-                $d = null;
+                $helper = null;
                 foreach ($sessions as $s) {
-                    if ($s->created_at == $d) {
-                        $counter = $counter+1;
+                    if (date('d-m-Y', strtotime($s->created_at)) == date('d-m-Y', strtotime($helper))) {
+                        $counter += 1;
 
-                    } elseif ($d == null) {
-                        $d = $s->created_at;
+                    } elseif ($helper == null) {
+                        $helper = $s->created_at;
                         $counter = 1;
 
                     } else {
                         array_push($value, $counter);
-                        array_push($date, date('d-m-Y', strtotime($d)));
-                        $d = $s->created_at;
+                        array_push($date, date('d-m-Y', strtotime($helper)));
+                        $helper = $s->created_at;
                         $counter = 1;
                     }
                 }
-                array_push($date, date('d-m-Y', strtotime($d)));
+                array_push($date, date('d-m-Y', strtotime($helper)));
                 array_push($value, $counter);
 
-                $apiResponse2 = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice');
-                $response2 = json_decode($apiResponse2->body());
-                $mp = $response2->data;
-                $mp_count = collect($mp)->count();
+                // Retrieve Question Data
+                $mpData = json_decode(Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice')->body())->data;
+                $eyData = json_decode(Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/essay')->body())->data;
+                $csData = json_decode(Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/case-study')->body())->data;
+                $question_count = collect($mpData)->count() + collect($eyData)->count() + collect($csData)->count();
 
-                $apiResponse3 = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/users');
-                $response3 = json_decode($apiResponse3->body());
-                $users = $response3->data;
-                $user_count = collect($users)->count();
+                // Retrieve User Data
+                $userData = json_decode(Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/users')->body())->data;
+                $user_count = collect($userData)->count();
                 $colleger = 0;
                 $non_colleger = 0;
-                foreach ($users as $u) {
+                foreach ($userData as $u) {
                     if ($u->occupation == "Mahasiswa") {
-                        $colleger = $colleger+1;
+                        $colleger += 1;
                     } else {
-                        $non_colleger = $non_colleger+1;
+                        $non_colleger += 1;
                     }
                 }
-                return view('admin.dashboard', compact('sessions', 'mp', 'users', 'session_count', 'mp_count', 'user_count', 'date', 'value', 'colleger', 'non_colleger'));
+                return view('admin.dashboard', compact('session_count', 'question_count', 'user_count', 'date', 'value', 'colleger', 'non_colleger'));
             } else {
                 return redirect()->route('user.dashboard');
             }          
         } else {
-            return view('sign-in');
+            return redirect()->route('login.show');
         }        
     }
 
     public function user_index($page){
         if (session()->has('bearer')) {
             if (session('authorized')) {
-                $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/paginated/user/10?page='.$page);
-                $response = json_decode($apiResponse->body());
-                $content = $response->data;
+                $userDataRaw = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/paginated/user/10?page='.$page);
+                $userData = json_decode($userDataRaw->body());
+                $content = $userData->data;
                 return view('admin.user-index', compact('content'));
             } else {
                 return redirect()->route('user.dashboard');
             }    
         } else {
-            return view('sign-in');
+            return redirect()->route('login.show');
         }
     }
 
@@ -90,7 +89,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }    
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -105,7 +104,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }    
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -120,7 +119,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -132,7 +131,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -166,7 +165,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -181,7 +180,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -216,7 +215,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -230,7 +229,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
     // End of Multiple Choice Functions
@@ -247,7 +246,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }    
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -262,7 +261,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }    
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -277,7 +276,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -289,7 +288,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -313,7 +312,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -328,7 +327,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -353,7 +352,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -367,7 +366,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
     // End of Essay Functions
@@ -384,7 +383,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }    
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -399,7 +398,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }    
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -414,7 +413,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -426,7 +425,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -469,7 +468,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -484,7 +483,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -528,7 +527,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
 
@@ -542,7 +541,7 @@ class AdminController extends Controller
                     return redirect()->route('user.dashboard');
                 }
             } else {
-                return view('sign-in');
+                return redirect()->route('login.show');
             }
         }
     // End of Case Study Functions

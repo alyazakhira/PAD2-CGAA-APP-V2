@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Admin | Dashboard</title>
+        <title>Admin Simulasi CGAA | Dashboard</title>
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
@@ -15,7 +15,7 @@
     <body class="d-flex">
         {{-- Sidebar --}}
         <div class="d-flex flex-column bg-yellow-normal1 p-4 vh-100 align-items-center sidebar sticky-top flex-shrink-0 left-sidebar">
-            {{-- Logo --}}
+            {{-- Header --}}
             <div class="d-flex justify-content-between justify-content-lg-center align-items-center w-100 mb-5">
                 {{-- Logo --}}
                 <a href="/" class="d-flex align-items-center justify-content-center text-white" style="width: 80%; padding: 5px;">
@@ -24,7 +24,8 @@
                 {{-- Close button --}}
                 <button class="btn btn-close d-flex d-block align-self-start d-lg-none"></button>
             </div>
-            {{-- Menus --}}
+
+            {{-- Menu --}}
             <div class="nav nav-pills d-flex flex-column w-100">
                 <a class="nav-item d-flex align-items-center w-100 text-decoration-none mb-3" href="{{ route('admin.dashboard') }}">
                     <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-blue-dark3 me-2" style="width: 2.5rem; height: 2.5rem;">
@@ -137,7 +138,7 @@
                     </div>
                 </div>
                 <div class="d-flex bg-yellow-normal1 font-blue-dark2 align-items-center py-3 px-4 rounded-2 mb-2" style="min-width: 30%">
-                    <div class="d-flex me-3 h2-text p-bold">{{$mp_count}}</div>
+                    <div class="d-flex me-3 h2-text p-bold">{{$question_count}}</div>
                     <div class="d-flex flex-column">
                         <div class="d-flex h4-text p-semi-bold">Soal</div>
                         <div class="d-flex">Tingkat pusat maupun daerah</div>
@@ -206,7 +207,7 @@
             var colleger = {{ Js::from($colleger) }};
             var non_colleger = {{ Js:: from($non_colleger) }};
     
-            // line chart
+            // pie chart
             const data2 = {
                 labels: ['Mahasiswa', 'Non-mahasiswa'],
                 datasets: [{

@@ -44,15 +44,13 @@ Route::controller(AuthController::class)->group(function(){
 
 // User
 Route::controller(UserController::class)->group(function(){
-    Route::get('/user-dashboard', 'dashboard')->name('user.dashboard');
-    Route::get('/user-history', 'history')->name('user.history');
+    Route::get('/user', 'dashboard')->name('user.dashboard');
+    Route::get('/user/history', 'history')->name('user.history');
 });
 
 // Admin
 Route::controller(AdminController::class)->group(function(){
     Route::get('/admin', 'dashboard')->name('admin.dashboard');
-    Route::get('/admin/scoring', 'scoring_form')->name('admin.scoring.form');
-    Route::post('/admin/scoring', 'scoring_store')->name('admin.scoring.store');
     Route::get('/admin/user/page/{page}', 'user_index')->name('admin.user.index');
 
     // Multiple Choice Routes
@@ -88,26 +86,24 @@ Route::controller(AdminController::class)->group(function(){
 
 // Simulation
 Route::controller(SimulationController::class)->group(function(){
-    Route::get('/type-select', 'type_select')->name('exam.type');
-    Route::get('/instruction/pusat', 'instruction_pusat')->name('exam.instruction.pusat');
-    Route::get('/instruction/daerah', 'instruction_daerah')->name('exam.instruction.daerah');
-    
-    // Start Exam and Get Session ID
-    Route::post('/start-exam', 'start_exam')->name('exam.start');
+    // Exam Starter Pack
+    Route::get('/exam/type', 'select_exam_type')->name('exam.type'); // Select exam type
+    Route::get('/exam/type/pusat', 'show_instruction_pusat')->name('exam.instruction.pusat'); // Show instruction page for exam pusat
+    Route::get('/exam/type/daerah', 'show_instruction_daerah')->name('exam.instruction.daerah'); // Show instruction page for exam daerah
+    Route::post('/exam/start', 'start_exam')->name('exam.start'); // Start exam and get session ID, will be redirected to exam.session1.show
 
-    // Navigate Through Pages with $page
-    Route::get('/cgaa-simulation-exam/page/{page}', 'exam_data')->name('exam.progress');
-    Route::post('/cgaa-simulation-exam/save', 'save_or_submit')->name('exam.saveorsubmit');
-    Route::post('/cgaa-simulation-exam/page', 'exam_save')->name('exam.save');
-    
-    // Exam Ended, Get Results and Explanation
-    Route::post('/end-simulation', 'exam_submit')->name('exam.submit');
-    Route::get('/exam-result/{session_id}', 'exam_result')->name('exam.result');
-    Route::get('/exam-explanation/{session_id}/page/{page}', 'exam_explanation')->name('exam.explanation');
+    // Session 1 - Multiple Choice
+    Route::get('/exam/session-1/{page}', 'show_first_session')->name('exam.session1.show'); // Do the exam, navigate using $page
+    Route::post('/exam/session-1', 'save_first_session')->name('exam.session1.save'); // Save/end session 1, will be redirected to exam page/sent to session 1 result page
 
-    // Essay Simulation
-    Route::get('/essay/instruction/daerah', 'essay_instruction_daerah')->name('essay.instruction.daerah');
-    Route::get('/essay/instruction/pusat', 'essay_instruction_pusat')->name('essay.instruction.pusat');
-    Route::post('/essay-page', 'essay_page')->name('essay.page');
-    Route::get('/essay-explanation', 'essay_explanation')->name('essay.explanation');
+    // Session 2 - Essay & Study Case
+    Route::get('/exam/session-2/{page}', 'show_second_session')->name('exam.session2.show'); // Do the exam, navigate using $page
+    Route::post('/exam/session-2', 'save_second_session')->name('exam.session2.save'); // Save session 2, will be redirected back to exam page
+
+    // Exam Review Pack
+    Route::post('/exam/end', 'end_exam')->name('exam.end'); // End the exam, will be redirected to exam.result
+    Route::get('/exam/review/{session_id}', 'show_exam_result')->name('exam.result'); // Show the exam result
+    Route::get('/exam/review/{session_id}/multiple-choice/{page}', 'show_exam_mp_review')->name('exam.review.mp'); // Show the exam multiple choice review
+    Route::get('/exam/review/{session_id}/essay/{page}', 'show_exam_ey_review')->name('exam.review.ey'); // Show the exam essay review
+    Route::get('/exam/review/{session_id}/case-study', 'show_exam_cs_review')->name('exam.review.cs'); // Show the exam case study review
 });

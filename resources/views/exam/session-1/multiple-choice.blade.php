@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Simulasi CGGA | Simulasi </title>
+        <title> Simulasi CGAA | Sesi 1 </title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
         <link rel="stylesheet" href="{{ asset('style/font.css') }}">
@@ -102,7 +102,7 @@
     </head>
     <body>
         <div class="d-flex">
-            <form action="{{ route('exam.saveorsubmit') }}" method="POST" id="examForm" class="d-flex w-100" name="examForm">
+            <form action="{{ route('exam.session1.save') }}" method="POST" id="examForm" class="d-flex w-100" name="examForm">
                 @csrf
                 <input type="hidden" name="current_page" value="{{ $content->current_page }}" class="visually-hidden">
                 {{-- Outside of Sidebar --}}
@@ -112,7 +112,6 @@
                     <div class="d-flex flex-column">
                         {{-- Header --}}
                         <div class="d-flex border-bottom border-dark justify-content-between h3-text p-medium mb-4">
-                            {{-- <p class="mb-1 d-none d-lg-block"> Soal No. 29</p> --}}
                             <p class="mb-1 d-none d-lg-block"> Soal No. {{ $content->current_page }}</p>
                             {{-- <p class="mb-1" id="countdown">00 : 00 : 00</p> --}}
                             <button class="navbar-brand btn btn-open d-lg-none" type="button">
@@ -198,11 +197,11 @@
 
                             {{-- Page indicator --}}
                             <div class="d-flex justify-content-center">
-                                <p class="h4-text p-medium my-0" id="page">{{ $content->current_page }}/30</p>
+                                <p class="h4-text p-medium my-0" id="page">{{ $content->current_page }}/60</p>
                             </div>
 
                             {{-- Next --}}
-                            <a class="text-decoration-none" href="{{ route('exam.progress', $next) }}">
+                            <a class="text-decoration-none" href="{{ route('exam.session1.show', $next) }}">
                                 <button class="btnNext" type="submit" value="{{ $next }}" name="save">
                                     <div class="text">Soal selanjutnya</div>
                                     <div class="sign">></div>
@@ -210,7 +209,7 @@
                             </a>
                         @elseif (($content->next_page_url == null) && ($content->prev_page_url != null))
                             {{-- Prev --}}
-                            <a class="text-decoration-none" href="{{ route('exam.progress', $prev) }}">
+                            <a class="text-decoration-none" href="{{ route('exam.session1.show', $prev) }}">
                                 <button class="btnPrev" type="submit" value="{{ $prev }}" name="save">    
                                     <div class="signPrev" style="text-decoration: none"><</div>
                                     <div class="textPrev">Soal Sebelumnya</div>
@@ -219,7 +218,7 @@
 
                             {{-- Page indicator --}}
                             <div class="d-flex justify-content-center">
-                                <p class="h4-text p-medium my-0" id="page">{{ $content->current_page }}/30</p>
+                                <p class="h4-text p-medium my-0" id="page">{{ $content->current_page }}/60</p>
                             </div>
 
                             {{-- Next --}}
@@ -240,7 +239,7 @@
 
                             {{-- Page indicator --}}
                             <div class="d-flex justify-content-center">
-                                <p class="h4-text p-medium my-0" id="page">{{ $content->current_page }}/30</p>
+                                <p class="h4-text p-medium my-0" id="page">{{ $content->current_page }}/60</p>
                             </div>
 
                             {{-- Next --}}
@@ -252,7 +251,7 @@
                             </a>
                         @else
                             {{-- Prev --}}
-                            <a class="text-decoration-none" href="{{ route('exam.progress', $prev) }}">
+                            <a class="text-decoration-none" href="{{ route('exam.session1.show', $prev) }}">
                                 <button class="btnPrev" type="submit" value="{{ $prev }}" name="save">    
                                     <div class="signPrev" style="text-decoration: none"><</div>
                                     <div class="textPrev">Soal Sebelumnya</div>
@@ -261,11 +260,11 @@
 
                             {{-- Page indicator --}}
                             <div class="d-flex justify-content-center">
-                                <p class="h4-text p-medium my-0" id="page">{{ $content->current_page }}/30</p>
+                                <p class="h4-text p-medium my-0" id="page">{{ $content->current_page }}/60</p>
                             </div>
 
                             {{-- Next --}}
-                            <a class="text-decoration-none" href="{{ route('exam.progress', $next) }}">
+                            <a class="text-decoration-none" href="{{ route('exam.session1.show', $next) }}">
                                 <button class="btnNext" type="submit" value="{{ $next }}" name="save">
                                     <div class="text">Soal selanjutnya</div>
                                     <div class="sign">></div>
@@ -315,7 +314,7 @@
 
                     {{-- Submit button --}}
                     <div class="row my-4" style="width: 70%">
-                        <button type="submit" name="submit" id="submit" value="finished" class="btn btn-yellow-normal">Selesai</button>
+                        <button type="submit" name="submit" id="submit" value="finished" class="btn btn-yellow-normal">Selesaikan Sesi</button>
                     </div>
                 </div>
             </form>

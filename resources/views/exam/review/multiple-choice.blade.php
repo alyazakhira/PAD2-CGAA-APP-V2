@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Simulasi CGGA | Review Simulasi </title>
+        <title> Simulasi CGAA | Review Simulasi </title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
         <link rel="stylesheet" href={{ asset('style/font.css') }}>
@@ -137,24 +137,24 @@
 
                             {{-- Page indicator --}}
                             <div class="d-flex justify-content-center">
-                                <p class="h4-text p-medium my-0">{{ $content->current_page }}/30</p>
+                                <p class="h4-text p-medium my-0">{{ $content->current_page }}/60</p>
                             </div>
 
                             {{-- Next --}}
-                            <a type="button" class="text-decoration-none btnNext" href="{{route('exam.explanation', ['page' => $next,'session_id' => $answer->id ])}}">
+                            <a type="button" class="text-decoration-none btnNext" href="{{route('exam.review.mp', ['page' => $next,'session_id' => $session_id ])}}">
                                 <div class="text">Soal selanjutnya</div>
                                 <div class="sign">></div>
                             </a>
                         @elseif (($content->next_page_url == null) && ($content->prev_page_url != null))
                             {{-- Prev --}}
-                            <a type="button" class="btnPrev text-decoration-none" href="{{route('exam.explanation', ['page' => $prev,'session_id' => $answer->id ])}}">
+                            <a type="button" class="btnPrev text-decoration-none" href="{{route('exam.review.mp', ['page' => $prev,'session_id' => $session_id ])}}">
                                 <div class="signPrev" style="text-decoration: none"><</div>
                                 <div class="textPrev">Soal Sebelumnya</div>
                             </a>
 
                             {{-- Page indicator --}}
                             <div class="d-flex justify-content-center">
-                                <p class="h4-text p-medium my-0">{{ $content->current_page }}/30</p>
+                                <p class="h4-text p-medium my-0">{{ $content->current_page }}/60</p>
                             </div>
 
                             {{-- Next --}}
@@ -171,7 +171,7 @@
 
                             {{-- Page indicator --}}
                             <div class="d-flex justify-content-center">
-                                <p class="h4-text p-medium my-0">{{ $content->current_page }}/30</p>
+                                <p class="h4-text p-medium my-0">{{ $content->current_page }}/60</p>
                             </div>
 
                             {{-- Next --}}
@@ -181,18 +181,18 @@
                             </a>
                         @else
                             {{-- Prev --}}
-                            <a class="btnPrev text-decoration-none" href="{{route('exam.explanation', ['page' => $prev,'session_id' => $answer->id ])}}">   
+                            <a class="btnPrev text-decoration-none" href="{{route('exam.review.mp', ['page' => $prev,'session_id' => $session_id ])}}">   
                                 <div class="signPrev"><</div>
                                 <div class="textPrev">Soal Sebelumnya</div>
                             </a>
 
                             {{-- Page indicator --}}
                             <div class="d-flex justify-content-center">
-                                <p class="h4-text p-medium my-0">{{ $content->current_page }}/30</p>
+                                <p class="h4-text p-medium my-0">{{ $content->current_page }}/60</p>
                             </div>
 
                             {{-- Next --}}
-                            <a class="btnNext text-decoration-none" href="{{route('exam.explanation', ['page' => $next,'session_id' => $answer->id ])}}">
+                            <a class="btnNext text-decoration-none" href="{{route('exam.review.mp', ['page' => $next,'session_id' => $session_id ])}}">
                                 <div class="text">Soal selanjutnya</div>
                                 <div class="sign">></div>
                             </a>
@@ -219,20 +219,25 @@
                             @for ($i = 1; $i < ($content->last_page)+1; $i++)
                                 @if ($answer->{"answer_$i"} != null)
                                     @if ($answer->{"answer_$i"} == $correct_answer->{"c_answer_$i"})
-                                        <a href="{{route('exam.explanation', ['page' => $i,'session_id' => $answer->id ])}}" type="button" class="btn btn-blue-normal text-center" style="width: 40px; height: 40px;">{{ $i }}</a>
+                                        <a href="{{route('exam.review.mp', ['page' => $i,'session_id' => $session_id ])}}" type="button" class="btn btn-blue-normal text-center" style="width: 40px; height: 40px;">{{ $i }}</a>
                                     @else
-                                        <a href="{{route('exam.explanation', ['page' => $i,'session_id' => $answer->id ])}}" type="button" class="btn btn-red-normal text-center" style="width: 40px; height: 40px;">{{ $i }}</a>
+                                        <a href="{{route('exam.review.mp', ['page' => $i,'session_id' => $session_id ])}}" type="button" class="btn btn-red-normal text-center" style="width: 40px; height: 40px;">{{ $i }}</a>
                                     @endif
                                 @else
-                                    <a href="{{route('exam.explanation', ['page' => $i,'session_id' => $answer->id ])}}" type="button" class="btn btn-blue-light text-center" style="width: 40px; height: 40px;">{{ $i }}</a>
+                                    <a href="{{route('exam.review.mp', ['page' => $i,'session_id' => $session_id ])}}" type="button" class="btn btn-blue-light text-center" style="width: 40px; height: 40px;">{{ $i }}</a>
                                 @endif
                             @endfor
                         </div>
                     </div>
 
-                    {{-- Submit button --}}
-                    <div class="row my-4" style="width: 70%">
-                        <a href="{{ route('user.dashboard') }}" type="button" class="btn btn-yellow-normal">Dashboard</a>
+                    {{-- Back button --}}
+                    <div class="container-fluid">
+                        <div class="row mt-4 mb-2">
+                            <a href="{{ route('exam.result', $session_id) }}" type="button" class="btn btn-outline-yellow-normal">Overview</a>
+                        </div>
+                        <div class="row mb-3">
+                            <a href="{{ route('user.dashboard') }}" type="button" class="btn btn-yellow-normal">Dashboard</a>
+                        </div>
                     </div>
                 </div>
             @endforeach

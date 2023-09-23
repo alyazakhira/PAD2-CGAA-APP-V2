@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title> Simulasi CGGA | Instruksi Simulasi Daerah</title>
+        <title> Simulasi CGAA | Instruksi Simulasi Daerah</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
         <link rel="stylesheet" href={{ asset('style/font.css') }}>
@@ -31,9 +31,10 @@
             </div>
 
             {{-- Instruction --}}
-            <div class="d-flex justify-content-center flex-column mt-4 px-5" style="width: 90%">
-                <div class = "d-flex flex-column">
-                    <p class="mb-0">Peserta ujian dilarang melakukan tindakan-tindakan sebagai berikut:</p> 
+            <div class="d-flex justify-content-center mt-2">
+                <div class="d-flex flex-column p-1" style="width: 90%">
+                    <div class = "d-flex flex-column">
+                        <p class="mb-0">Peserta ujian dilarang melakukan tindakan-tindakan sebagai berikut:</p> 
                         <ol>
                             <li class="ps-3">Mengganggu kelancaran jalannya ujian;</li>
                             <li class="ps-3">Membawa makanan atau minuman serta dilarang merokok di dalam ruangan;</li>
@@ -45,19 +46,9 @@
                             <li class="ps-3">Membawa contekan dalam bentuk apapun;</li>
                             <li class="ps-3">Membawa atau mempergunakan alat komunikasi, seperti telepon selular, ipad, dan sejenisnya.</li>
                         </ol>    
+                    </div>
                 </div>
-                <div class = "d-flex flex-column">
-                    <p class="mb-0">Tips penyelesaian soal kasus penyusunan laporan keuangan:</p> 
-                        <ol>
-                            <li class="ps-3">Kerjakan semaksimal mungkin yang dapat dikerjakan;</li>
-                            <li class="ps-3">Save update pekerjaan secara berkala;</li>
-                            <li class="ps-3">Jangan terpaku pada nomenklatur BAS yang terlalu rinci, yang penting substansinya benar;</li>
-                            <li class="ps-3">Tuliskan "No Entry" jika transaksi tidak perlu dijurnal.</li>
-                        </ol>    
-                </div> 
-                                       
-                    
-            </div>
+            </div> 
 
             {{-- Button --}}
             <div class="d-flex justify-content-center">

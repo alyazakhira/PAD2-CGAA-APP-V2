@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Simulasi CGGA | Riwayat </title>
+        <title>Simulasi CGAA | Riwayat </title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
         <link rel="stylesheet" href="{{ asset('style/font.css') }}">
@@ -13,8 +13,9 @@
     </head>
     <body class="d-flex">
         {{-- Sidebar --}}
-        <div class="d-flex flex-column bg-blue-dark1 p-4 vh-100 justify-content-between align-items-center sidebar sticky-top flex-shrink-0 left-sidebar">
-            <div class="d-flex flex-row justify-content-between justify-content-lg-center align-items-center w-100">
+        <div class="d-flex flex-column bg-blue-dark1 p-4 vh-100 align-items-center sidebar sticky-top flex-shrink-0 left-sidebar">
+            {{-- Header --}}
+            <div class="d-flex flex-row justify-content-between justify-content-lg-center align-items-center w-100 mb-5">
                 {{-- Logo --}}
                 <div class="d-flex align-items-center justify-content-center" style="width: 80%; padding: 5px;">
                     <img src="{{ asset('image/logo-ugm-putih.svg') }}" style="width: 100%"/>
@@ -22,33 +23,21 @@
                 {{-- Close button --}}
                 <button class="btn btn-close d-flex d-block align-self-start d-lg-none"></button>
             </div>
-            {{-- Middle --}}
+
+            {{-- Menu --}}
             <div class="nav nav-pills d-flex flex-column w-100">
-                <a class="nav-item d-flex align-items-center w-100 text-decoration-none" href="{{ route('user.dashboard') }}">
+                <a class="nav-item d-flex align-items-center w-100 text-decoration-none mb-3" href="{{ route('user.dashboard') }}">
                     <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-yellow-light3 me-2 circle-bg">
                         <i class="bi bi-house-door-fill text-black"></i>
                     </div>
-                    <p class="font-yellow-light3 m-0 h4-text">Dashboard</p>
+                    <p class="font-yellow-light3 m-0 par-text">Dashboard</p>
                 </a>
-                <a class="nav-item d-flex align-items-center w-100 text-decoration-none my-5" href="{{ route('user.history') }}">
+                <a class="nav-item d-flex align-items-center w-100 text-decoration-none mb-3" href="{{ route('user.history') }}">
                     <div class="d-flex rounded-circle p-1 align-items-center justify-content-center bg-yellow-light3 me-2 circle-bg">
                         <i class="bi bi-file-earmark-check-fill text-black"></i>
                     </div>
-                    <p class="font-yellow-light3 h4-text m-0">Riwayat</p>
+                    <p class="font-yellow-light3 par-text m-0">Riwayat Simulasi</p>
                 </a>
-                <a class="nav-item d-flex align-items-center w-100 text-decoration-none" href="/under-development">
-                    <div class="d-flex  rounded-circle p-1 align-items-center justify-content-center bg-yellow-light3 me-2 circle-bg">
-                        <i class="bi bi-bell-fill text-black"></i>
-                    </div>
-                    <p class="font-yellow-light3 m-0 h4-text">Notifikasi</p>
-                </a>
-            </div>
-            {{-- Bottom --}}
-            <div class="d-flex align-items-center w-100 text-decoration-none" href="#">
-                {{-- <div class="d-flex  rounded-circle p-1 align-items-center justify-content-center bg-yellow-light3 me-2 circle-bg">
-                    <i class="bi bi-gear-fill text-black"></i>
-                </div>
-                <p class="font-yellow-light3 m-0 h4-text">Pengaturan</p> --}}
             </div>
         </div>
 
@@ -97,18 +86,18 @@
                     </div>
                 @else
                     @foreach ($session as $s)
-                        <a href="{{route('exam.explanation', ['page' =>1,'session_id' => $s->id ])}}" class="d-flex bg-yellow-light3 p-3 justify-content-between mb-2 text-decoration-none text-black rounded-2">
+                        <a href="{{route('exam.result', $s->id)}}" class="d-flex bg-yellow-light3 p-3 justify-content-between mb-2 text-decoration-none text-black rounded-2">
                             <div class="d-flex align-items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-chevron-right font-blue-dark1" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-right font-blue-dark1" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
                                 </svg>
                                 <div class="mx-3 d-flex flex-column">
                                     <p class="p-medium mb-1">{{ date('d-m-Y H:i:s', strtotime($s->created_at)) }}</p>
-                                    <p class="additional-text m-0">Benar: {{$s->correct_answer}}, salah: {{$s->wrong_answer}}, kosong: {{$s->not_answered}}</p>
+                                    <p class="additional-text m-0">Tingkat {{ $s->type }}</p>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-end me-2">
-                                <p class="m-0 h3-text font-blue-dark1 p-semi-bold">{{$s->score}}%</p>
+                                <p class="m-0 p-semi-bold font-blue-dark1">Review</p>
                             </div>
                         </a>
                     @endforeach
