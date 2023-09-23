@@ -133,8 +133,24 @@
                         </div>
       
                         <!-- Button Daftar -->
-                        <div class="text-center d-grid gap-2 col-10 mx-auto">
-                            <button class="btn btn-blue-normal" type="submit">Daftar</button>
+                        <div class="d-flex flex-wrap">
+                            <!-- Submit credential button -->
+                            <div class="d-grid col-10 mx-auto">
+                                <button type="submit" class="btn btn-blue-dark">Daftar</button>
+                            </div>
+
+                            <!-- "Or" -->
+                            <div class="my-5 col-10 mx-auto">
+                                <div class="d-flex justify-content-center align-items-center position-relative" style="width: 100%">
+                                    <div class="bg-blue-dark3" style="height: 2px; width: 100%;"></div>
+                                    <p class="position-absolute bg-yellow-normal1" style="margin-top: 1rem; padding: 0 11px 1px 11px;">Sudah punya akun?</p>
+                                </div>
+                            </div>
+
+                            <!-- Go to register page -->
+                            <div class="d-grid col-10 mx-auto">
+                                <a href="{{ route('login.show') }}" class="btn btn-blue-light mb-3" type="button">Masuk</a>
+                            </div>
                         </div>
                     </form>
                 </div>    
