@@ -322,8 +322,8 @@
         <script type="text/javascript">
             storage = window.sessionStorage;
             if (!storage.getItem('time')) {
-                // storage.setItem('time', 7200);
-                storage.setItem('time', 20);
+                storage.setItem('time', 7200);
+                // storage.setItem('time', 20);
             }
             var total_seconds = parseInt(storage.getItem('time'));
             var hour = parseInt(total_seconds / 3600),
