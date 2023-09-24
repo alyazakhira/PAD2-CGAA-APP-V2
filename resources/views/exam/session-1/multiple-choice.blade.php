@@ -113,7 +113,7 @@
                         {{-- Header --}}
                         <div class="d-flex border-bottom border-dark justify-content-between h3-text p-medium mb-4">
                             <p class="mb-1 d-none d-lg-block"> Soal No. {{ $content->current_page }}</p>
-                            {{-- <p class="mb-1" id="countdown">00 : 00 : 00</p> --}}
+                            <p class="mb-1" id="countdown">00 : 00 : 00</p>
                             <button class="navbar-brand btn btn-open d-lg-none" type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-justify" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
@@ -314,16 +314,16 @@
 
                     {{-- Submit button --}}
                     <div class="row my-4" style="width: 70%">
-                        <button type="submit" name="submit" id="submit" value="finished" class="btn btn-yellow-normal">Selesaikan Sesi</button>
+                        <button type="submit" onclick="stop_timer()" name="submit" id="submit" value="finished" class="btn btn-yellow-normal">Selesaikan Sesi</button>
                     </div>
                 </div>
             </form>
         </div>
-        {{-- <script type="text/javascript">
+        <script type="text/javascript">
             storage = window.sessionStorage;
             if (!storage.getItem('time')) {
-                storage.setItem('time', 7200);
-                // storage.setItem('time', 120);
+                // storage.setItem('time', 7200);
+                storage.setItem('time', 20);
             }
             var total_seconds = parseInt(storage.getItem('time'));
             var hour = parseInt(total_seconds / 3600),
@@ -340,14 +340,16 @@
                     hour = parseInt(total_seconds / 3600),
                     second = parseInt(total_seconds % 60),
                     minutes = parseInt(total_seconds / 60 % 60 );
+                    storage.setItem('time', total_seconds);
                 }
-                storage.setItem('time', total_seconds);
+                
             }
             var cd = setInterval(countdown, 1000);
 
             function stop_timer(){
                 clearInterval(cd);
-                storage.removeItem("time");
+                sessionStorage.removeItem("time");
+                sessionStorage.removeItem("num_flagged")
             }
 
             function preventBack() {
@@ -356,7 +358,7 @@
             setTimeout("preventBack()", 0);
 
             window.onunload = function () { null };
-        </script> --}}
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script>

@@ -104,7 +104,7 @@
             storage = window.sessionStorage;
             if (!storage.getItem('rest_time')) {
                 // storage.setItem('rest_time', 500);
-                storage.setItem('rest_time', 60);
+                storage.setItem('rest_time', 10);
             }
             var total_seconds = parseInt(storage.getItem('rest_time'));
             var minutes = parseInt(total_seconds / 60 % 60 ),
@@ -121,21 +121,20 @@
                     hour = parseInt(total_seconds / 3600),
                     second = parseInt(total_seconds % 60),
                     minutes = parseInt(total_seconds / 60 % 60 );
+                    storage.setItem('rest_time', total_seconds);
                 }
-                storage.setItem('rest_time', total_seconds);
+                
             }
             var cd = setInterval(countdown, 1000);
 
             function stop_timer(){
-                clearInterval(cd);
                 storage.removeItem("rest_time");
+                clearInterval(cd);
             }
 
             function countdown_stop(){
-                // btn = document.getElementById('btn_start')
                 document.getElementById("countdown").classList.add('d-none')
                 $('#body-text').text('Waktu istirahat Anda telah usai. Silahkan lanjutkan pengerjaan simulasi!');
-                // btn.classList.remove('d-none')
             }
 
             function preventBack() {
