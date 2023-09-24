@@ -89,7 +89,7 @@
             <div class="d-flex justify-content-center" id="btn_start">
                 <div class="row justify-content-center my-4" style="width: 100%">
                     <div class="row me-3" style="width: 40%">
-                        <a href="{{ route('exam.session2.show', 1) }}" type="button" class="btn btn-blue-normal text-decoration-none">Lanjutkan Ujian</a>
+                        <a href="{{ route('exam.session2.show', 1) }}" onclick="stop_timer()" type="button" class="btn btn-blue-normal text-decoration-none">Lanjutkan Ujian</a>
                     </div>
                 </div>
             </div>
@@ -128,8 +128,8 @@
             var cd = setInterval(countdown, 1000);
 
             function stop_timer(){
-                storage.removeItem("rest_time");
                 clearInterval(cd);
+                storage.removeItem("rest_time");
             }
 
             function countdown_stop(){

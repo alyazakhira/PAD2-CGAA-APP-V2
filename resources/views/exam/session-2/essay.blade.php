@@ -151,7 +151,7 @@
                 {{-- Flag --}}
                 <label class="checkbox-btn align-self-center mt-auto mb-3">
                     <label for="checkbox p-medium">Ragu-ragu</label>
-                    <input id="checkbox-{{ $question->current_page }}" type="checkbox" value="{{ $question->current_page }}">
+                    <input id="checkbox-essay-{{ $question->current_page }}" type="checkbox" value="{{ $question->current_page }}">
                     <span class="checkmark"></span>
                 </label>
                 
@@ -268,19 +268,19 @@
                     <div class="d-grid" style="grid-template-columns: 1fr 1fr 1fr 1fr; width: fit-content; gap: 20px">
                         @for ($i = 1; $i <= ($question->last_page); $i++)
                             @if ($i == $question->current_page)
-                                <a href={{ route('exam.session2.show', $i) }} id="{{ $i }}" type="button" class="btn btn-yellow-normal text-center number" style="width: 40px; height: 40px;"">
+                                <a href={{ route('exam.session2.show', $i) }} value="{{ $i }}" id="essay-{{ $i }}" type="button" class="btn btn-yellow-normal text-center number" style="width: 40px; height: 40px;">
                                     {{ $i }}
-                                    <div class="d-none flag bg-red-normal" id="flag-{{ $i }}"></div>
+                                    <div class="d-none flag bg-red-normal" id="flag-essay-{{ $i }}"></div>
                                 </a>
                             @elseif ($essayAnswer->{"answer_$i"} == null)
-                                <a href={{ route('exam.session2.show', $i) }} id="{{ $i }}" type="button" class="btn btn-blue-light text-center number" style="width: 40px; height: 40px;">
+                                <a href={{ route('exam.session2.show', $i) }} value="{{ $i }}" id="essay-{{ $i }}" type="button" class="btn btn-blue-light text-center number" style="width: 40px; height: 40px;">
                                     {{ $i }}
-                                    <div class="d-none flag bg-red-normal" id="flag-{{ $i }}"></div>
+                                    <div class="d-none flag bg-red-normal" id="flag-essay-{{ $i }}"></div>
                                 </a>
                             @else
-                                <a href={{ route('exam.session2.show', $i) }} id="{{ $i }}" type="button" class="btn btn-success text-center number" style="width: 40px; height: 40px;">
+                                <a href={{ route('exam.session2.show', $i) }} value="{{ $i }}" id="essay-{{ $i }}" type="button" class="btn btn-success text-center number" style="width: 40px; height: 40px;">
                                     {{ $i }}
-                                    <div class="d-none flag bg-red-normal" id="flag-{{ $i }}"></div>
+                                    <div class="d-none flag bg-red-normal" id="flag-essay-{{ $i }}"></div>
                                 </a>
                             @endif
                             
@@ -294,14 +294,14 @@
                         </a>
                         @for ($i = 1; $i <= $caseStudyCount; $i++)
                             @if ($caseStudyAnswer->{"answer_$i"} == null)
-                                <a href="{{ route('exam.session2.show', "case-study") }}#{{ $i }}" id="{{ $i }}" type="button" class="btn btn-blue-light text-center number" style="width: 40px; height: 40px;">
+                                <a href="{{ route('exam.session2.show', "case-study") }}#{{ $i }}" value="{{ $i }}" id="cs-{{ $i }}" type="button" class="btn btn-blue-light text-center number" style="width: 40px; height: 40px;">
                                     {{ $i }}
-                                    <div class="d-none flag bg-red-normal" id="flag-{{ $i }}"></div>
+                                    <div class="d-none flag bg-red-normal" id="flag-cs-{{ $i }}"></div>
                                 </a>
                             @else
-                                <a href="{{ route('exam.session2.show', "case-study") }}#{{ $i }}" id="{{ $i }}" type="button" class="btn btn-success text-center number" style="width: 40px; height: 40px;">
+                                <a href="{{ route('exam.session2.show', "case-study") }}#{{ $i }}" value="{{ $i }}" id="cs-{{ $i }}" type="button" class="btn btn-success text-center number" style="width: 40px; height: 40px;">
                                     {{ $i }}
-                                    <div class="d-none flag bg-red-normal" id="flag-{{ $i }}"></div>
+                                    <div class="d-none flag bg-red-normal" id="flag-cs-{{ $i }}"></div>
                                 </a>
                             @endif
                         @endfor
@@ -318,7 +318,7 @@
         <script type="text/javascript">
             if (!sessionStorage.getItem('time_essay')) {
                 // sessionStorage.setItem('time', 7200);
-                sessionStorage.setItem('time_essay', 30);
+                sessionStorage.setItem('time_essay', 60);
             }
             var total_seconds = parseInt(sessionStorage.getItem('time_essay'));
             var hour = parseInt(total_seconds / 3600),
@@ -342,7 +342,8 @@
             function stop_timer(){
                 clearInterval(cd);
                 sessionStorage.removeItem("time_essay");
-                sessionStorage.removeItem("num_flagged")
+                sessionStorage.removeItem("essay_flagged")
+                sessionStorage.removeItem("cs_flagged")
             }
 
             function preventBack() {
@@ -357,35 +358,42 @@
         <script>
             // number on pagination
             var num_page = $('#page').text().split('/')[0];
-            console.log(num_page);
             // number on sidebar
-            var num_sidebar = document.getElementById(num_page).value;
+            var num_sidebar = document.getElementById(`essay-${num_page}`).getAttribute('value');
+            var num_cs_sidebar = document.getElementById(`cs-${num_page}`).getAttribute('value');
             // to store number from storage
             var from_session;
             // initialize storage
             const storage = window.sessionStorage;
             // check if the storage null
-            if (!storage.getItem('num_flagged')) {
-                storage.setItem('num_flagged', 0);
+            if (!storage.getItem('essay_flagged') || !storage.getItem('cs_flagged')) {
+                storage.setItem('essay_flagged', 0);
+                storage.setItem('cs_flagged', 0);
             }
+            var cs_num = storage.getItem('cs_flagged').split(',')
+            // flag case study
+            cs_num.forEach(num =>{
+                $("#flag-cs-"+num).removeClass("d-none");
+            });
             // function to flag the number
             function flag(number) {
-                $("#checkbox-"+number).prop( "checked", true );
-                $("#flag-"+number).removeClass("d-none");
+                $("#checkbox-essay-"+number).prop( "checked", true );
+                $("#flag-essay-"+number).removeClass("d-none");
+               
             }
             // function to unflag the number
             function unflagged(number) {
-                $('#checkbox-'+number).prop( "checked", false );
-                $("#flag-"+number).addClass("d-none");
+                $('#checkbox-essay-'+number).prop( "checked", false );
+                $("#flag-essay-"+number).addClass("d-none");
             }
             // get data from storage
-            var from_session = storage.getItem('num_flagged').split(',');
+            var from_session = storage.getItem('essay_flagged').split(',');
             // flag the number from storage
             from_session.forEach(e => {
                 flag(e);
             });
             // to click the checklist to flag or unflag
-            $('#checkbox-'+num_sidebar).click(function(){
+            $('#checkbox-essay-'+num_sidebar).click(function(){
                 if (from_session.includes(num_sidebar)) {
                     // if the number flagged, when click its unflagged
                     unflagged(num_sidebar);
@@ -394,13 +402,13 @@
                     if (index !== -1) {
                         from_session.splice(index, 1);
                     }
-                    storage.setItem('num_flagged', from_session);
+                    storage.setItem('essay_flagged', from_session);
                 }else{
                     // if the number unflagged, when click its flagged
                     flag(num_sidebar);
                     // add data to storage
                     from_session.push(num_sidebar);
-                    storage.setItem('num_flagged', from_session);
+                    storage.setItem('essay_flagged', from_session);
                 }
             });
         </script>
