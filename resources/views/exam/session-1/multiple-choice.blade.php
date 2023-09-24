@@ -364,7 +364,6 @@
         <script>
             // number on pagination
             var num_page = $('#page').text().split('/')[0];
-            console.log(num_page);
             // number on sidebar
             var num_sidebar = document.getElementById(num_page).value;
             // to store number from storage
