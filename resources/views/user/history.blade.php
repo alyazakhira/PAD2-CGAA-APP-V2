@@ -77,7 +77,7 @@
             <h1 class="h3-text font-blue-dark1 p-semi-bold mb-3">Riwayat Pengerjaan</h1>
 
             {{-- History Wrapper --}}
-            <div class="d-flex flex-column w-100 bg-blue-dark1 p-4" style="height: 90%">
+            <div class="d-flex flex-column w-100 bg-blue-dark1 p-4 rounded-2" style="height: 90%">
                 
                 {{-- History item --}}
                 @if ($session == null)

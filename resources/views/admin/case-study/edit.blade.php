@@ -197,7 +197,7 @@
                             </div>
                             <div class="mb-4">
                                 <label for="key_answer_{{$i}}" class="form-label fw-semibold">Kunci Jawaban {{ $i }}</label>
-                                <textarea id="key_answer_{{$i}}" name="key_answer_{{$i}}">{{ $cs->{"instruction_$i"} }}</textarea>
+                                <textarea id="key_answer_{{$i}}" name="key_answer_{{$i}}">{{ $cs->{"key_answer_$i"} }}</textarea>
                             </div>
                         @endfor
 

@@ -141,16 +141,16 @@
                 
                 {{-- Information --}}
                 <div class="d-flex flex-column mb-3">
-                    <div class="h4-text mb-3">{!! $cs->information !!}</div>
+                    <div class="label-text mb-3">{!! $cs->information !!}</div>
                 </div>
 
                 {{-- Instruction and Key --}}
                 @for ($i = 1; $i <= $cs->instruction_count; $i++)
                     <div class="d-flex flex-column border border-black rounded-1 p-3 my-3">
-                        <p class="h4-text p-semi-bold mb-1">Instruksi {{ $i }}</p>
-                        <div class="d-flex flex-column mb-3">{!! $cs->{"instruction_$i"} !!}</div>
-                        <p class="h4-text p-semi-bold mb-1">Kunci Jawaban {{ $i }}</p>
-                        <div class="d-flex flex-column">{!! $cs->{"key_answer_$i"} !!}</div>
+                        <p class="p-semi-bold mb-1">Instruksi {{ $i }}</p>
+                        <div class="label-text d-flex flex-column mb-3">{!! $cs->{"instruction_$i"} !!}</div>
+                        <p class="p-semi-bold mb-1">Kunci Jawaban {{ $i }}</p>
+                        <div class="label-text d-flex flex-column">{!! $cs->{"key_answer_$i"} !!}</div>
                     </div>
                 @endfor
 

@@ -120,17 +120,17 @@
                     
                     {{-- Question --}}
                     <div class="d-flex flex-column">
-                        <div class="h4-text" id="information">{!! $content->information !!}</div>
+                        <div class="label-text" id="information">{!! $content->information !!}</div>
                         @for ($i = 1; $i <= $content->instruction_count; $i++)
-                            <p class="h4-text p-medium mb-1 mt-5" id="{{ $i }}">Instruksi {{ $i }}</p>
-                            <div class="h4-text mb-1">{!! $content->{"instruction_$i"} !!}</div>
+                            <p class="p-medium mb-1 mt-5" id="{{ $i }}">Instruksi {{ $i }}</p>
+                            <div class="mb-1">{!! $content->{"instruction_$i"} !!}</div>
                             <div class="d-flex flex-column border border-black rounded-1 p-3 my-1">
-                                <p class="h4-text p-semi-bold">Jawaban Anda</p>
-                                <div class="d-flex flex-column mb-2">{!! $answer->{"answer_$i"} !!}</div>
+                                <p class="p-semi-bold">Jawaban Anda</p>
+                                <div class="label-text d-flex flex-column mb-2">{!! $answer->{"answer_$i"} !!}</div>
                             </div>
                             <div class="d-flex flex-column border border-black rounded-1 p-3 my-1">
-                                <p class="h4-text p-semi-bold">Penjelasan Instruksi {{ $i }}</p>
-                                <div class="d-flex flex-column mb-2">{!! $content->{"key_answer_$i"} !!}</div>
+                                <p class="p-semi-bold">Penjelasan Instruksi {{ $i }}</p>
+                                <div class="label-text d-flex flex-column mb-2">{!! $content->{"key_answer_$i"} !!}</div>
                             </div>
                         @endfor
                     </div>

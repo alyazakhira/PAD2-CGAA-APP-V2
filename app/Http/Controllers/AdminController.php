@@ -453,7 +453,7 @@ class AdminController extends Controller
                         $formData['question_type'] = $request->question_type;
                         $formData['information'] = $request->information;
                         $formData['instruction_count'] = $request->instruction_count;
-                        for ($i=0; $i <= 10; $i++) {
+                        for ($i=1; $i <= 10; $i++) {
                             $formData["instruction_$i"] = $request->{"instruction_$i"};
                             $formData["key_answer_$i"] = $request->{"key_answer_$i"};
                         }
@@ -512,7 +512,7 @@ class AdminController extends Controller
                         $formData['information'] = $request->information;
                         $formData['instruction_count'] = $request->instruction_count;
                         $formData['_method'] = 'PUT';
-                        for ($i=0; $i <= 10; $i++) {
+                        for ($i=1; $i <= 10; $i++) {
                             $formData["instruction_$i"] = $request->{"instruction_$i"};
                             $formData["key_answer_$i"] = $request->{"key_answer_$i"};
                         }

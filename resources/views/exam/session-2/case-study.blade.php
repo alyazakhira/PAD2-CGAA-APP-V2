@@ -136,9 +136,10 @@
                     <div class="d-flex flex-column">
                         <form action="{{ route('exam.session2.save') }}" method="POST">
                             @csrf
-                            <div class="h4-text" id="information">{!! $question->information !!}</div>
+                            <div class="mb-5 label-text" id="information">{!! $question->information !!}</div>
                             @for ($i = 1; $i <= $question->instruction_count; $i++)
-                                <div class="h4-text my-3" id="{{ $i }}">{!! $question->{"instruction_$i"} !!}</div>
+                                <p class="mb-0 mt-4" id="{{ $i }}"><strong>Instruksi {{ $i }}</strong></p>
+                                <div class="my-3">{!! $question->{"instruction_$i"} !!}</div>
                                 <textarea name="answer_{{ $i }}" id="answer_{{ $i }}">{{ $caseStudyAnswer->{"answer_$i"} }}</textarea>
                                 <div class="d-flex justify-content-end mt-3">
                                     <button type="submit" name="case_study" value="{{ $i }}" class="btn btn-yellow-normal">Simpan</button>
@@ -149,13 +150,6 @@
                     </div>
                 </div>
             </div>
-
-            {{-- Flag --}}
-            {{-- <label class="checkbox-btn align-self-center mt-auto mb-3">
-                <label for="checkbox p-medium">Ragu-ragu</label>
-                <input id="checkbox-cs-{{ $question->current_page }}" type="checkbox" value="{{ $question->current_page }}">
-                <span class="checkmark"></span>
-            </label> --}}
             
             {{-- The sidebar --}}
             <div class="d-flex flex-column bg-blue-dark1 p-4 vh-100 justify-content-between align-items-center quest-sidebar" style="overflow-y: auto; top: 0;">
@@ -264,63 +258,6 @@
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-        {{-- <script>
-            // number on pagination
-            var num_page = $('#page').text().split('/')[0];
-            // number on sidebar
-            var num_sidebar = document.getElementById(`essay-${num_page}`).getAttribute('value');
-            var num_cs_sidebar = document.getElementById(`cs-${num_page}`).getAttribute('value');
-            // to store number from storage
-            var from_session;
-            // initialize storage
-            const storage = window.sessionStorage;
-            // check if the storage null
-            if (!storage.getItem('essay_flagged') || !storage.getItem('cs_flagged')) {
-                storage.setItem('essay_flagged', 0);
-                storage.setItem('cs_flagged', 0);
-            }else{
-                var essay_num = storage.getItem('essay_flagged').split(',')
-                // flag essay
-                essay_num.forEach(num =>{
-                    $("#flag-essay-"+num).removeClass("d-none");
-                });
-            }
-            // function to flag the number
-            function flag(number) {
-                $("#checkbox-essay-"+number).prop( "checked", true );
-                $("#flag-cs-"+number).removeClass("d-none");
-            }
-            // function to unflag the number
-            function unflagged(number) {
-                $('#checkbox-cs-'+number).prop( "checked", false );
-                $("#flag-cs-"+number).addClass("d-none");
-            }
-            // get data from storage
-            var from_session = storage.getItem('cs_flagged').split(',');
-            // flag the number from storage
-            from_session.forEach(e => {
-                flag(e);
-            });
-            // to click the checklist to flag or unflag
-            $('#checkbox-cs-'+num_sidebar).click(function(){
-                if (from_session.includes(num_sidebar)) {
-                    // if the number flagged, when click its unflagged
-                    unflagged(num_sidebar);
-                    // remove data from storage
-                    var index = from_session.indexOf(num_page);
-                    if (index !== -1) {
-                        from_session.splice(index, 1);
-                    }
-                    storage.setItem('cs_flagged', from_session);
-                }else{
-                    // if the number unflagged, when click its flagged
-                    flag(num_sidebar);
-                    // add data to storage
-                    from_session.push(num_sidebar);
-                    storage.setItem('cs_flagged', from_session);
-                }
-            });
-        </script> --}}
         <script>
             $(".btn-open").on("click", function(){
                 $(".quest-sidebar").addClass("active");
