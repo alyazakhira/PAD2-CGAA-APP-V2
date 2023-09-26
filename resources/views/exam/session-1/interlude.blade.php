@@ -103,7 +103,7 @@
 
             storage = window.sessionStorage;
             if (!storage.getItem('rest_time')) {
-                storage.setItem('rest_time', 500);
+                storage.setItem('rest_time', 900);
                 // storage.setItem('rest_time', 10);
             }
             var total_seconds = parseInt(storage.getItem('rest_time'));

@@ -343,7 +343,6 @@
                 clearInterval(cd);
                 sessionStorage.removeItem("time_essay");
                 sessionStorage.removeItem("essay_flagged")
-                sessionStorage.removeItem("cs_flagged")
             }
 
             function preventBack() {
@@ -360,21 +359,14 @@
             var num_page = $('#page').text().split('/')[0];
             // number on sidebar
             var num_sidebar = document.getElementById(`essay-${num_page}`).getAttribute('value');
-            var num_cs_sidebar = document.getElementById(`cs-${num_page}`).getAttribute('value');
             // to store number from storage
             var from_session;
             // initialize storage
             const storage = window.sessionStorage;
             // check if the storage null
-            if (!storage.getItem('essay_flagged') || !storage.getItem('cs_flagged')) {
+            if (!storage.getItem('essay_flagged')) {
                 storage.setItem('essay_flagged', 0);
-                storage.setItem('cs_flagged', 0);
             }
-            var cs_num = storage.getItem('cs_flagged').split(',')
-            // flag case study
-            cs_num.forEach(num =>{
-                $("#flag-cs-"+num).removeClass("d-none");
-            });
             // function to flag the number
             function flag(number) {
                 $("#checkbox-essay-"+number).prop( "checked", true );
