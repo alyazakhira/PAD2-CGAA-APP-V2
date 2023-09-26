@@ -219,7 +219,7 @@
         </div>
         <script type="text/javascript">
             if (!sessionStorage.getItem('time_essay')) {
-                sessionStorage.setItem('time', 7200);
+                sessionStorage.setItem('time_essay', 7200);
                 // sessionStorage.setItem('time_essay', 60);
             }
             var total_seconds = parseInt(sessionStorage.getItem('time_essay'));
