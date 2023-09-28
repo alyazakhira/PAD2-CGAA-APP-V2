@@ -302,7 +302,7 @@
                                         <div class="d-none flag bg-red-normal" id="flag-{{ $i }}"></div>
                                     </button>
                                 @else
-                                    <button type="submit" name="save" id="{{ $i }}" value="{{ $i }}" class="btn btn-green-normal text-center number" style="width: 40px; height: 40px;">
+                                    <button type="submit" name="save" id="{{ $i }}" value="{{ $i }}" class="btn btn-success text-center number" style="width: 40px; height: 40px;">
                                         {{ $i }}
                                         <div class="d-none flag bg-red-normal" id="flag-{{ $i }}"></div>
                                     </button>
