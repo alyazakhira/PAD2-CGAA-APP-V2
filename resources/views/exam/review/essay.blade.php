@@ -128,7 +128,7 @@
                         <div class="d-flex flex-column mb-2">{!! $answer->{"answer_$content->current_page"} !!}</div>
                     </div>
                     <div class="d-flex flex-column border border-black rounded-1 p-3 my-3">
-                        <p class="h4-text p-semi-bold">Penjelasan Soal</p>
+                        <p class="h4-text p-semi-bold">Penjelasan Jawaban</p>
                         <div class="d-flex flex-column mb-2">{!! $q->correct_answer !!}</div>
                     </div>
                     @endforeach

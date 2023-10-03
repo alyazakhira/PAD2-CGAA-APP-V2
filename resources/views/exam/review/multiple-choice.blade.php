@@ -117,7 +117,7 @@
 
                     {{-- Middle: Explanation --}}
                     <div class="d-flex flex-column border border-black rounded-1 p-3 my-3">
-                        <p class="h4-text p-semi-bold">Penjelasan Soal</p>
+                        <p class="h4-text p-semi-bold">Penjelasan Jawaban</p>
                         <div class="d-flex flex-column mb-2">{!! $q->question_explanation !!}</div>
                         <p class="p-medium m-0">Jawaban benar: {{ $q->correct_answer }}</p>
                     </div>

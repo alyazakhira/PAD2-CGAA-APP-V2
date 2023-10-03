@@ -48,6 +48,7 @@ div.choice > table > tbody{
     background-color: #c7cbfa;
     text-align: center;
     border-radius: 5px;
+    cursor: pointer;
 }
 .radio-label{
     text-align: center;
