@@ -136,7 +136,7 @@
                     <div class="d-flex flex-column">
                         <form action="{{ route('exam.session2.save') }}" method="POST">
                             @csrf
-                            <div class="mb-5 label-text" id="information">{!! $question->information !!}</div>
+                            <div class="mb-5 d-flex flex-column align-items-center" id="information">{!! $question->information !!}</div>
                             @for ($i = 1; $i <= $question->instruction_count; $i++)
                                 <p class="mb-0 mt-4" id="{{ $i }}"><strong>Instruksi {{ $i }}</strong></p>
                                 <div class="my-3">{!! $question->{"instruction_$i"} !!}</div>
@@ -145,7 +145,6 @@
                                     <button type="submit" name="case_study" value="{{ $i }}" class="btn btn-yellow-normal">Simpan</button>
                                 </div>
                             @endfor
-
                         </form>
                     </div>
                 </div>
