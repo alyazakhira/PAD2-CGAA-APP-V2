@@ -15,25 +15,7 @@
         
     </head>
     <body>
-        {{-- Modal --}}
-        <div class="modal" tabindex="-1">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Pemberitahuan</h5>
-                </div>
-                <div class="modal-body text-center">
-                  <p id="body-text">Anda memiliki waktu istirahat selama <br><span class="mb-1 h2-text p-medium" id="countdown2"> 00 : 00</span></p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
         <div class="container">
-
             {{-- Logo & Countdown --}}
             <nav class="navbar sticky-top top-0 bg-white px-4 pt-4 d-flex justify-content-between">
                 <div class="align-items-center d-flex w-75">
@@ -41,17 +23,14 @@
                         <img src="{{ asset('image/logo-ugm-hitam.svg') }}" class="img-fluid"/>
                     </div>
                 </div>
-                <div>
-                    <p class="mb-1 h3-text p-medium" id="countdown">00 : 00</p>
-                </div>
             </nav>
 
             {{-- Title & Score --}}
             <div class="d-flex justify-content-center mt-3">
                 <div class="d-flex border-bottom border-2 align-items-end justify-content-between p-2" style="width: 90%">
-                    <div class="h2-text p-semi-bold d-flex font-blue-dark2">Jeda Sesi</div>
+                    <div class="h2-text p-semi-bold d-flex font-blue-dark2">Instruksi Sesi 2</div>
                     <div class="bg-blue-dark1 text-white rounded-2 p-2">
-                        <p class="h4-text mb-0">Skor Pilihan Ganda: {{ $content->score }}%</p>
+                        <p class="h4-text mb-0">Skor Pilihan Ganda: {{ $content->mp_score }}%</p>
                     </div>
                 </div>
             </div>
@@ -71,6 +50,7 @@
                             <li class="ps-3">Membawa dan menggunakan kalkulator atau alat hitung lainnya;</li>
                             <li class="ps-3">Membawa contekan dalam bentuk apapun;</li>
                             <li class="ps-3">Membawa atau mempergunakan alat komunikasi, seperti telepon selular, ipad, dan sejenisnya.</li>
+                            <li class="ps-3">Peserta dapat meninggalkan halaman ini dan melanjutkan sesi berikutnya di lain waktu.</li>
                         </ol>    
                     </div>
                     <div class = "d-flex flex-column">
@@ -87,16 +67,22 @@
 
             {{-- Button --}}
             <div class="d-flex justify-content-center" id="btn_start">
-                <div class="row justify-content-center my-4" style="width: 100%">
-                    <div class="row me-3" style="width: 40%">
-                        <a href="{{ route('exam.session2.show', 1) }}" onclick="stop_timer()" type="button" class="btn btn-blue-normal text-decoration-none">Lanjutkan Ujian</a>
+                <div class="row justify-content-center my-4 px-5" style="width: 100%">
+                    <div class="col">
+                        <div class="row me-3">
+                            <a href="{{ route('user.dashboard') }}" type="button" class="btn btn-outline-blue-normal">Dashboard</a>
+                        </div>
                     </div>
+                    <div class="col">
+                        <div class="row ms-3">
+                            <a href="{{ route('exam.session2.show', ['session_id'=>$session_id, 'page'=>1]) }}" type="button" class="btn btn-blue-normal text-decoration-none">Lanjutkan Sesi</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
         </div>
-
-        <script type="text/javascript">
+        {{-- <script type="text/javascript">
             $(document).ready(function(){
                 $('.modal').modal('show');
             });
@@ -143,6 +129,6 @@
             setTimeout("preventBack()", 0);
 
             window.onunload = function () { null };
-        </script>
+        </script> --}}
     </body>
 </html>

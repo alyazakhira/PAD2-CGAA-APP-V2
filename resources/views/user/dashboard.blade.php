@@ -98,6 +98,16 @@
                             <p class="label-text font-yellow-light3">Anda belum melakukan simulasi tingkat pusat.</p>
                         </div>
                     </div>
+                @elseif($latestPusat->status > 0)
+                    <a href="{{route('exam.interlude', $latestPusat->id)}}" class="d-flex flex-column bg-blue-dark1 p-3 mb-2 me-xxl-4 text-decoration-none rounded-2" style="width: 47%">
+                        <div class="d-flex flex-column">
+                            <p class="par-text font-yellow-light3 m-0">Riwayat Simulasi Tingkat Pusat</p>
+                            <p class="label-text font-yellow-light3">{{ date('d-m-Y H:i:s',strtotime($latestPusat->created_at)) }}</p>
+                        </div>
+                        <div class="d-flex flex-column mb-2">
+                            <p class="label-text text-white p-medium m-0">Sesi ujian ini belum diselesaikan.</p>
+                        </div> 
+                    </a>
                 @else
                     <a href="{{route('exam.result', $latestPusat->id)}}" class="d-flex flex-column bg-blue-dark1 p-3 mb-2 me-xxl-4 text-decoration-none rounded-2" style="width: 47%">
                         <div class="d-flex flex-column">
@@ -117,6 +127,16 @@
                             <p class="label-text font-yellow-light3">Anda belum melakukan simulasi tingkat daerah.</p>
                         </div>
                     </div>
+                @elseif($latestDaerah->status > 0)
+                    <a href="{{route('exam.interlude', $latestDaerah->id)}}" class="d-flex flex-column bg-blue-dark1 p-3 mb-2 me-xxl-4 text-decoration-none rounded-2" style="width: 47%">
+                        <div class="d-flex flex-column">
+                            <p class="par-text font-yellow-light3 m-0">Riwayat Simulasi Tingkat Daerah</p>
+                            <p class="label-text font-yellow-light3">{{ date('d-m-Y H:i:s',strtotime($latestDaerah->created_at)) }}</p>
+                        </div>
+                        <div class="d-flex flex-column mb-2">
+                            <p class="label-text text-white p-medium m-0">Sesi ujian ini belum diselesaikan.</p>
+                        </div> 
+                    </a>
                 @else
                     <a href="{{route('exam.result', $latestDaerah->id)}}" class="d-flex flex-column bg-blue-dark1 p-3 mb-2 me-xxl-4 text-decoration-none rounded-2" style="width: 47%">
                         <div class="d-flex flex-column">

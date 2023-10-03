@@ -102,7 +102,7 @@
     </head>
     <body>
         <div class="d-flex">
-            <form action="{{ route('exam.session1.save') }}" method="POST" id="examForm" class="d-flex w-100" name="examForm">
+            <form action="{{ route('exam.session1.save', $session_id) }}" method="POST" id="examForm" class="d-flex w-100" name="examForm">
                 @csrf
                 <input type="hidden" name="current_page" value="{{ $content->current_page }}" class="visually-hidden">
                 {{-- Outside of Sidebar --}}
@@ -201,7 +201,7 @@
                             </div>
 
                             {{-- Next --}}
-                            <a class="text-decoration-none" href="{{ route('exam.session1.show', $next) }}">
+                            <a class="text-decoration-none" href="{{ route('exam.session1.show', ['session_id'=>$session_id, 'page'=>$next]) }}">
                                 <button class="btnNext" type="submit" value="{{ $next }}" name="save">
                                     <div class="text">Soal selanjutnya</div>
                                     <div class="sign">></div>
@@ -209,7 +209,7 @@
                             </a>
                         @elseif (($content->next_page_url == null) && ($content->prev_page_url != null))
                             {{-- Prev --}}
-                            <a class="text-decoration-none" href="{{ route('exam.session1.show', $prev) }}">
+                            <a class="text-decoration-none" href="{{ route('exam.session1.show', ['session_id'=>$session_id, 'page'=>$prev]) }}">
                                 <button class="btnPrev" type="submit" value="{{ $prev }}" name="save">    
                                     <div class="signPrev" style="text-decoration: none"><</div>
                                     <div class="textPrev">Soal Sebelumnya</div>
@@ -251,7 +251,7 @@
                             </a>
                         @else
                             {{-- Prev --}}
-                            <a class="text-decoration-none" href="{{ route('exam.session1.show', $prev) }}">
+                            <a class="text-decoration-none" href="{{ route('exam.session1.show', ['session_id'=>$session_id, 'page'=>$prev]) }}">
                                 <button class="btnPrev" type="submit" value="{{ $prev }}" name="save">    
                                     <div class="signPrev" style="text-decoration: none"><</div>
                                     <div class="textPrev">Soal Sebelumnya</div>
@@ -264,7 +264,7 @@
                             </div>
 
                             {{-- Next --}}
-                            <a class="text-decoration-none" href="{{ route('exam.session1.show', $next) }}">
+                            <a class="text-decoration-none" href="{{ route('exam.session1.show', ['session_id'=>$session_id, 'page'=>$next]) }}">
                                 <button class="btnNext" type="submit" value="{{ $next }}" name="save">
                                     <div class="text">Soal selanjutnya</div>
                                     <div class="sign">></div>
@@ -323,7 +323,6 @@
             storage = window.sessionStorage;
             if (!storage.getItem('time')) {
                 storage.setItem('time', 7200);
-                // storage.setItem('time', 20);
             }
             var total_seconds = parseInt(storage.getItem('time'));
             var hour = parseInt(total_seconds / 3600),

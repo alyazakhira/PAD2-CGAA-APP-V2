@@ -90,18 +90,19 @@ Route::controller(SimulationController::class)->group(function(){
     Route::get('/exam/type', 'select_exam_type')->name('exam.type'); // Select exam type
     Route::get('/exam/type/pusat', 'show_instruction_pusat')->name('exam.instruction.pusat'); // Show instruction page for exam pusat
     Route::get('/exam/type/daerah', 'show_instruction_daerah')->name('exam.instruction.daerah'); // Show instruction page for exam daerah
+    Route::get('/exam/interlude/{session_id}', 'show_interlude')->name('exam.interlude'); // Show instruction for second session
     Route::post('/exam/start', 'start_exam')->name('exam.start'); // Start exam and get session ID, will be redirected to exam.session1.show
 
     // Session 1 - Multiple Choice
-    Route::get('/exam/session-1/{page}', 'show_first_session')->name('exam.session1.show'); // Do the exam, navigate using $page
-    Route::post('/exam/session-1', 'save_first_session')->name('exam.session1.save'); // Save/end session 1, will be redirected to exam page/sent to session 1 result page
+    Route::get('/exam/session-1/{session_id}/{page}', 'show_first_session')->name('exam.session1.show'); // Do the exam, navigate using $page
+    Route::post('/exam/session-1/{session_id}', 'save_first_session')->name('exam.session1.save'); // Save/end session 1, will be redirected to exam page/sent to session 1 result page
 
     // Session 2 - Essay & Study Case
-    Route::get('/exam/session-2/{page}', 'show_second_session')->name('exam.session2.show'); // Do the exam, navigate using $page
-    Route::post('/exam/session-2', 'save_second_session')->name('exam.session2.save'); // Save session 2, will be redirected back to exam page
+    Route::get('/exam/session-2/{session_id}/{page}', 'show_second_session')->name('exam.session2.show'); // Do the exam, navigate using $page
+    Route::post('/exam/session-2/{session_id}', 'save_second_session')->name('exam.session2.save'); // Save session 2, will be redirected back to exam page
 
     // Exam Review Pack
-    Route::post('/exam/end', 'end_exam')->name('exam.end'); // End the exam, will be redirected to exam.result
+    Route::post('/exam/end/{session_id}', 'end_exam')->name('exam.end'); // End the exam, will be redirected to exam.result
     Route::get('/exam/review/{session_id}', 'show_exam_result')->name('exam.result'); // Show the exam result
     Route::get('/exam/review/{session_id}/multiple-choice/{page}', 'show_exam_mp_review')->name('exam.review.mp'); // Show the exam multiple choice review
     Route::get('/exam/review/{session_id}/essay/{page}', 'show_exam_ey_review')->name('exam.review.ey'); // Show the exam essay review

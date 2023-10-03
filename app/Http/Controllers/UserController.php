@@ -57,9 +57,17 @@ class UserController extends Controller
 
                 $userSessionRaw = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/result/session/'.session('user'));
                 $userSessionData = json_decode($userSessionRaw->body());
-                $session = $userSessionData->data;
+                $sessionFinished = [];
+                $sessionUnfinished = [];
+                foreach ($userSessionData->data as $data) {
+                    if ($data->status > 0) {
+                        array_push($sessionUnfinished, $data);
+                    } else {
+                        array_push($sessionFinished, $data);
+                    }
+                }
 
-                return view('user.history', compact('user', 'session'));
+                return view('user.history', compact('user', 'sessionFinished', 'sessionUnfinished'));
             }
         } else {
             return redirect()->route('login.show');

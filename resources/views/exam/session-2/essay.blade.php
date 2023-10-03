@@ -134,7 +134,7 @@
                     
                     {{-- Question --}}
                     <div class="d-flex flex-column">
-                        <form action="{{ route('exam.session2.save') }}" method="POST">
+                        <form action="{{ route('exam.session2.save', $session_id) }}" method="POST">
                             @csrf
                             @foreach ($question->data as $q)
                                 <div class="h4-text mb-3">{!! $q->question !!}</div>
@@ -176,7 +176,7 @@
                         </div>
 
                         {{-- Next --}}
-                        <a class="text-decoration-none" href="{{ route('exam.session2.show', $next) }}">
+                        <a class="text-decoration-none" href="{{ route('exam.session2.show', ['session_id'=>$session_id, 'page'=>$next]) }}">
                             <button class="btnNext" type="submit" value="{{ $next }}" name="save">
                                 <div class="text">Soal selanjutnya</div>
                                 <div class="sign">></div>
@@ -184,7 +184,7 @@
                         </a>
                     @elseif (($question->next_page_url == null) && ($question->prev_page_url != null))
                         {{-- Prev --}}
-                        <a class="text-decoration-none" href="{{ route('exam.session2.show', $prev) }}">
+                        <a class="text-decoration-none" href="{{ route('exam.session2.show', ['session_id'=>$session_id, 'page'=>$prev]) }}">
                             <button class="btnPrev" type="submit" value="{{ $prev }}" name="save">    
                                 <div class="signPrev" style="text-decoration: none"><</div>
                                 <div class="textPrev">Soal Sebelumnya</div>
@@ -226,7 +226,7 @@
                         </a>
                     @else
                         {{-- Prev --}}
-                        <a class="text-decoration-none" href="{{ route('exam.session2.show', $prev) }}">
+                        <a class="text-decoration-none" href="{{ route('exam.session2.show', ['session_id'=>$session_id, 'page'=>$prev]) }}">
                             <button class="btnPrev" type="submit" value="{{ $prev }}" name="save">    
                                 <div class="signPrev" style="text-decoration: none"><</div>
                                 <div class="textPrev">Soal Sebelumnya</div>
@@ -239,7 +239,7 @@
                         </div>
 
                         {{-- Next --}}
-                        <a class="text-decoration-none" href="{{ route('exam.session2.show', $next) }}">
+                        <a class="text-decoration-none" href="{{ route('exam.session2.show', ['session_id'=>$session_id, 'page'=>$next]) }}">
                             <button class="btnNext" type="submit" value="{{ $next }}" name="save">
                                 <div class="text">Soal selanjutnya</div>
                                 <div class="sign">></div>
@@ -268,17 +268,17 @@
                     <div class="d-grid" style="grid-template-columns: 1fr 1fr 1fr 1fr; width: fit-content; gap: 20px">
                         @for ($i = 1; $i <= ($question->last_page); $i++)
                             @if ($i == $question->current_page)
-                                <a href={{ route('exam.session2.show', $i) }} value="{{ $i }}" id="essay-{{ $i }}" type="button" class="btn btn-yellow-normal text-center number" style="width: 40px; height: 40px;">
+                                <a href={{ route('exam.session2.show', ['session_id'=>$session_id, 'page'=>$i]) }} value="{{ $i }}" id="essay-{{ $i }}" type="button" class="btn btn-yellow-normal text-center number" style="width: 40px; height: 40px;">
                                     {{ $i }}
                                     <div class="d-none flag bg-red-normal" id="flag-essay-{{ $i }}"></div>
                                 </a>
                             @elseif ($essayAnswer->{"answer_$i"} == null)
-                                <a href={{ route('exam.session2.show', $i) }} value="{{ $i }}" id="essay-{{ $i }}" type="button" class="btn btn-blue-light text-center number" style="width: 40px; height: 40px;">
+                                <a href={{ route('exam.session2.show', ['session_id'=>$session_id, 'page'=>$i]) }} value="{{ $i }}" id="essay-{{ $i }}" type="button" class="btn btn-blue-light text-center number" style="width: 40px; height: 40px;">
                                     {{ $i }}
                                     <div class="d-none flag bg-red-normal" id="flag-essay-{{ $i }}"></div>
                                 </a>
                             @else
-                                <a href={{ route('exam.session2.show', $i) }} value="{{ $i }}" id="essay-{{ $i }}" type="button" class="btn btn-success text-center number" style="width: 40px; height: 40px;">
+                                <a href={{ route('exam.session2.show', ['session_id'=>$session_id, 'page'=>$i]) }} value="{{ $i }}" id="essay-{{ $i }}" type="button" class="btn btn-success text-center number" style="width: 40px; height: 40px;">
                                     {{ $i }}
                                     <div class="d-none flag bg-red-normal" id="flag-essay-{{ $i }}"></div>
                                 </a>
@@ -289,17 +289,17 @@
 
                     <p class="text-white mt-5">Studi Kasus</p>
                     <div class="d-grid" style="grid-template-columns: 1fr 1fr 1fr 1fr; width: fit-content; gap: 20px">
-                        <a href="{{ route('exam.session2.show', "case-study") }}#information" type="button" class="btn btn-blue-light text-center number" style="width: 40px; height: 40px;">
+                        <a href="{{ route('exam.session2.show', ['session_id'=>$session_id, 'page'=>"caseStudy"]) }}#information" type="button" class="btn btn-blue-light text-center number" style="width: 40px; height: 40px;">
                             <i class="bi bi-info-lg"></i>
                         </a>
                         @for ($i = 1; $i <= $caseStudyCount; $i++)
                             @if ($caseStudyAnswer->{"answer_$i"} == null)
-                                <a href="{{ route('exam.session2.show', "case-study") }}#{{ $i }}" value="{{ $i }}" id="cs-{{ $i }}" type="button" class="btn btn-blue-light text-center number" style="width: 40px; height: 40px;">
+                                <a href="{{ route('exam.session2.show', ['session_id'=>$session_id, 'page'=>"caseStudy"]) }}#{{ $i }}" value="{{ $i }}" id="cs-{{ $i }}" type="button" class="btn btn-blue-light text-center number" style="width: 40px; height: 40px;">
                                     {{ $i }}
                                     <div class="d-none flag bg-red-normal" id="flag-cs-{{ $i }}"></div>
                                 </a>
                             @else
-                                <a href="{{ route('exam.session2.show', "case-study") }}#{{ $i }}" value="{{ $i }}" id="cs-{{ $i }}" type="button" class="btn btn-success text-center number" style="width: 40px; height: 40px;">
+                                <a href="{{ route('exam.session2.show', ['session_id'=>$session_id, 'page'=>"caseStudy"]) }}#{{ $i }}" value="{{ $i }}" id="cs-{{ $i }}" type="button" class="btn btn-success text-center number" style="width: 40px; height: 40px;">
                                     {{ $i }}
                                     <div class="d-none flag bg-red-normal" id="flag-cs-{{ $i }}"></div>
                                 </a>
@@ -309,7 +309,7 @@
                 </div>
 
                 {{-- Submit button --}}
-                <form action="{{ route('exam.end') }}" method="POST" class="row my-4" style="width: 70%">
+                <form action="{{ route('exam.end', $session_id) }}" method="POST" class="row my-4" style="width: 70%">
                     @csrf
                     <button type="submit" onclick="stop_timer()" id="submit" value="finished" class="btn btn-yellow-normal">Selesaikan Ujian</button>
                 </form>

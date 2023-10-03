@@ -73,19 +73,46 @@
                 </div>
             </nav>
     
-            {{-- Title --}}
-            <h1 class="h3-text font-blue-dark1 p-semi-bold mb-3">Riwayat Pengerjaan</h1>
-
-            {{-- History Wrapper --}}
-            <div class="d-flex flex-column w-100 bg-blue-dark1 p-4 rounded-2" style="height: 90%">
-                
+            {{-- Unfinished --}}
+            <h1 class="h3-text font-blue-dark1 p-semi-bold mb-3">Sedang Dikerjakan</h1>
+            {{-- Unfinished Wrapper --}}
+            <div class="d-flex flex-column w-100 bg-blue-dark1 p-4 rounded-2 mb-5">  
                 {{-- History item --}}
-                @if ($session == null)
+                @if ($sessionUnfinished == null)
                     <div class="d-flex text-white h4-text">
-                        Anda belum melakukan simulasi.
+                        Anda tidak sedang mengerjakan simulasi.
                     </div>
                 @else
-                    @foreach ($session as $s)
+                    @foreach ($sessionUnfinished as $s)
+                        <a href="{{route('exam.interlude', $s->id)}}" class="d-flex bg-yellow-light3 p-3 justify-content-between mb-2 text-decoration-none text-black rounded-2">
+                            <div class="d-flex align-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-right font-blue-dark1" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                                <div class="mx-3 d-flex flex-column">
+                                    <p class="p-medium mb-1">{{ date('d-m-Y H:i:s', strtotime($s->created_at)) }}</p>
+                                    <p class="additional-text m-0">Tingkat {{ $s->type }}</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-end me-2">
+                                <p class="m-0 p-semi-bold font-blue-dark1">Kerjakan</p>
+                            </div>
+                        </a>
+                    @endforeach
+                @endif
+            </div>
+
+            {{-- Finished --}}
+            <h1 class="h3-text font-blue-dark1 p-semi-bold mb-3">Riwayat Pengerjaan Selesai</h1>
+            {{-- Finished Wrapper --}}
+            <div class="d-flex flex-column w-100 bg-blue-dark1 p-4 rounded-2">  
+                {{-- History item --}}
+                @if ($sessionFinished == null)
+                    <div class="d-flex text-white h4-text">
+                        Anda belum menyelesaikan simulasi.
+                    </div>
+                @else
+                    @foreach ($sessionFinished as $s)
                         <a href="{{route('exam.result', $s->id)}}" class="d-flex bg-yellow-light3 p-3 justify-content-between mb-2 text-decoration-none text-black rounded-2">
                             <div class="d-flex align-items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-chevron-right font-blue-dark1" viewBox="0 0 16 16">
