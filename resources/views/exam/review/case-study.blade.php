@@ -120,7 +120,7 @@
                     
                     {{-- Question --}}
                     <div class="d-flex flex-column">
-                        <div class="d-flex flex-column align-items-center" id="information">{!! $content->information !!}</div>
+                        <div class="label-text" id="information">{!! $content->information !!}</div>
                         @for ($i = 1; $i <= $content->instruction_count; $i++)
                             <p class="p-medium mb-1 mt-5" id="{{ $i }}">Instruksi {{ $i }}</p>
                             <div class="mb-1">{!! $content->{"instruction_$i"} !!}</div>

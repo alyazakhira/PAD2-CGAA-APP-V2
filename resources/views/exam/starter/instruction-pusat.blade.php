@@ -54,12 +54,12 @@
             <div class="d-flex justify-content-center">
                 <div class="row justify-content-center my-4" style="width: 100%">
                     <div class="row me-3" style="width: 40%">
-                        <a href="{{ route('exam.type') }}" type="button" class="btn btn-lg btn-outline-blue-normal text-decoration-none">Kembali</a>
+                        <a href="{{ route('exam.type') }}" type="button" class="btn btn-outline-blue-normal text-decoration-none">Kembali</a>
                     </div>
                     <form action="{{ route('exam.start') }}" method="POST" class="row ms-3" style="width: 40%">
                         @csrf
                         <input type="hidden" value="pusat" name="exam_type">
-                        <button type="submit" class="btn btn-lg btn-blue-normal text-decoration-none">Mulai Simulasi</button>
+                        <button type="submit" class="btn btn-blue-normal text-decoration-none">Mulai Simulasi</button>
                     </form>
                 </div>
             </div>
