@@ -39,7 +39,7 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
-        $apiResponse = Http::post('http://localhost:8000/api/v2/login',[
+        $apiResponse = Http::post(env('API_PREFIX').'v2/login',[
             'email' => $request->email,
             'password' => $request->password,
         ]);
@@ -75,7 +75,7 @@ class AuthController extends Controller
             
         ]);
         if ($request->occupation_type == "mahasiswa") {
-            $apiResponse = Http::post('http://localhost:8000/api/v2/register',[
+            $apiResponse = Http::post(env('API_PREFIX').'v2/register',[
                 'name' => $request->name,
                 'gender' => $request->gender,
                 'date_of_birth' => $request->date_of_birth,
@@ -88,7 +88,7 @@ class AuthController extends Controller
                 'is_admin' => 0,
             ]);
         } else {
-            $apiResponse = Http::post('http://localhost:8000/api/v2/register',[
+            $apiResponse = Http::post(env('API_PREFIX').'v2/register',[
                 'name' => $request->name,
                 'gender' => $request->gender,
                 'date_of_birth' => $request->date_of_birth,
@@ -108,7 +108,7 @@ class AuthController extends Controller
 
     public function logout(Request $request){
         if ($request->session()->exists('bearer')) {
-            $apiResponse = Http::withToken(session('bearer'))->post('http://localhost:8000/api/v1/logout');
+            $apiResponse = Http::withToken(session('bearer'))->post(env('API_PREFIX').'v1/logout');
             $request->session()->flush();
             return redirect('/');
         } else {
@@ -118,6 +118,6 @@ class AuthController extends Controller
     }
 
     public function input_email(){
-        return Http::get('http://localhost:8000/api/v2/forget-password');
+        return Http::get(env('API_PREFIX').'v2/forget-password');
     }
 }

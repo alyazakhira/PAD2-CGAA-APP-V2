@@ -11,7 +11,7 @@ class AdminController extends Controller
         if (session()->has('bearer')) {
             if (session('authorized')) {
                 // Retrieve Session Data
-                $sessions = json_decode(Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/exam-session')->body())->data;
+                $sessions = json_decode(Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/exam-session')->body())->data;
                 $session_count = collect($sessions)->count();
                 $date = [];
                 $value = [];
@@ -36,13 +36,13 @@ class AdminController extends Controller
                 array_push($value, $counter);
 
                 // Retrieve Question Data
-                $mpData = json_decode(Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice')->body())->data;
-                $eyData = json_decode(Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/essay')->body())->data;
-                $csData = json_decode(Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/case-study')->body())->data;
+                $mpData = json_decode(Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/multiple-choice')->body())->data;
+                $eyData = json_decode(Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/essay')->body())->data;
+                $csData = json_decode(Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/case-study')->body())->data;
                 $question_count = collect($mpData)->count() + collect($eyData)->count() + collect($csData)->count();
 
                 // Retrieve User Data
-                $userData = json_decode(Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/users')->body())->data;
+                $userData = json_decode(Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/users')->body())->data;
                 $user_count = collect($userData)->count();
                 $colleger = 0;
                 $non_colleger = 0;
@@ -65,7 +65,7 @@ class AdminController extends Controller
     public function user_index($page){
         if (session()->has('bearer')) {
             if (session('authorized')) {
-                $userDataRaw = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/paginated/user/10?page='.$page);
+                $userDataRaw = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/paginated/user/10?page='.$page);
                 $userData = json_decode($userDataRaw->body());
                 $content = $userData->data;
                 return view('admin.user-index', compact('content'));
@@ -81,7 +81,7 @@ class AdminController extends Controller
         public function mp_index_pusat($page){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/paginated/multiple-choice/pusat/10?page='.$page);
+                    $apiResponse = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/paginated/multiple-choice/pusat/10?page='.$page);
                     $response = json_decode($apiResponse->body());
                     $content = $response->data;
                     return view('admin.multiple-choice.index-pusat', compact('content'));
@@ -96,7 +96,7 @@ class AdminController extends Controller
         public function mp_index_daerah($page){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/paginated/multiple-choice/daerah/10?page='.$page);
+                    $apiResponse = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/paginated/multiple-choice/daerah/10?page='.$page);
                     $response = json_decode($apiResponse->body());
                     $content = $response->data;
                     return view('admin.multiple-choice.index-daerah', compact('content'));
@@ -111,7 +111,7 @@ class AdminController extends Controller
         public function mp_show($mp_id){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice/'.$mp_id);
+                    $apiResponse = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/multiple-choice/'.$mp_id);
                     $response = json_decode($apiResponse->body());
                     $mp = $response->data;
                     return view('admin.multiple-choice.show', compact('mp'));
@@ -148,7 +148,7 @@ class AdminController extends Controller
                         'answer_d' => 'required',
                         'correct_answer' => 'required',
                     ]);
-                    $apiResponse = Http::withToken(session('bearer'))->post('http://localhost:8000/api/v2/multiple-choice',[
+                    $apiResponse = Http::withToken(session('bearer'))->post(env('API_PREFIX').'v2/multiple-choice',[
                         'question_type' => $request->question_type,
                         'question' => $request->question,
                         'question_explanation' => $request->question_explanation,
@@ -172,7 +172,7 @@ class AdminController extends Controller
         public function mp_edit($mp_id){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/multiple-choice/'.$mp_id);
+                    $apiResponse = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/multiple-choice/'.$mp_id);
                     $response = json_decode($apiResponse->body());
                     $mp = $response->data;
                     return view('admin.multiple-choice.edit', compact('mp'));
@@ -197,7 +197,7 @@ class AdminController extends Controller
                         'answer_d' => 'required',
                         'correct_answer' => 'required',
                     ]);
-                    $apiResponse = Http::withToken(session('bearer'))->post('http://localhost:8000/api/v2/multiple-choice/'.$mp_id,[
+                    $apiResponse = Http::withToken(session('bearer'))->post(env('API_PREFIX').'v2/multiple-choice/'.$mp_id,[
                         'question_type' => $request->question_type,
                         'question' => $request->question,
                         'question_explanation' => $request->question_explanation,
@@ -222,7 +222,7 @@ class AdminController extends Controller
         public function mp_delete(Request $request, $mp_id){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->delete('http://localhost:8000/api/v2/multiple-choice/'.$mp_id);
+                    $apiResponse = Http::withToken(session('bearer'))->delete(env('API_PREFIX').'v2/multiple-choice/'.$mp_id);
                     $response = json_decode($apiResponse->body());
                     return redirect()->route('admin.mp.index.pusat', 1)->with('message', 'Berhasil menghapus soal pilihan ganda dengan ID '.$mp_id.'!');
                 } else {
@@ -238,7 +238,7 @@ class AdminController extends Controller
         public function ey_index_pusat($page){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/paginated/essay/pusat/5?page='.$page);
+                    $apiResponse = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/paginated/essay/pusat/10?page='.$page);
                     $response = json_decode($apiResponse->body());
                     $content = $response->data;
                     return view('admin.essay.index-pusat', compact('content'));
@@ -253,7 +253,7 @@ class AdminController extends Controller
         public function ey_index_daerah($page){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/paginated/essay/daerah/5?page='.$page);
+                    $apiResponse = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/paginated/essay/daerah/10?page='.$page);
                     $response = json_decode($apiResponse->body());
                     $content = $response->data;
                     return view('admin.essay.index-daerah', compact('content'));
@@ -268,7 +268,7 @@ class AdminController extends Controller
         public function ey_show($ey_id){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/essay/'.$ey_id);
+                    $apiResponse = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/essay/'.$ey_id);
                     $response = json_decode($apiResponse->body());
                     $ey = $response->data;
                     return view('admin.essay.show', compact('ey'));
@@ -300,7 +300,7 @@ class AdminController extends Controller
                         'question' => 'required',
                         'correct_answer' => 'required',
                     ]);
-                    $apiResponse = Http::withToken(session('bearer'))->post('http://localhost:8000/api/v2/essay',[
+                    $apiResponse = Http::withToken(session('bearer'))->post(env('API_PREFIX').'v2/essay',[
                         'question_type' => $request->question_type,
                         'question' => $request->question,
                         'correct_answer' => $request->correct_answer,
@@ -319,7 +319,7 @@ class AdminController extends Controller
         public function ey_edit($ey_id){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/essay/'.$ey_id);
+                    $apiResponse = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/essay/'.$ey_id);
                     $response = json_decode($apiResponse->body());
                     $ey = $response->data;
                     return view('admin.essay.edit', compact('ey'));
@@ -339,7 +339,7 @@ class AdminController extends Controller
                         'question' => 'required',
                         'correct_answer' => 'required',
                     ]);
-                    $apiResponse = Http::withToken(session('bearer'))->post('http://localhost:8000/api/v2/essay/'.$ey_id,[
+                    $apiResponse = Http::withToken(session('bearer'))->post(env('API_PREFIX').'v2/essay/'.$ey_id,[
                         'question_type' => $request->question_type,
                         'question' => $request->question,
                         'correct_answer' => $request->correct_answer,
@@ -359,7 +359,7 @@ class AdminController extends Controller
         public function ey_delete(Request $request, $ey_id){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->delete('http://localhost:8000/api/v2/essay/'.$ey_id);
+                    $apiResponse = Http::withToken(session('bearer'))->delete(env('API_PREFIX').'v2/essay/'.$ey_id);
                     $response = json_decode($apiResponse->body());
                     return redirect()->route('admin.ey.index.pusat', 1)->with('message', 'Berhasil menghapus soal esai dengan ID '.$ey_id.'!');
                 } else {
@@ -375,7 +375,7 @@ class AdminController extends Controller
         public function cs_index_pusat($page){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/paginated/case-study/pusat/5?page='.$page);
+                    $apiResponse = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/paginated/case-study/pusat/5?page='.$page);
                     $response = json_decode($apiResponse->body());
                     $content = $response->data;
                     return view('admin.case-study.index-pusat', compact('content'));
@@ -390,7 +390,7 @@ class AdminController extends Controller
         public function cs_index_daerah($page){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/paginated/case-study/daerah/5?page='.$page);
+                    $apiResponse = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/paginated/case-study/daerah/5?page='.$page);
                     $response = json_decode($apiResponse->body());
                     $content = $response->data;
                     return view('admin.case-study.index-daerah', compact('content'));
@@ -405,7 +405,7 @@ class AdminController extends Controller
         public function cs_show($cs_id){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/case-study/'.$cs_id);
+                    $apiResponse = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/case-study/'.$cs_id);
                     $response = json_decode($apiResponse->body());
                     $cs = $response->data;
                     return view('admin.case-study.show', compact('cs'));
@@ -457,7 +457,7 @@ class AdminController extends Controller
                             $formData["instruction_$i"] = $request->{"instruction_$i"};
                             $formData["key_answer_$i"] = $request->{"key_answer_$i"};
                         }
-                        $apiResponse = Http::withToken(session('bearer'))->post('http://localhost:8000/api/v2/case-study',$formData);
+                        $apiResponse = Http::withToken(session('bearer'))->post(env('API_PREFIX').'v2/case-study',$formData);
                         $response = json_decode($apiResponse->body());
                         $question = $response->data;
                         return redirect()->route('admin.cs.index.'.$request->question_type, 1)->with('message', 'Berhasil menambahkan soal studi kasus dengan ID '.$question->id.'!');
@@ -475,7 +475,7 @@ class AdminController extends Controller
         public function cs_edit($cs_id){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/case-study/'.$cs_id);
+                    $apiResponse = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/case-study/'.$cs_id);
                     $response = json_decode($apiResponse->body());
                     $cs = $response->data;
                     return view('admin.case-study.edit', compact('cs'));
@@ -516,7 +516,7 @@ class AdminController extends Controller
                             $formData["instruction_$i"] = $request->{"instruction_$i"};
                             $formData["key_answer_$i"] = $request->{"key_answer_$i"};
                         }
-                        $apiResponse = Http::withToken(session('bearer'))->post('http://localhost:8000/api/v2/case-study/'.$cs_id,$formData);
+                        $apiResponse = Http::withToken(session('bearer'))->post(env('API_PREFIX').'v2/case-study/'.$cs_id,$formData);
                         $response = json_decode($apiResponse->body());
                         $question = $response->data;
                         return redirect()->route('admin.cs.index.'.$request->question_type, 1)->with('message', 'Berhasil mengubah soal studi kasus dengan ID '.$question->id.'!');
@@ -534,7 +534,7 @@ class AdminController extends Controller
         public function cs_delete(Request $request, $cs_id){
             if (session()->has('bearer')) {
                 if (session('authorized')) {
-                    $apiResponse = Http::withToken(session('bearer'))->delete('http://localhost:8000/api/v2/case-study/'.$cs_id);
+                    $apiResponse = Http::withToken(session('bearer'))->delete(env('API_PREFIX').'v2/case-study/'.$cs_id);
                     $response = json_decode($apiResponse->body());
                     return redirect()->route('admin.cs.index.pusat', 1)->with('message', 'Berhasil menghapus soal studi kasus dengan ID '.$cs_id.'!');
                 } else {

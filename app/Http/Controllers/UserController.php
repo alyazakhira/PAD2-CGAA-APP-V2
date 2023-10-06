@@ -12,11 +12,11 @@ class UserController extends Controller
             if (session('authorized')) {
                 return redirect()->route('admin.dashboard');
             } else {
-                $userDataRaw = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/users/'.session('user'));
+                $userDataRaw = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/users/'.session('user'));
                 $userData = json_decode($userDataRaw->body());
                 $user = $userData->data;
 
-                $sessionDataRaw = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/result/session/'.session('user'));
+                $sessionDataRaw = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/result/session/'.session('user'));
                 $sessionData = json_decode($sessionDataRaw->body());
                 $session = $sessionData->data;
                 $date = [];
@@ -35,7 +35,7 @@ class UserController extends Controller
                     }
                 }
 
-                $userAverageRaw = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/result/average-score/'.session('user'));
+                $userAverageRaw = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/result/average-score/'.session('user'));
                 $userAverageData = json_decode($userAverageRaw->body());
                 $average = $userAverageData->data->average;
 
@@ -51,11 +51,11 @@ class UserController extends Controller
             if (session('authorized')) {
                 return redirect()->route('admin.dashboard');
             } else {
-                $userDataRaw = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/users/'.session('user'));
+                $userDataRaw = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/users/'.session('user'));
                 $userData = json_decode($userDataRaw->body());
                 $user = $userData->data;
 
-                $userSessionRaw = Http::withToken(session('bearer'))->get('http://localhost:8000/api/v2/result/session/'.session('user'));
+                $userSessionRaw = Http::withToken(session('bearer'))->get(env('API_PREFIX').'v2/result/session/'.session('user'));
                 $userSessionData = json_decode($userSessionRaw->body());
                 $sessionFinished = [];
                 $sessionUnfinished = [];
