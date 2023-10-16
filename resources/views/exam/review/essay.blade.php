@@ -155,7 +155,7 @@
                         </div>
 
                         {{-- Next --}}
-                        <a class="text-decoration-none" href="{{ route('exam.session1.show', ['page' => $next,'session_id' => $session_id ]) }}">
+                        <a class="text-decoration-none" href="{{ route('exam.review.ey', ['page' => $next,'session_id' => $session_id ]) }}">
                             <button class="btnNext" type="submit" value="{{ $next }}" name="save">
                                 <div class="text">Soal selanjutnya</div>
                                 <div class="sign">></div>
@@ -163,7 +163,7 @@
                         </a>
                     @elseif (($content->next_page_url == null) && ($content->prev_page_url != null))
                         {{-- Prev --}}
-                        <a class="text-decoration-none" href="{{ route('exam.session1.show', ['page' => $prev,'session_id' => $session_id ]) }}">
+                        <a class="text-decoration-none" href="{{ route('exam.review.ey', ['page' => $prev,'session_id' => $session_id ]) }}">
                             <button class="btnPrev" type="submit" value="{{ $prev }}" name="save">    
                                 <div class="signPrev" style="text-decoration: none"><</div>
                                 <div class="textPrev">Soal Sebelumnya</div>
@@ -205,7 +205,7 @@
                         </a>
                     @else
                         {{-- Prev --}}
-                        <a class="text-decoration-none" href="{{ route('exam.session1.show', ['page' => $prev,'session_id' => $session_id ]) }}">
+                        <a class="text-decoration-none" href="{{ route('exam.review.ey', ['page' => $prev,'session_id' => $session_id ]) }}">
                             <button class="btnPrev" type="submit" value="{{ $prev }}" name="save">    
                                 <div class="signPrev" style="text-decoration: none"><</div>
                                 <div class="textPrev">Soal Sebelumnya</div>
@@ -218,7 +218,7 @@
                         </div>
 
                         {{-- Next --}}
-                        <a class="text-decoration-none" href="{{ route('exam.session1.show', ['page' => $next,'session_id' => $session_id ]) }}">
+                        <a class="text-decoration-none" href="{{ route('exam.review.ey', ['page' => $next,'session_id' => $session_id ]) }}">
                             <button class="btnNext" type="submit" value="{{ $next }}" name="save">
                                 <div class="text">Soal selanjutnya</div>
                                 <div class="sign">></div>
