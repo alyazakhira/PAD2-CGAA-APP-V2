@@ -14,36 +14,6 @@
         <link rel="stylesheet" href="{{ asset('style/font.css') }}">
         <link rel="stylesheet" href="{{ asset('style/color.css') }}">
         <link rel="stylesheet" href="{{ asset('style/button.css') }}">
-        <style>
-            td p{
-                margin: 0;
-            }
-            td>p{
-                white-space: nowrap;
-                overflow: hidden;
-                width: 42rem;
-                height: 1.4rem;
-                text-overflow: ellipsis;
-            }
-            @media (width: 1280px){
-                td>p{
-                    width: 37rem;
-                }
-            }
-            @media (min-width:768px) and (max-width: 1024px){
-                td>p{
-                    width: 25rem;
-                }
-            }
-            @media (max-width: 767px){
-                td>p{
-                    width: 10rem;
-                }
-            }
-            td>ol, td>ul{
-                display: none;
-            }
-        </style>
     </head>
     <body>
         {{-- Message Handler --}}
