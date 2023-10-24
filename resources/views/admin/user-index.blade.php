@@ -170,17 +170,17 @@
                                     <a class="page-link">Previous</a>
                                 </li>
                                 @for ($i = 1; $i < ($content->last_page)+1; $i++)
-                                    <li class="page-item"><a class="page-link" href="{{ url('admin-list-user/page/'.$i) }}">{{ $i }}</a></li>
+                                    <li class="page-item"><a class="page-link" href="{{ route('admin.user.index', $i) }}">{{ $i }}</a></li>
                                 @endfor
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ url('admin-list-user/page/'.$next) }}">Next</a>
+                                    <a class="page-link" href="{{ route('admin.user.index', $next) }}">Next</a>
                                 </li>
                             @elseif (($content->next_page_url == null) && ($content->prev_page_url != null))
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ url('admin-list-user/page/'.$prev) }}">Previous</a>
+                                    <a class="page-link" href="{{ route('admin.user.index', $prev) }}">Previous</a>
                                 </li>
                                 @for ($i = 1; $i < ($content->last_page)+1; $i++)
-                                    <li class="page-item"><a class="page-link" href="{{ url('admin-list-user/page/'.$i) }}">{{ $i }}</a></li>
+                                    <li class="page-item"><a class="page-link" href="{{ route('admin.user.index', $i) }}">{{ $i }}</a></li>
                                 @endfor
                                 <li class="page-item disabled">
                                     <a class="page-link">Next</a>
@@ -190,20 +190,20 @@
                                     <a class="page-link">Previous</a>
                                 </li>
                                 @for ($i = 1; $i < ($content->last_page)+1; $i++)
-                                    <li class="page-item"><a class="page-link" href="{{ url('admin-list-user/page/'.$i) }}">{{ $i }}</a></li>
+                                    <li class="page-item"><a class="page-link" href="{{ route('admin.user.index', $i) }}">{{ $i }}</a></li>
                                 @endfor
                                 <li class="page-item disabled">
                                     <a class="page-link">Next</a>
                                 </li>
                             @else
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ url('admin-list-user/page/'.$prev) }}">Previous</a>
+                                    <a class="page-link" href="{{ route('admin.user.index', $prev) }}">Previous</a>
                                 </li>
                                 @for ($i = 1; $i < ($content->last_page)+1; $i++)
-                                    <li class="page-item"><a class="page-link" href="{{ url('admin-list-user/page/'.$i) }}">{{ $i }}</a></li>
+                                    <li class="page-item"><a class="page-link" href="{{ route('admin.user.index', $i) }}">{{ $i }}</a></li>
                                 @endfor
                                 <li class="page-item">
-                                    <a class="page-link" href="{{ url('admin-list-user/page/'.$next) }}">Next</a>
+                                    <a class="page-link" href="{{ route('admin.user.index', $next) }}">Next</a>
                                 </li>
                             @endif
                         @endif
