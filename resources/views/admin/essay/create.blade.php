@@ -16,7 +16,7 @@
     <body>
         <div class="d-flex">
             <!-- Sidebar -->
-            <div class="d-flex flex-column bg-yellow-normal1 p-4 vh-100 align-items-center sidebar sticky-top flex-shrink-0 left-sidebar">
+            <div class="d-flex flex-column bg-yellow-normal1 p-4 vh-100 align-items-center sidebar sticky-top flex-shrink-0 left-sidebar overflow-y-scroll">
                 {{-- Logo --}}
                 <div class="d-flex justify-content-between justify-content-lg-center align-items-center w-100 mb-5">
                     {{-- Logo --}}
