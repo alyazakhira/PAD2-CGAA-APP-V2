@@ -1,4 +1,8 @@
-## Website Simulasi CGAA
-Website simulasi CGAA <i>(Certified Government Accounting Associate)</i> adalah platform berbasis web yang menyediakan paket ujian simulasi CGAA Daerah dan Pusat. Pengguna dapat menggunakan website ini untuk mengukur kemampuan pemahaman dan kesiapan dalam memnghadapi ujian CGAA asli. Semua soal yang disediakan dibuat semirip mungkin dengan soal ujian asli. 
-<hr>
-Repository ini merupakan <i>front-end</i> aplikasi CGAA yang dapat diakses secara langsung oleh pengguna. Data-data yang dibutuhkan oleh aplikasi ini disediakan oleh Project bagian [API](https://github.com/alyazakhira/PAD2-CGAA-API-V2).
+## Tentang
+Website simulasi CGAA _(Certified government Accouting Associate)_ adalah platform berbasis web yang menyediakan paket ujian simulasi CGAA baik tingkat daerah maupun pusat. Pengguna dapat menggunakan website ini secara gratis untuk mengukur kemampuan pemahaman dan kesiapan mereka dalam menghadapi ujian sertifikasi CGAA yang asli. Semua soal yang tersedia dibuat semirip mungkin dengan aslinya agar pengguna dapat merasakan simulasi yang hampir sama dengan keadaan di lapangan. Proyek ini bekerja sama dengan dosen dan mahasiswa dari Departemen Ekonomika dan Bisnis, Sekolah Vokasi UGM.
+
+## Teknis Aplikasi
+Repositori ini merupakan bagian _front-end_ dari website yang berisi antarmuka yang dilihat langsung oleh pengguna. Dibuat menggunakan _framework_ Laravel, Bootstrap, serta _tools_ pengembangan web lainnya. Bagian dari _back-end_ yang menyediakan API dan data-data dapat dilihat dari repositori [API](https://github.com/alyazakhira/PAD2-CGAA-API-V2.git).
+
+## Tampilan Aplikasi
+Website ini telah selesai dikembangkan dan dapat diakses oleh publik sejak Oktober 2023. Apabila tertarik, dapat mengunjungi situs [website simulasi CGAA](https://cgaasimulation.site/).
